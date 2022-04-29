@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,100 @@
     <link rel="stylesheet" href="styles.css">
     <title>JS Calendar 2022</title>
 </head>
+
 <body>
-<script src="calendar.js"></script>
+
+    <div class="calendar">
+        <header class="calendar__logo">
+
+        </header>
+        <main class="calendar__main">
+            <section class="header calendar__month-display">
+
+            </section>
+
+            <section class="calendar__week">
+                <div class="calendar__week-day"></div>
+                <div class="calendar__week-day"></div>
+                <div class="calendar__week-day"></div>
+                <div class="calendar__week-day"></div>
+                <div class="calendar__week-day"></div>
+                <div class="calendar__week-day"></div>
+                <div class="calendar__week-day"></div>
+            </section>
+
+            <section class="calendar__days" id="calendarDays">
+
+            </section>
+
+            <footer class="calendar__footer">
+                <button class="calendar__add-event">
+                </button>
+            </footer>
+
+            <!-- Modals -->
+
+            <!-- Day info modal -->
+            <section class="day-info">
+                <div class="day-info__close-button" id="closeBtnDetails">
+                </div>
+                <header class="header day-info__header"></header> 
+                <div class="day-info__int-date"></div>  
+                <div class="day-info__int-day">
+                     <div class="day-info__int-emoji"></div>  
+                    <div class="day-info__int-description">
+                        <div class="day-info__int-title">
+                        </div>
+                        <p class="day-info__int-text"></p>
+                    </div>     
+                </div>   
+                   
+                <div class="day-info__container" id="eventDetails">
+                    <div class="day-info__event-info">
+                        <div class="day-info__title"></div>
+                        <div class="day-info__description"></div>
+                    </div>
+                    <button class="button day-info__delete-button" id="deleteEventBtn">Delete event</button>
+                </div>
+            </section>
+
+            <!-- New event modal -->
+            <section class="new-event">
+                <header class="header new-event__header"></header>
+                <form action="#">
+                    <div>
+                        <label for="eventTitle">Title</label>
+                        <input type="text" id="eventTitle"></input>
+                    </div>
+                    <div>
+                        <label for="initialDate">Initial Date</label>
+                        <input type="date" id="initialDate"></input>
+                    </div>
+                    <div>
+                        <label for="finalDate">Final Date</label>
+                        <input type="date" id="finalDate"></input>
+                    </div>
+                <div>
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value ="work">Work</option>
+                        <option value ="personal">Personal</option>
+                    </select>
+                </div>  
+                </form>
+                <button class="button new-event__cancel-button" id="cancelBtn">Cancel</button>
+                <button class="button new-event__create-button" id="createBtn">Create</button>
+            </section>
+
+            <!-- Modal event details -->
+
+
+
+        </main>
+    </div>
+
+
+    <script src="calendar.js"></script>
 </body>
+
 </html>
