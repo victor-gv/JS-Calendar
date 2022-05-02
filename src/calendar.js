@@ -19,7 +19,7 @@ const previousMonth = document.getElementById("previousMonth");
 const nextMonth = document.getElementById("nextMonth");
 let currentYearDisplay = document.getElementById("currentYear");
 let currentMonthDisplay = document.getElementById("currentMonth");
-const calendarDays = document.getElementById("calendarDays");
+
 
 // Current date
 const currentDate = new Date();
@@ -38,7 +38,6 @@ nextMonth.addEventListener("click", getNextMonth);
 // Functions
 
 //
-
 function isLeap() {
   return currentYear % 400 === 0
     ? true
@@ -56,6 +55,7 @@ function getPreviousMonth() {
   }
   showMonth();
 }
+
 function getNextMonth() {
   if (currentMonth !== 11) {
     currentMonth++;
@@ -71,5 +71,43 @@ function showMonth() {
   currentYearDisplay.textContent = currentYear;
 }
 
-// console.log(calendarMonthDisplay);
-// console.log(previousMonth);
+function getFirstDay () {
+    let first = new Date(currentYear, currentMonth, 1);
+    return first.getDay();
+}
+
+
+// Function Works! Let's figure it out.
+function getDaysInMonth () {
+    // create date object, with year current, month + 1, day 0 (returns the previous date)
+    let days = new Date(currentYear, currentMonth + 1, 0).getDate();  // 31
+    return days;
+}
+// for () { }
+
+function setDays () {
+    for (let i = 1; i < getDaysInMonth(); i++) {
+        const calendarDays = document.getElementById("calendarDays");
+        const dateWrapper = document.createElement('div');
+        dateWrapper.classList.add('calendar__dates--day');
+
+        let headerDiv = document.createElement('div');
+        headerDiv.classList.add('calendar__day--header');
+
+        let contentDiv = document.createElement('div');
+        contentDiv.classList.add('calendar__day--content')
+
+        for (let j = 1; j <= 4; j++) {
+
+            let eventDiv = document.createElement('div');
+            eventDiv.classList.add('calendar__day--event');
+            contentDiv.appendChild(eventDiv);
+        }
+        dateWrapper.appendChild(headerDiv);
+        dateWrapper.appendChild(contentDiv);
+        calendarDays.append(dateWrapper);
+    }
+}
+
+
+
