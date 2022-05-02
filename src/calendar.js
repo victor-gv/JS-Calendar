@@ -17,40 +17,59 @@ const months = [
 const calendarMonthDisplay = document.getElementById("calendarMonthDisplay");
 const previousMonth = document.getElementById("previousMonth");
 const nextMonth = document.getElementById("nextMonth");
-const currentYearDisplay = document.getElementById("currentYear");
-const currentMonthDisplay = document.getElementById("currentMonth");
+let currentYearDisplay = document.getElementById("currentYear");
+let currentMonthDisplay = document.getElementById("currentMonth");
 const calendarDays = document.getElementById("calendarDays");
 
-// Current day
+// Current date
 const currentDate = new Date();
 const currentDay = currentDate.getDate();
-const currentMonth = currentDate.getMonth();
-const currentYear = currentDate.getFullYear();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
 
 currentMonthDisplay.textContent = months[currentMonth];
 currentYearDisplay.textContent = currentYear;
 
-previousMonth.addEventListener("click", showPreviousMonth);
-nextMonth.addEventListener("click", showNextMonth);
+previousMonth.addEventListener("click", getPreviousMonth);
+nextMonth.addEventListener("click", getNextMonth);
 
+// /////////////////////////////
+// /////////////////////////////
 // Functions
 
-function showPreviousMonth() {
+//
+
+function isLeap() {
+  return currentYear % 400 === 0
+    ? true
+    : currentYear % 100 === 0
+    ? false
+    : currentYear % 4 === 0;
+}
+
+function getPreviousMonth() {
   if (currentMonth !== 0) {
     currentMonth--;
   } else {
     currentMonth = 11;
     currentYear--;
   }
+  showMonth();
 }
-function showNextMonth() {
+function getNextMonth() {
   if (currentMonth !== 11) {
     currentMonth++;
   } else {
     currentMonth = 0;
     currentYear++;
   }
+  showMonth();
 }
 
-console.log(calendarMonthDisplay);
-console.log(previousMonth);
+function showMonth() {
+  currentMonthDisplay.textContent = months[currentMonth];
+  currentYearDisplay.textContent = currentYear;
+}
+
+// console.log(calendarMonthDisplay);
+// console.log(previousMonth);
