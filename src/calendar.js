@@ -27,7 +27,8 @@ const currentDay = currentDate.getDate();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
 
-showMonth();
+currentMonthDisplay.textContent = months[currentMonth];
+currentYearDisplay.textContent = currentYear;
 
 previousMonth.addEventListener("click", getPreviousMonth);
 nextMonth.addEventListener("click", getNextMonth);
@@ -53,6 +54,8 @@ function getPreviousMonth() {
     currentYear--;
   }
   showMonth();
+  removeDays();
+  setDays();
 }
 
 function getNextMonth() {
@@ -63,6 +66,8 @@ function getNextMonth() {
     currentYear++;
   }
   showMonth();
+  removeDays();
+  setDays();
 }
 
 function showMonth() {
@@ -82,10 +87,11 @@ function getDaysInMonth () {
     let days = new Date(currentYear, currentMonth + 1, 0).getDate();  // 31
     return days;
 }
-// for () { }
+
+setDays();
 
 function setDays () {
-    for (let i = 1; i < getDaysInMonth(); i++) {
+    for (let i = 1; i <= getDaysInMonth(); i++) {
         const calendarDays = document.getElementById("calendarDays");
         const dateWrapper = document.createElement('div');
         dateWrapper.classList.add('calendar__dates--day');
@@ -103,24 +109,17 @@ function setDays () {
             eventDiv.classList.add('calendar__day--event');
             contentDiv.appendChild(eventDiv);
         }
+
         dateWrapper.appendChild(headerDiv);
         dateWrapper.appendChild(contentDiv);
         calendarDays.append(dateWrapper);
     }
 }
 
-setDays();
-
-
-
-/* <div class="calendar__dates--day">
-<div class="calendar__day--header">11</div>
-<div class="calendar__day--content">
-    <div class="calendar__day--event"></div>
-    <div class="calendar__day--event"></div>
-    <div class="calendar__day--event"></div>
-    <div class="calendar__day--event"></div>
-</div>
-</div> */
-
+function removeDays () {
+    const calendarDays = document.getElementById("calendarDays");
+    while (calendarDays.firstChild) {
+        calendarDays.removeChild(calendarDays.firstChild);
+    }
+}
 
