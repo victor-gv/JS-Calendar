@@ -1,0 +1,10 @@
+* {
+    font-family: 'Myriad Pro', sans-serif;
+}
+
+/* Css numbers font will be:
+font-family: 'League Spartan', sans-serif; */
+         
+.modals {
+    display: none;
+}

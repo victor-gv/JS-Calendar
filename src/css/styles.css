@@ -3,7 +3,8 @@
 @import './reset.css';
 
 /* FONTS */
-
+@import url('http://fonts.cdnfonts.com/css/myriad-pro');
+@import url('http://fonts.cdnfonts.com/css/league-spartan');
 
 /* GENERAL STYLES */
 @import './main.css';
