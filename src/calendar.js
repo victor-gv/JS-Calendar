@@ -27,8 +27,7 @@ const currentDay = currentDate.getDate();
 let currentMonth = currentDate.getMonth();
 let currentYear = currentDate.getFullYear();
 
-currentMonthDisplay.textContent = months[currentMonth];
-currentYearDisplay.textContent = currentYear;
+showMonth();
 
 previousMonth.addEventListener("click", getPreviousMonth);
 nextMonth.addEventListener("click", getNextMonth);
@@ -93,6 +92,7 @@ function setDays () {
 
         let headerDiv = document.createElement('div');
         headerDiv.classList.add('calendar__day--header');
+        headerDiv.textContent += i;
 
         let contentDiv = document.createElement('div');
         contentDiv.classList.add('calendar__day--content')
@@ -109,5 +109,18 @@ function setDays () {
     }
 }
 
+setDays();
+
+
+
+/* <div class="calendar__dates--day">
+<div class="calendar__day--header">11</div>
+<div class="calendar__day--content">
+    <div class="calendar__day--event"></div>
+    <div class="calendar__day--event"></div>
+    <div class="calendar__day--event"></div>
+    <div class="calendar__day--event"></div>
+</div>
+</div> */
 
 
