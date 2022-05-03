@@ -86,9 +86,10 @@ font-family: 'League Spartan', sans-serif; */
 }
 
 .calendar__add-event{
+    border: 0;
     background-color: var(--main-red);
-    width: 99vw;
-    padding: .5em;
+    width: 100%;
+    padding: .7em;
     border-radius: 10px;
 
 }
