@@ -75,27 +75,36 @@
                 <dialog id="newEventDialog" class="new-event__dialog">
                     <section class="new-event">
                         <div class="new-event__wrapper">
-                            <div class="new-event__close-button" id="closeBtnEvent">
-                                <button class="closeBtnEvent">X</button>
+                            <div class="new-event__close-button" >
+                                <button id="closeBtnEvent" class="closeBtnEvent">X</button>
                             </div>
                             <div class="new-event__container">
                                 <header class="header new-event__header"></header>
                                 <div class="new-event__form">
-                                    <form action="#">
+                                    <form action="#" id="newEventForm">
                                         <div>
-                                            <label class="eventTitle">Title</label>
+                                            <label for="eventTitle" class="eventTitle">Title</label>
                                             <input class= "input" type="text" id="eventTitle"></input>
                                         </div>
                                         <div>
-                                            <label class="initialDate">Initial Date</label>
+                                            <label for="initialDate" class="initialDate">Initial Date</label>
                                             <input class= "input" type="date" id="initialDate"></input>
                                         </div>
-                                        <div>
+
+                                        <!-- Final Date Optional -->
+                                        <!-- <div>
                                             <label class="finalDate">Final Date</label>
                                             <input class= "input" type="date" id="finalDate"></input>
-                                        </div>
+                                        </div> -->
+
                                         <div>
-                                            <label class="category">Category</label>
+                                            <label for="eventHour" class="eventHour">Hour</label>
+                                            <input class= "input" type="time" id="eventHour"></input>
+                                        </div>
+
+
+                                        <div>
+                                            <label for="category" class="category">Category</label>
                                             <select class= "select" id="category">
                                                 <option value="work">Work</option>
                                                 <option value="personal">Personal</option>

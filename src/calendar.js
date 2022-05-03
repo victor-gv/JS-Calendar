@@ -181,9 +181,22 @@ const addEvent = document.getElementById("addEvent");
 const newEventDialog = document.getElementById("newEventDialog");
 const createBtn = document.getElementById("createBtn");
 const cancelBtn = document.getElementById("cancelBtn");
+const closeBtnEvent = document.getElementById("closeBtnEvent");
+const newEventForm = document.getElementById("newEventForm");
 
-addEvent.addEventListener("click", showNewEventModal);
+addEvent.addEventListener("click", showNewEvent);
+closeBtnEvent.addEventListener("click", closeNewEvent);
+cancelBtn.addEventListener("click", cancelNewEvent);
 
-function showNewEventModal() {
+function showNewEvent() {
   newEventDialog.showModal();
+}
+
+function closeNewEvent() {
+  newEventDialog.close();
+}
+
+function cancelNewEvent() {
+  newEventDialog.close();
+  newEventForm.reset();
 }
