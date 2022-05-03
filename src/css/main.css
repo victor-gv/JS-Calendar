@@ -1,168 +1,165 @@
 * {
-    font-family: 'Myriad Pro', sans-serif;
-    color: var(--main-white);
+  font-family: "Myriad Pro", sans-serif;
+  color: var(--main-white);
 }
 
 :root {
-    --main-red: #ed1c24;
-    --main-blue: #322e3f;
-    --main-gray-header: #e2dedf;
-    --main-gray-event: #efefef;
-    --main-white: #fefefe;
-  }
+  --main-red: #ed1c24;
+  --main-blue: #322e3f;
+  --main-gray-header: #e2dedf;
+  --main-gray-event: #efefef;
+  --main-white: #fefefe;
+}
 
 /* Css numbers font will be:
 font-family: 'League Spartan', sans-serif; */
 
 .calendar {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .calendar__main {
-    width: 100%;
+  width: 100%;
 }
 
-         
 .modals {
-    display: none;
+  display: none;
 }
 
 .main {
-    background-color: var(--main-gray-event);
+  background-color: var(--main-gray-event);
 }
-
 
 /* Logo */
 
-.calendar__logo{
-    text-align: center;
-    margin: .1em;
-    background-color: var(--main-gray-header);
-    border-radius: 10px;
+.calendar__logo {
+  text-align: center;
+  margin: 0.1em;
+  background-color: var(--main-gray-header);
+  border-radius: 10px;
 }
 
-.calendar__logo--img{
-    width: 15em;
-    height: auto;
+.calendar__logo--img {
+  width: 15em;
+  height: auto;
 }
-
 
 /* Header: month and year display */
 
 .header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    border-radius: 10px;
-    margin-right: .1em;
-    margin-left: .1em;
-    margin-bottom: .1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  margin-right: 0.1em;
+  margin-left: 0.1em;
+  margin-bottom: 0.1em;
 }
 
 .calendar__month-display {
-    background-color: var(--main-red);
-    padding: 0.5em 2em;
+  background-color: var(--main-red);
+  padding: 0.5em 2em;
 }
 
-.calendar__previous, .calendar__next {
-    font-size: 1.4em;
+.calendar__previous,
+.calendar__next {
+  font-size: 1.4em;
 }
 
-.calendar__month, .calendar__year {
-    font-size: 1.4em;
-    margin-right: .3em;
+.calendar__month,
+.calendar__year {
+  font-size: 1.4em;
+  margin-right: 0.3em;
 }
 
 .calendar__previous {
-    margin-right: auto;
+  margin-right: auto;
 }
 
 .calendar__next {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .calendar__week {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    margin-right: .1em;
-    margin-left: .1em;
-    margin-bottom: .1em;
-    text-align: center;
-    text-transform: uppercase;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-right: 0.1em;
+  margin-left: 0.1em;
+  margin-bottom: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .calendar__week-day {
-    background-color: var(--main-red);
-    padding: .3em;
-    margin: .05em;
+  background-color: var(--main-red);
+  padding: 0.3em;
+  margin: 0.05em;
 }
-
 
 /* Footer: add event button */
 
-.calendar__footer{
-    text-align: center;
-    margin: .05em;
+.calendar__footer {
+  text-align: center;
+  margin: 0.05em;
 }
 
-.calendar__add-event{
-    border: 0;
-    background-color: var(--main-red);
-    width: 100%;
-    padding: .7em;
-    border-radius: 10px;
-
+.calendar__add-event {
+  border: 0;
+  background-color: var(--main-red);
+  width: 100%;
+  padding: 0.7em;
+  border-radius: 10px;
 }
-
 
 /* Days of the month display */
 .calendar__dates {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .calendar__dates--day {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .calendar__dates--day--prev {
-    display: flex;
-    flex-direction: column;
-    opacity: .6;
+  display: flex;
+  flex-direction: column;
+  opacity: 0.6;
 }
-
 
 .calendar__day--header {
-    text-align: end;
-    background-color: var(--main-blue);
-    height: 5em;
-    margin: .1em;
-    padding: .2em;
+  text-align: end;
+  background-color: var(--main-blue);
+  height: 5em;
+  margin: 0.1em;
+  padding: 0.2em;
 }
 
-.calendar__day--header--prev{
-    text-align: end;
-    background-color: var(--main-blue);
-    height: 5em;
-    margin: .1em;
-    padding: .2em;
-    opacity: .6;
+.calendar__day--header--prev {
+  text-align: end;
+  background-color: var(--main-blue);
+  height: 5em;
+  margin: 0.1em;
+  padding: 0.2em;
+  opacity: 0.6;
 }
-
 
 .calendar__day--content {
-    display: flex;
-    flex-direction: column;
-    height: 5em;
-    margin: .1em;
+  display: flex;
+  flex-direction: column;
+  height: 5em;
+  margin: 0.1em;
 }
 
 .calendar__day--event {
-    background-color: var(--main-gray-event);
-    margin: .1em;
-    height: 1em;
-    width: 100%;
+  background-color: var(--main-gray-event);
+  margin: 0.1em;
+  height: 1em;
+  width: 100%;
 }
 
+.hide {
+  display: none;
+}

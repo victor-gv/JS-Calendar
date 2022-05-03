@@ -1,73 +1,82 @@
-
-
 .modals {
-    display: flex;
-    position: absolute;
-    background: white;
-    padding: 31px;
-    right: 25%;
-    border: 1px solid #8e8e8ec9;
-    width: 50%;
-    justify-content: center;
-    top: 50%;
-    filter: drop-shadow(2px 4px 26px #8e8e8ec9);
-    border-radius: 20px;
+  display: flex;
+  /* position: absolute; */
+  background: white;
+  padding: 31px;
+  right: 25%;
+  border: 1px solid #8e8e8ec9;
+  /* width: 50%; */
+  justify-content: center;
+  top: 50%;
+  filter: drop-shadow(2px 4px 26px #8e8e8ec9);
+  border-radius: 20px;
 }
 
-.new-event{
-    text-align: center;
-    width: -webkit-fill-available;
-    background: #f3f3f3;
-    padding: 20px;
-    border-radius: 20px;
-}
-.new-event__create-button{
-    border: 0;
-    background-color: #322d3f;
-    width: 50%;
-    padding: 0.7em;
-    border-radius: 10px;
+.new-event {
+  text-align: center;
+  width: -webkit-fill-available;
+  background: #f3f3f3;
+  padding: 20px;
+  border-radius: 20px;
 }
 
-.new-event__cancel-button{
-    border: 0;
-    background-color: var(--main-red);
-    width: 50%;
-    padding: 0.7em;
-    border-radius: 10px;
+.new-event__dialog {
+  opacity: 1;
+  background-color: transparent;
+  border-radius: 10%;
+  border: none;
 }
-.new-event__buttons{
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
+.new-event__create-button {
+  border: 0;
+  background-color: #322d3f;
+  width: 50%;
+  padding: 0.7em;
+  border-radius: 10px;
+}
+
+.new-event__cancel-button {
+  border: 0;
+  background-color: var(--main-red);
+  width: 50%;
+  padding: 0.7em;
+  border-radius: 10px;
+}
+.new-event__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .input {
-    width: -webkit-fill-available;
-    color: black;
+  width: -webkit-fill-available;
+  color: black;
 }
-.select{
-    width: -webkit-fill-available;
-    color: black;
+.select {
+  width: -webkit-fill-available;
+  color: black;
 }
-.closeBtnEvent{
-    background: #ed1d24;
-    position: absolute;
-    padding: 4px 10px;
-    border: white 4px solid;
-    border-radius: 100%;
-    font-size: 20px;
-    font-family: revert;
-    filter: drop-shadow(3px 4px 4px lightgray);
-    right: 0;
-    margin: -55px -8px;
-}
-
-.eventTitle, .initialDate, .finalDate, .category {
-    color: black;
+.closeBtnEvent {
+  background: #ed1d24;
+  position: absolute;
+  padding: 4px 10px;
+  border: white 4px solid;
+  border-radius: 100%;
+  font-size: 20px;
+  font-family: revert;
+  filter: drop-shadow(3px 4px 4px lightgray);
+  right: 0;
+  margin: -55px -8px;
 }
 
-.event-details, .day-info {
-    display: none;
+.eventTitle,
+.initialDate,
+.finalDate,
+.category {
+  color: black;
+}
+
+.event-details,
+.day-info {
+  display: none;
 }

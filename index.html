@@ -46,7 +46,7 @@
 
             <!-- Day info modal -->
             <!-- IMPORTANT: div with class "modals" created for css test, delete it when finished -->
-            <div class="modals">
+           
                 <section class="day-info">
                     <div class="day-info__close-button" id="closeBtnDetails">
                     </div>
@@ -71,53 +71,59 @@
 
                 
                 <!-- New event modal -->
-                <section class="new-event">
-                    <div class="new-event__wrapper">
-                        <div class="new-event__close-button" id="closeBtnEvent">
-                            <button class="closeBtnEvent">X</button>
-                        </div>
-                        <div class="new-event__container">
-                            <header class="header new-event__header"></header>
-                            <div class="new-event__form">
-                                <form action="#">
-                                    <div>
-                                        <label class="eventTitle">Title</label>
-                                        <input class= "input" type="text" id="eventTitle"></input>
-                                    </div>
-                                    <div>
-                                        <label class="initialDate">Initial Date</label>
-                                        <input class= "input" type="date" id="initialDate"></input>
-                                    </div>
-                                    <div>
-                                        <label class="finalDate">Final Date</label>
-                                        <input class= "input" type="date" id="finalDate"></input>
-                                    </div>
-                                    <div>
-                                        <label class="category">Category</label>
-                                        <select class= "select" id="category">
-                                            <option value="work">Work</option>
-                                            <option value="personal">Personal</option>
-                                        </select>
-                                    </div>
-                                </form>
+                
+                <dialog id="newEventDialog" class="new-event__dialog">
+                    <div class="modals"> 
+                    <section class="new-event">
+                        <div class="new-event__wrapper">
+                            <div class="new-event__close-button" id="closeBtnEvent">
+                                <button class="closeBtnEvent">X</button>
                             </div>
-                            <div class="new-event__buttons">
-                                <button class="button new-event__create-button" id="createBtn">Create</button>
-                                <button class="button new-event__cancel-button" id="cancelBtn">Cancel</button>
-                                
+                            <div class="new-event__container">
+                                <header class="header new-event__header"></header>
+                                <div class="new-event__form">
+                                    <form action="#">
+                                        <div>
+                                            <label class="eventTitle">Title</label>
+                                            <input class= "input" type="text" id="eventTitle"></input>
+                                        </div>
+                                        <div>
+                                            <label class="initialDate">Initial Date</label>
+                                            <input class= "input" type="date" id="initialDate"></input>
+                                        </div>
+                                        <div>
+                                            <label class="finalDate">Final Date</label>
+                                            <input class= "input" type="date" id="finalDate"></input>
+                                        </div>
+                                        <div>
+                                            <label class="category">Category</label>
+                                            <select class= "select" id="category">
+                                                <option value="work">Work</option>
+                                                <option value="personal">Personal</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="new-event__buttons">
+                                    <button type ="submit" class="button new-event__create-button" id="createBtn">Create</button>
+                                    <button class="button new-event__cancel-button" id="cancelBtn">Cancel</button>
+                    
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
+                </dialog>
+            
 
 
          <!-- Modal event details -->  
-                <section class="event-details">
+                <section class="event-details ">
                     <header class="header event-details__header"></header>
                     
                     <button class="button event-details__delete-button" id="deleteEventBtn">Delete event</button>
                 </section>
-            </div>
+            
 
     </div>
 

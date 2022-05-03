@@ -42,11 +42,11 @@ nextMonth.addEventListener("click", getNextMonth);
 
 //
 function isLeap() {
-  return currentYear % 400 === 0 ?
-    true :
-    currentYear % 100 === 0 ?
-    false :
-    currentYear % 4 === 0;
+  return currentYear % 400 === 0
+    ? true
+    : currentYear % 100 === 0
+    ? false
+    : currentYear % 4 === 0;
 }
 
 function getPreviousMonth() {
@@ -110,24 +110,24 @@ function getDaysInPrevMonth() {
 
 function addDayDivs() {
   const calendarDays = document.getElementById("calendarDays");
-  const dateWrapper = document.createElement('div');
-  dateWrapper.classList.add('calendar__dates--day');
+  const dateWrapper = document.createElement("div");
+  dateWrapper.classList.add("calendar__dates--day");
 
   if (prevNext === true) {
-    dateWrapper.classList.add('calendar__dates--day--prev');
+    dateWrapper.classList.add("calendar__dates--day--prev");
   }
 
-  let headerDiv = document.createElement('div');
-  headerDiv.classList.add('calendar__day--header');
+  let headerDiv = document.createElement("div");
+  headerDiv.classList.add("calendar__day--header");
 
   headerDiv.textContent += dateText;
 
-  let contentDiv = document.createElement('div');
-  contentDiv.classList.add('calendar__day--content');
+  let contentDiv = document.createElement("div");
+  contentDiv.classList.add("calendar__day--content");
 
   for (let j = 1; j <= 4; j++) {
-    let eventDiv = document.createElement('div');
-    eventDiv.classList.add('calendar__day--event');
+    let eventDiv = document.createElement("div");
+    eventDiv.classList.add("calendar__day--event");
     contentDiv.appendChild(eventDiv);
   }
   dateWrapper.appendChild(headerDiv);
@@ -135,11 +135,11 @@ function addDayDivs() {
   calendarDays.append(dateWrapper);
 }
 
-
 function setDays() {
-  // Loop to get end of previous month, e.g. JUNE 
-  for (let i = getFirstDay() - 1; i >= 0; i--) { // 1    0
-    dateText = getDaysInPrevMonth() - i; // 31 - 1 = 30,    31 - 0 = 30  
+  // Loop to get end of previous month, e.g. JUNE
+  for (let i = getFirstDay() - 1; i >= 0; i--) {
+    // 1    0
+    dateText = getDaysInPrevMonth() - i; // 31 - 1 = 30,    31 - 0 = 30
     prevNext = true;
     addDayDivs();
   }
@@ -165,3 +165,25 @@ function removeDays() {
 }
 
 setDays();
+
+// ////////////////////////////////
+// ////////////////////////////////
+// ////////////////////////////////
+// ////////////////////////////////
+// ////////////////////////////////
+// ////////////////////////////////
+// ////////////////////////////////
+// ////////////////////////////////
+// ////////////////////////////////
+// MODALS
+
+const addEvent = document.getElementById("addEvent");
+const newEventDialog = document.getElementById("newEventDialog");
+const createBtn = document.getElementById("createBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+
+addEvent.addEventListener("click", showNewEventModal);
+
+function showNewEventModal() {
+  newEventDialog.showModal();
+}
