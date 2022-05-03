@@ -11,7 +11,7 @@
     justify-content: center;
     top: 50%;
     filter: drop-shadow(2px 4px 26px #8e8e8ec9);
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 .new-event{
@@ -61,7 +61,7 @@
     font-family: revert;
     filter: drop-shadow(3px 4px 4px lightgray);
     right: 0;
-    margin: -49px 2px 1px 1px;
+    margin: -55px -8px;
 }
 
 .eventTitle, .initialDate, .finalDate, .category {
