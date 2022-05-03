@@ -177,6 +177,7 @@ setDays();
 // ////////////////////////////////
 // MODALS
 
+// Open and close dialog windows
 const addEvent = document.getElementById("addEvent");
 const newEventDialog = document.getElementById("newEventDialog");
 
@@ -200,10 +201,28 @@ function closeNewEvent() {
 }
 
 function storageEvent() {
-  //
+  let name = document.getElementById('eventTitle').value;
+  let date = document.getElementById('initialDate').value;
+  let time = document.getElementById('eventHour').value;
+  let category = document.getElementById('category').value;
+  // let objName = localStorage.length + 1;
+  let newEvent = new EventObject (name, date, time, category);
+
+  localStorage.setItem('newEvent', JSON.stringify(newEvent));
 }
 
 function cancelNewEvent() {
   newEventDialog.close();
   newEventForm.reset();
 }
+
+
+class EventObject {
+  constructor (name, date, time, category) {
+    this.name = name,
+    this.date = date,
+    this.time = time,
+    this.category = category
+  }
+}
+
