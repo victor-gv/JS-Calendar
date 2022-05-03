@@ -23,6 +23,7 @@ let currentMonthDisplay = document.getElementById("currentMonth");
 // Global variables
 let dateText;
 let prevNext = false;
+let events;
 
 // Current date
 const currentDate = new Date();
@@ -201,14 +202,21 @@ function closeNewEvent() {
 }
 
 function storageEvent() {
-  let name = document.getElementById('eventTitle').value;
-  let date = document.getElementById('initialDate').value;
-  let time = document.getElementById('eventHour').value;
-  let category = document.getElementById('category').value;
-  // let objName = localStorage.length + 1;
-  let newEvent = new EventObject (name, date, time, category);
+  let name = document.getElementById("eventTitle").value;
+  let date = document.getElementById("initialDate").value;
+  let time = document.getElementById("eventHour").value;
+  let category = document.getElementById("category").value;
 
-  localStorage.setItem('newEvent', JSON.stringify(newEvent));
+  if (localStorage.length > 0) {
+    // sort() to order the array
+    events = JSON.parse(localStorage.getItem("newEvent"));
+  } else {
+    events = [];
+  }
+
+  let newEvent = new EventObject(name, date, time, category);
+  events.push(newEvent);
+  localStorage.setItem("newEvent", JSON.stringify(events));
 }
 
 function cancelNewEvent() {
@@ -216,13 +224,11 @@ function cancelNewEvent() {
   newEventForm.reset();
 }
 
-
 class EventObject {
-  constructor (name, date, time, category) {
-    this.name = name,
-    this.date = date,
-    this.time = time,
-    this.category = category
+  constructor(name, date, time, category) {
+    (this.name = name),
+      (this.date = date),
+      (this.time = time),
+      (this.category = category);
   }
 }
-
