@@ -24,6 +24,9 @@ font-family: 'League Spartan', sans-serif; */
     background-color: var(--main-gray-event);
 }
 
+
+/* Logo */
+
 .calendar__logo{
     text-align: center;
     margin: .1em;
@@ -31,6 +34,13 @@ font-family: 'League Spartan', sans-serif; */
     border-radius: 10px;
 }
 
+.calendar__logo--img{
+    width: 15em;
+    height: auto;
+}
+
+
+/* Header: month and year display */
 
 .header {
     display: flex;
@@ -80,6 +90,9 @@ font-family: 'League Spartan', sans-serif; */
     margin: .05em;
 }
 
+
+/* Footer: add event button */
+
 .calendar__footer{
     text-align: center;
     margin: .05em;
@@ -95,6 +108,7 @@ font-family: 'League Spartan', sans-serif; */
 }
 
 
+/* Days of the month display */
 .calendar__dates {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -105,11 +119,13 @@ font-family: 'League Spartan', sans-serif; */
     flex-direction: column;
 }
 
+
 .calendar__day--header {
     text-align: end;
     background-color: var(--main-blue);
     height: 5em;
     margin: .1em;
+    padding: .2em;
 }
 
 

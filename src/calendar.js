@@ -41,11 +41,11 @@ nextMonth.addEventListener("click", getNextMonth);
 
 //
 function isLeap() {
-  return currentYear % 400 === 0
-    ? true
-    : currentYear % 100 === 0
-    ? false
-    : currentYear % 4 === 0;
+  return currentYear % 400 === 0 ?
+    true :
+    currentYear % 100 === 0 ?
+    false :
+    currentYear % 4 === 0;
 }
 
 function getPreviousMonth() {
@@ -77,17 +77,17 @@ function showMonth() {
   currentYearDisplay.textContent = currentYear;
 }
 
-function getFirstDay () {
-    let first = new Date(currentYear, currentMonth, 1);
-    if (first.getDay() == 0) {
-      return 6;
-    } else {
+function getFirstDay() {
+  let first = new Date(currentYear, currentMonth, 1);
+  if (first.getDay() == 0) {
+    return 6;
+  } else {
     return first.getDay() - 1;
-    }
+  }
 }
 
-function getLastDay () {
-  let last = new Date(currentYear, currentMonth + 1, 0);  
+function getLastDay() {
+  let last = new Date(currentYear, currentMonth + 1, 0);
   if (last.getDay() == 0) {
     return 6;
   } else {
@@ -96,63 +96,63 @@ function getLastDay () {
 }
 
 // Function Works! Let's figure it out.
-function getDaysInMonth () {
-    // create date object, with year current, month + 1, day 0 (returns the previous date)
-    let days = new Date(currentYear, currentMonth + 1, 0).getDate();  // 31
-    return days;
-}
-
-function getDaysInPrevMonth () {
-  let days = new Date(currentYear, currentMonth, 0).getDate();  // 31
+function getDaysInMonth() {
+  // create date object, with year current, month + 1, day 0 (returns the previous date)
+  let days = new Date(currentYear, currentMonth + 1, 0).getDate(); // 31
   return days;
 }
 
-function addDayDivs () {  
+function getDaysInPrevMonth() {
+  let days = new Date(currentYear, currentMonth, 0).getDate(); // 31
+  return days;
+}
+
+function addDayDivs() {
   const calendarDays = document.getElementById("calendarDays");
-    const dateWrapper = document.createElement('div');
-    dateWrapper.classList.add('calendar__dates--day');
+  const dateWrapper = document.createElement('div');
+  dateWrapper.classList.add('calendar__dates--day');
 
-    let headerDiv = document.createElement('div');
-    headerDiv.classList.add('calendar__day--header');
+  let headerDiv = document.createElement('div');
+  headerDiv.classList.add('calendar__day--header');
 
-    headerDiv.textContent += dateText;
+  headerDiv.textContent += dateText;
 
-    let contentDiv = document.createElement('div');
-    contentDiv.classList.add('calendar__day--content');
+  let contentDiv = document.createElement('div');
+  contentDiv.classList.add('calendar__day--content');
 
-    for (let j = 1; j <= 4; j++) {
-      let eventDiv = document.createElement('div');
-      eventDiv.classList.add('calendar__day--event');
-      contentDiv.appendChild(eventDiv);
-    }
-    dateWrapper.appendChild(headerDiv);
-    dateWrapper.appendChild(contentDiv);
-    calendarDays.append(dateWrapper);
+  for (let j = 1; j <= 4; j++) {
+    let eventDiv = document.createElement('div');
+    eventDiv.classList.add('calendar__day--event');
+    contentDiv.appendChild(eventDiv);
+  }
+  dateWrapper.appendChild(headerDiv);
+  dateWrapper.appendChild(contentDiv);
+  calendarDays.append(dateWrapper);
 }
 
-function setDays () {
+function setDays() {
   // Loop to get end of previous month, e.g. JUNE 
-    for (let i = getFirstDay() - 1; i >= 0; i--) {  // 1    0
-      dateText = getDaysInPrevMonth() - i;   // 31 - 1 = 30,    31 - 0 = 30  
-      addDayDivs();
-    }
-    // Loop to get divs for this month
-    for (let i = 1; i <= getDaysInMonth(); i++) {
-      dateText = i;
-      addDayDivs();
-    }
-    // Loop to get beginning of next month
-    for (let i = 1; i <= 6 - getLastDay(); i++) {
-      dateText = i;
-      addDayDivs();
-    }
+  for (let i = getFirstDay() - 1; i >= 0; i--) { // 1    0
+    dateText = getDaysInPrevMonth() - i; // 31 - 1 = 30,    31 - 0 = 30  
+    addDayDivs();
+  }
+  // Loop to get divs for this month
+  for (let i = 1; i <= getDaysInMonth(); i++) {
+    dateText = i;
+    addDayDivs();
+  }
+  // Loop to get beginning of next month
+  for (let i = 1; i <= 6 - getLastDay(); i++) {
+    dateText = i;
+    addDayDivs();
+  }
 }
 
-function removeDays () {
-    const calendarDays = document.getElementById("calendarDays");
-    while (calendarDays.firstChild) {
-        calendarDays.removeChild(calendarDays.firstChild);
-    }
+function removeDays() {
+  const calendarDays = document.getElementById("calendarDays");
+  while (calendarDays.firstChild) {
+    calendarDays.removeChild(calendarDays.firstChild);
+  }
 }
 
 setDays();
