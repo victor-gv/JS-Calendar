@@ -23,9 +23,6 @@ font-family: 'League Spartan', sans-serif; */
   width: 100%;
 }
 
-.modals {
-  display: none;
-}
 
 .main {
   background-color: var(--main-gray-event);
