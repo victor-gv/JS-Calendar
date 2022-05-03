@@ -22,6 +22,7 @@ let currentMonthDisplay = document.getElementById("currentMonth");
 
 // Global variables
 let dateText;
+let prevNext = false;
 
 // Current date
 const currentDate = new Date();
@@ -112,6 +113,10 @@ function addDayDivs() {
   const dateWrapper = document.createElement('div');
   dateWrapper.classList.add('calendar__dates--day');
 
+  if (prevNext === true) {
+    dateWrapper.classList.add('calendar__dates--day--prev');
+  }
+
   let headerDiv = document.createElement('div');
   headerDiv.classList.add('calendar__day--header');
 
@@ -130,20 +135,24 @@ function addDayDivs() {
   calendarDays.append(dateWrapper);
 }
 
+
 function setDays() {
   // Loop to get end of previous month, e.g. JUNE 
   for (let i = getFirstDay() - 1; i >= 0; i--) { // 1    0
     dateText = getDaysInPrevMonth() - i; // 31 - 1 = 30,    31 - 0 = 30  
+    prevNext = true;
     addDayDivs();
   }
   // Loop to get divs for this month
   for (let i = 1; i <= getDaysInMonth(); i++) {
     dateText = i;
+    prevNext = false;
     addDayDivs();
   }
   // Loop to get beginning of next month
   for (let i = 1; i <= 6 - getLastDay(); i++) {
     dateText = i;
+    prevNext = true;
     addDayDivs();
   }
 }

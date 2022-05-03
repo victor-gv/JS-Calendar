@@ -11,10 +11,10 @@
 </head>
 
 <body>
+    <header class="calendar__logo">
+        <img class="calendar__logo--img" src="./assets/logo.png" alt="logo">
+    </header>
     <div class="calendar">
-        <header class="calendar__logo">
-            <img class="calendar__logo--img" src="./assets/logo.png" alt="logo">
-        </header>
         <main class="calendar__main">
             <section class="header calendar__month-display" id="calendarMonthDisplay">
                 <div class="calendar__previous" id="previousMonth"><i class="fa-solid fa-angle-left"></i></div>
@@ -68,32 +68,42 @@
                         <button class="button day-info__delete-button" id="deleteEventLine">Delete event</button>
                     </div>
                 </section>
+
+                
                 <!-- New event modal -->
                 <section class="new-event">
-                    <header class="header new-event__header"></header>
-                    <form action="#">
-                        <div>
-                            <label for="eventTitle">Title</label>
-                            <input type="text" id="eventTitle"></input>
+                    <div class="new-event__wrapper">
+                        <div class="new-event__close-button" id="closeBtnEvent">
                         </div>
-                        <div>
-                            <label for="initialDate">Initial Date</label>
-                            <input type="date" id="initialDate"></input>
+                        <div class="new-event__container">
+                            <header class="header new-event__header"></header>
+                            <div class="new-event__form">
+                                <form action="#">
+                                    <div>
+                                        <label for="eventTitle">Title</label>
+                                        <input type="text" id="eventTitle"></input>
+                                    </div>
+                                    <div>
+                                        <label for="initialDate">Initial Date</label>
+                                        <input type="date" id="initialDate"></input>
+                                    </div>
+                                    <div>
+                                        <label for="finalDate">Final Date</label>
+                                        <input type="date" id="finalDate"></input>
+                                    </div>
+                                    <div>
+                                        <label for="category">Category</label>
+                                        <select id="category">
+                                            <option value="work">Work</option>
+                                            <option value="personal">Personal</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <button class="button new-event__cancel-button" id="cancelBtn">Cancel</button>
+                            <button class="button new-event__create-button" id="createBtn">Create</button>
                         </div>
-                        <div>
-                            <label for="finalDate">Final Date</label>
-                            <input type="date" id="finalDate"></input>
-                        </div>
-                        <div>
-                            <label for="category">Category</label>
-                            <select id="category">
-                                <option value="work">Work</option>
-                                <option value="personal">Personal</option>
-                            </select>
-                        </div>
-                    </form>
-                    <button class="button new-event__cancel-button" id="cancelBtn">Cancel</button>
-                    <button class="button new-event__create-button" id="createBtn">Create</button>
+                    </div>
                 </section>
 
 

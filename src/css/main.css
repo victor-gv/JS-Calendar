@@ -14,6 +14,14 @@
 /* Css numbers font will be:
 font-family: 'League Spartan', sans-serif; */
 
+.calendar {
+    display: flex;
+    flex-direction: row;
+}
+
+.calendar__main {
+    width: 100%;
+}
 
          
 .modals {
@@ -119,6 +127,12 @@ font-family: 'League Spartan', sans-serif; */
     flex-direction: column;
 }
 
+.calendar__dates--day--prev {
+    display: flex;
+    flex-direction: column;
+    opacity: .6;
+}
+
 
 .calendar__day--header {
     text-align: end;
@@ -126,6 +140,15 @@ font-family: 'League Spartan', sans-serif; */
     height: 5em;
     margin: .1em;
     padding: .2em;
+}
+
+.calendar__day--header--prev{
+    text-align: end;
+    background-color: var(--main-blue);
+    height: 5em;
+    margin: .1em;
+    padding: .2em;
+    opacity: .6;
 }
 
 
