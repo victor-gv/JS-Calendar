@@ -136,7 +136,6 @@ function addDayDivs() {
   let headerChildMainIcon = document.createElement("div");
   let headerChildCircle = document.createElement("div");
   let headerChildSecondIcon = document.createElement("div");
- 
 
   headerDiv.classList.add("calendar__day--header");
   headerChildNumber.classList.add("calendar__day--header--number");
@@ -149,8 +148,6 @@ function addDayDivs() {
   headerChildNumber.textContent += dateText;
   headerChildMainIcon.textContent += "👽";
   headerChildSecondIcon.textContent += "🔞";
-
-
 
   if (dateText === currentDay && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear()) {
     headerDiv.classList.add("calendar_day--today");
@@ -280,11 +277,7 @@ function storageEvent() {
   let date = document.getElementById("initialDate").value;
   let time = document.getElementById("eventHour").value;
   let category = document.getElementById("category").value;
-<<<<<<< HEAD
   let storagePosition = events.length;  
-=======
-  let position = events.length;  
->>>>>>> js_begin
 
   let newEvent = new EventObject(name, date, time, category, storagePosition);
   events.push(newEvent);
@@ -382,28 +375,28 @@ function findEventDates () {
     let calDate = document.querySelectorAll(`[data-time="${eventDate}"]`)[0];
 
     if (calDate) {
-      let boxes = calDate.children;
+      let eventBoxes = calDate.children;
       for (let i = 0; i < 4; i++) {
         // Validate wheher the info for both is the same. In that case, don't add.
-        if (hasEvent(boxes[i])) {
+        let calEventPos = eventBoxes[i].getAttribute('data-event-position');
+        if (calEventPos == event.position) {
+          break;
+        }
+        if (hasEvent(eventBoxes[i])) {
           if (i < 3) {
             continue;
           } else {
-            boxes[i].textContent = '...';
+            eventBoxes[i].textContent = '...';
+            // Add class for more than 5 events.
           }
         } else {
-          setCalEvents(boxes[i], event);
+          setCalEvents(eventBoxes[i], event);
           return;
         }
       }
     }
   });
 };
-
-// function isDuplicate (div) {
-//   let calEventPos = document.querySelectorAll(`[data-time="${eventDate}"]`)[0];
-// }
-
 
 // Returns true if an event box is already occupied by another event.
 function hasEvent (element) {
@@ -416,11 +409,10 @@ function setCalEvents (eventBlock, storedEvent) {
     eventBlock.classList.add('work');
     eventBlock.setAttribute('data-event-position', `${storedEvent.position}`);
     eventBlock.textContent = storedEvent.name;
-    eventBlock.style.color = 'black';
+    eventBlock.style.color = 'white';
   } else {
     eventBlock.classList.add('personal');
     eventBlock.textContent = storedEvent.name;
-    eventBlock.style.color = 'black';
+    eventBlock.style.color = 'white';
   }
 }
-
