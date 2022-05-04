@@ -27,7 +27,7 @@
     width: 60%;
     max-width: 45rem;
     justify-content: center;
-    top: 50%;
+    top: 25%;
     border-radius: 20px;
     overflow-x: hidden;
     box-shadow: 18px 28px 50px #3c3b51b0, 11px 2px 27px #ffffff00;
@@ -114,3 +114,20 @@
   display: none;
 }
 
+
+.invalid {
+    width: -webkit-fill-available;
+    color: black;
+    margin-bottom: 1em;
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    border: 1px solid red;;
+    background: white;
+    border-radius: 5px;
+    font-family: system-ui;
+}
+
+.invalid::-webkit-input-placeholder {
+    color: red;
+ }

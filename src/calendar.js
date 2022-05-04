@@ -19,6 +19,10 @@ const months = [
 const calendarMonthDisplay = document.getElementById("calendarMonthDisplay");
 const previousMonth = document.getElementById("previousMonth");
 const nextMonth = document.getElementById("nextMonth");
+let title = document.getElementById("eventTitle");
+let initialDate = document.getElementById("initialDate");
+let eventHour = document.getElementById("eventHour");
+let category = document.getElementById("category");
 let currentYearDisplay = document.getElementById("currentYear");
 let currentMonthDisplay = document.getElementById("currentMonth");
 
@@ -26,6 +30,7 @@ let currentMonthDisplay = document.getElementById("currentMonth");
 let dateText;
 let prevNext = false;
 let events;
+let errorForm = false;
 let dateTime = null;
 
 // Current date
@@ -44,13 +49,18 @@ nextMonth.addEventListener("click", getNextMonth);
 // /////////////////////////////
 // Functions
 
+
+
+
+
+
 //
 function isLeap() {
-  return currentYear % 400 === 0
-    ? true
-    : currentYear % 100 === 0
-    ? false
-    : currentYear % 4 === 0;
+  return currentYear % 400 === 0 ?
+    true :
+    currentYear % 100 === 0 ?
+    false :
+    currentYear % 4 === 0;
 }
 
 function getPreviousMonth() {
@@ -122,9 +132,29 @@ function addDayDivs() {
   }
 
   let headerDiv = document.createElement("div");
-  headerDiv.classList.add("calendar__day--header");
+  let headerChildNumber = document.createElement("div");
+  let headerChildMainIcon = document.createElement("div");
+  let headerChildCircle = document.createElement("div");
+  let headerChildSecondIcon = document.createElement("div");
+ 
 
-  headerDiv.textContent += dateText;
+  headerDiv.classList.add("calendar__day--header");
+  headerChildNumber.classList.add("calendar__day--header--number");
+  headerChildMainIcon.classList.add("calendar__day--header--mainIcon");
+  headerChildCircle.classList.add("calendar__day--header--circle");
+  headerChildSecondIcon.classList.add("calendar__day--header--secondIcon");
+
+
+
+  headerChildNumber.textContent += dateText;
+  headerChildMainIcon.textContent += "👽";
+  headerChildSecondIcon.textContent += "🔞";
+
+
+
+  if (dateText === currentDay && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear()) {
+    headerDiv.classList.add("calendar_day--today");
+  }
 
   let contentDiv = document.createElement("div");
   contentDiv.classList.add("calendar__day--content");
@@ -136,6 +166,10 @@ function addDayDivs() {
     contentDiv.appendChild(eventDiv);
   }
   dateWrapper.appendChild(headerDiv);
+  headerDiv.appendChild(headerChildNumber);
+  headerDiv.appendChild(headerChildMainIcon);
+  headerDiv.appendChild(headerChildCircle);
+  headerDiv.appendChild(headerChildSecondIcon);
   dateWrapper.appendChild(contentDiv);
   calendarDays.append(dateWrapper);
 }
@@ -153,6 +187,7 @@ function setDays() {
     dateText = i;
     dateTime = new Date(currentYear, currentMonth, i).getTime();
     prevNext = false;
+
     addDayDivs();
   }
   // Loop to get beginning of next month
@@ -187,24 +222,36 @@ setDays();
 // Open and close dialog windows
 const addEvent = document.getElementById("addEvent");
 const newEventDialog = document.getElementById("newEventDialog");
-
 const createBtn = document.getElementById("createBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 const closeBtnEvent = document.getElementById("closeBtnEvent");
-
 const newEventForm = document.getElementById("newEventForm");
 
 addEvent.addEventListener("click", showNewEvent);
 closeBtnEvent.addEventListener("click", closeNewEvent);
 createBtn.addEventListener("click", storageEvent);
+title.addEventListener("blur", validateTitle);
+initialDate.addEventListener("blur", validateDate);
+eventHour.addEventListener("blur", validateHour);
+createBtn.addEventListener('click', validateTitle);
+createBtn.addEventListener('click', validateDate);
+createBtn.addEventListener('click', validateHour);
 cancelBtn.addEventListener("click", cancelNewEvent);
 
 function showNewEvent() {
   newEventDialog.showModal();
+  title.classList.remove("invalid");
+  title.classList.add("input");
+  initialDate.classList.remove("invalid");
+  initialDate.classList.add("input");
+  eventHour.classList.remove("invalid");
+  eventHour.classList.add("input");
 }
 
 function closeNewEvent() {
+  title.classList.remove("invalid");
   newEventDialog.close();
+  newEventForm.reset();
 }
 
 function populateEventsVar () {
@@ -218,27 +265,89 @@ function populateEventsVar () {
 
 
 function storageEvent() {
-  populateEventsVar();
-  console.log(events)
+  validateTitle();
+  validateDate();
+  validateHour();
 
+  populateEventsVar();
+
+  if (!title.value || title.value.length > 60 || !initialDate.value || !eventHour.value) {
+    errorForm = true;
+  }
+  
+  if (!errorForm) {
   let name = document.getElementById("eventTitle").value;
   let date = document.getElementById("initialDate").value;
   let time = document.getElementById("eventHour").value;
   let category = document.getElementById("category").value;
+<<<<<<< HEAD
   let storagePosition = events.length;  
+=======
+  let position = events.length;  
+>>>>>>> js_begin
 
   let newEvent = new EventObject(name, date, time, category, storagePosition);
   events.push(newEvent);
   localStorage.setItem("newEvent", JSON.stringify(events));
   clearInputs();
   newEventDialog.close();
+  newEventForm.reset();
   findEventDates();
+  }
 }
 
 function cancelNewEvent() {
+  title.classList.remove("invalid");
   newEventDialog.close();
   newEventForm.reset();
 }
+
+
+//Form validation
+function validateTitle() {
+  if (!title.value) {
+    title.classList.remove("input");
+    title.classList.add("invalid");
+    title.placeholder = "Required";
+    errorForm = true;
+  } else if (title.value.length > 60) {
+    title.value = "";
+    title.placeholder = "Max 60 characters";
+    errorForm = true;
+  } else {
+    title.classList.remove("invalid");
+    title.classList.add("input");
+    errorForm = false;
+  }
+}
+
+function validateDate() {
+  if (!initialDate.value) {
+    initialDate.classList.remove("input");
+    initialDate.classList.add("invalid");
+    initialDate.placeholder = "Required";
+    errorForm = true;
+  } else {
+    initialDate.classList.remove("invalid");
+    initialDate.classList.add("input");
+    errorForm = false;
+  }
+}
+
+function validateHour() {
+  if (!eventHour.value) {
+    eventHour.classList.remove("input");
+    eventHour.classList.add("invalid");
+    eventHour.placeholder = "Required";
+    errorForm = true;
+  } else {
+    eventHour.classList.remove("invalid");
+    eventHour.classList.add("input");
+    errorForm = false;
+  }
+}
+
+
 
 class EventObject {
   constructor(name, date, time, category, position) {
