@@ -1,3 +1,5 @@
+
+
 const months = [
   "January",
   "February",
@@ -29,6 +31,7 @@ let dateText;
 let prevNext = false;
 let events;
 let errorForm = false;
+let dateTime = null;
 
 // Current date
 const currentDate = new Date();
@@ -155,6 +158,7 @@ function addDayDivs() {
 
   let contentDiv = document.createElement("div");
   contentDiv.classList.add("calendar__day--content");
+  contentDiv.setAttribute('data-time', `${dateTime}`);
 
   for (let j = 1; j <= 4; j++) {
     let eventDiv = document.createElement("div");
@@ -181,6 +185,7 @@ function setDays() {
   // Loop to get divs for this month
   for (let i = 1; i <= getDaysInMonth(); i++) {
     dateText = i;
+    dateTime = new Date(currentYear, currentMonth, i).getTime();
     prevNext = false;
 
     addDayDivs();
@@ -191,12 +196,13 @@ function setDays() {
     prevNext = true;
     addDayDivs();
   }
+  findEventDates();
 }
 
 function removeDays() {
   const calendarDays = document.getElementById("calendarDays");
   while (calendarDays.firstChild) {
-    calendarDays.removeChild(calendarDays.firstChild);
+    calendarDays.removeChild(calendarDays.lastChild);
   }
 }
 
@@ -248,36 +254,42 @@ function closeNewEvent() {
   newEventForm.reset();
 }
 
+function populateEventsVar () {
+  if (localStorage.length > 0) {
+    // Sort() to order the array
+    events = JSON.parse(localStorage.getItem("newEvent"));
+  } else {
+    events = [];
+  }
+}
+
+
 function storageEvent() {
   validateTitle();
   validateDate();
   validateHour();
 
+  populateEventsVar();
+
   if (!title.value || title.value.length > 60 || !initialDate.value || !eventHour.value) {
     errorForm = true;
   }
   
-
   if (!errorForm) {
-    let name = document.getElementById("eventTitle").value;
-    let date = document.getElementById("initialDate").value;
-    let time = document.getElementById("eventHour").value;
-    let category = document.getElementById("category").value;
+  let name = document.getElementById("eventTitle").value;
+  let date = document.getElementById("initialDate").value;
+  let time = document.getElementById("eventHour").value;
+  let category = document.getElementById("category").value;
+  let position = events.length;  
 
-    if (localStorage.length > 0) {
-      // sort() to order the array
-      events = JSON.parse(localStorage.getItem("newEvent"));
-    } else {
-      events = [];
-    }
-
-    let newEvent = new EventObject(name, date, time, category);
-    events.push(newEvent);
-    localStorage.setItem("newEvent", JSON.stringify(events));
-
-    newEventDialog.close();
-    newEventForm.reset();
-  } 
+  let newEvent = new EventObject(name, date, time, category, position);
+  events.push(newEvent);
+  localStorage.setItem("newEvent", JSON.stringify(events));
+  clearInputs();
+  newEventDialog.close();
+  newEventForm.reset();
+  findEventDates();
+  }
 }
 
 function cancelNewEvent() {
@@ -334,11 +346,75 @@ function validateHour() {
 
 
 class EventObject {
-  constructor(name, date, time, category) {
+  constructor(name, date, time, category, position) {
     (this.name = name),
-    (this.date = date),
-    (this.time = time),
-    (this.category = category);
+      (this.date = date),
+      (this.time = time),
+      (this.category = category);
+      (this.position = position);
+  }
+}
+
+function clearInputs () {
+  document.getElementById('initialDate').value = '';
+  document.getElementById('eventHour').value = '';
+  document.getElementById('eventTitle').value = '';
+  document.getElementById('category').value = '';
+}
+
+//  Add event to calendar
+function clearLocalStorage () {
+  localStorage.clear();
+}
+
+// Set variables for events from local storage and compare
+function findEventDates () {
+  // Sets events variable as empty array if local storage is empty, or as contents of local storage.
+  populateEventsVar();
+  console.log(events);
+  events.forEach((event) => {
+    let eventDate = new Date(event.date) - 1000 * 60 * 60 * 2;
+    console.log(event.date);
+    let calDate = document.querySelectorAll(`[data-time="${eventDate}"]`)[0];
+
+    if (calDate) {
+      let boxes = calDate.children;
+      for (let i = 0; i < 4; i++) {
+        // Validate wheher the info for both is the same. In that case, don't add.
+        if (hasEvent(boxes[i])) {
+          if (i < 3) {
+            continue;
+          } else {
+            boxes[i].textContent = '...';
+          }
+        } else {
+          setCalEvents(boxes[i], event);
+          return;
+        }
+      }
+    }
+  });
+};
+
+
+
+
+// Returns true if an event box is already occupied by another event.
+function hasEvent (element) {
+  return element.classList.contains('work') || element.classList.contains('personal');
+}
+
+// Set classes for work and personal events.
+function setCalEvents (eventBlock, storedEvent) {
+  if (storedEvent.category === 'work') {
+    eventBlock.classList.add('work');
+    // eventBlock.setAttribute('data-event-name', `${storedEvent.name}`);
+    eventBlock.textContent = storedEvent.name;
+    eventBlock.style.color = 'black';
+  } else {
+    eventBlock.classList.add('personal');
+    eventBlock.textContent = storedEvent.name;
+    eventBlock.style.color = 'black';
   }
 }
 

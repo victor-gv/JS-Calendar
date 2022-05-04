@@ -230,3 +230,10 @@ font-family: 'League Spartan', sans-serif; */
   font-family: unset;
   text-align: end;
   }
+.work {
+  border: 3px solid red;
+}
+
+.personal {
+  border: 3px solid blue;
+}
