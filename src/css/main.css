@@ -158,9 +158,12 @@ font-family: 'League Spartan', sans-serif; */
 .calendar__day--header {
   text-align: end;
   background-color: var(--main-blue);
-  height: 5em;
+  height: auto;
   margin: 0.1em;
   padding: 0.2em;
+  border-radius: 5px;
+  border: 8px #4f4962;
+  border-style: solid;
 }
 
 .calendar__day--header--prev {
@@ -189,3 +192,37 @@ font-family: 'League Spartan', sans-serif; */
 .hide {
   display: none;
 }
+
+
+/* Emojis Internationals Days  */
+
+.calendar__day--header--mainIcon{
+  text-align: center;
+  font-size: 370%;
+  position: relative;
+  filter: drop-shadow(5px 14px 11px black);
+}
+
+.calendar__day--header--circle{
+  background: #000000;
+  width: 90px;
+  height: 10px;
+  position: initial;
+  border-radius: 70%;
+  margin: -10px auto;
+  filter: blur(6px);
+  opacity: 0.7;
+  }
+
+  .calendar__day--header--secondIcon{
+    font-size: x-large;
+    position: relative;
+    text-align: end;
+    filter: drop-shadow(5px 14px 11px black);
+}
+.calendar__day--header--number {
+  font-size: 20px;
+  position: relative;
+  font-family: unset;
+  text-align: end;
+  }
