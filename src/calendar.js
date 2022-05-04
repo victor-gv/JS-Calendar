@@ -161,6 +161,7 @@ function setDays() {
     prevNext = true;
     addDayDivs();
   }
+  findEventDates();
 }
 
 function removeDays() {
@@ -206,24 +207,31 @@ function closeNewEvent() {
   newEventDialog.close();
 }
 
-function storageEvent() {
-  let name = document.getElementById("eventTitle").value;
-  let date = document.getElementById("initialDate").value;
-  let time = document.getElementById("eventHour").value;
-  let category = document.getElementById("category").value;
-
+function populateEventsVar () {
   if (localStorage.length > 0) {
-    // sort() to order the array
+    // Sort() to order the array
     events = JSON.parse(localStorage.getItem("newEvent"));
   } else {
     events = [];
   }
+}
 
-  let newEvent = new EventObject(name, date, time, category);
+
+function storageEvent() {
+  populateEventsVar();
+
+  let name = document.getElementById("eventTitle").value;
+  let date = document.getElementById("initialDate").value;
+  let time = document.getElementById("eventHour").value;
+  let category = document.getElementById("category").value;
+  let position = events.length;  
+
+  let newEvent = new EventObject(name, date, time, category, position);
   events.push(newEvent);
   localStorage.setItem("newEvent", JSON.stringify(events));
   clearInputs();
   newEventDialog.close();
+  findEventDates();
 }
 
 function cancelNewEvent() {
@@ -232,11 +240,12 @@ function cancelNewEvent() {
 }
 
 class EventObject {
-  constructor(name, date, time, category) {
+  constructor(name, date, time, category, position) {
     (this.name = name),
       (this.date = date),
       (this.time = time),
       (this.category = category);
+      (this.position = position);
   }
 }
 
@@ -254,17 +263,18 @@ function clearLocalStorage () {
 
 // Set variables for events from local storage and compare
 function findEventDates () {
-  let events = JSON.parse(localStorage.getItem('newEvent'));
-  
+  // Sets events variable as empty array if local storage is empty, or as contents of local storage.
+  populateEventsVar();
+  console.log(events);
   events.forEach((event) => {
     let eventDate = new Date(event.date) - 1000 * 60 * 60 * 2;
+    console.log(event.date);
     let calDate = document.querySelectorAll(`[data-time="${eventDate}"]`)[0];
 
     if (calDate) {
       let boxes = calDate.children;
       for (let i = 0; i < 4; i++) {
-        console.log(boxes[i]);
-        console.log(hasEvent(boxes[i]));
+        // Validate wheher the info for both is the same. In that case, don't add.
         if (hasEvent(boxes[i])) {
           if (i < 3) {
             continue;
@@ -280,6 +290,9 @@ function findEventDates () {
   });
 };
 
+
+
+
 // Returns true if an event box is already occupied by another event.
 function hasEvent (element) {
   return element.classList.contains('work') || element.classList.contains('personal');
@@ -289,6 +302,7 @@ function hasEvent (element) {
 function setCalEvents (eventBlock, storedEvent) {
   if (storedEvent.category === 'work') {
     eventBlock.classList.add('work');
+    // eventBlock.setAttribute('data-event-name', `${storedEvent.name}`);
     eventBlock.textContent = storedEvent.name;
     eventBlock.style.color = 'black';
   } else {
