@@ -190,6 +190,10 @@ function setDays() {
     dateTime = new Date(currentYear, currentMonth, i).getTime();
     prevNext = false;
     addDayDivs();
+
+    // if (dateTime == 1651356000000) {
+    //   headerChildMainIcon.textContent = "Hi";
+    // }
   }
   // Loop to get beginning of next month
   for (let i = 1; i <= 6 - getLastDay(); i++) {
@@ -421,18 +425,3 @@ function setCalEvents(eventBlock, storedEvent) {
   }
 }
 
-
-// International days
-
-
-function internationalDays() {
-  for (let i = 1; i <= getDaysInMonth(); i++) {
-  let dayOfMay = new Date(currentYear, 4, i).getTime();
-  console.log(dayOfMay);
-  
-  
-}
-
-}
-
-internationalDays();
