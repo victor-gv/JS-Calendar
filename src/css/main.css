@@ -160,3 +160,11 @@ font-family: 'League Spartan', sans-serif; */
 .hide {
   display: none;
 }
+
+.work {
+  border: 3px solid red;
+}
+
+.personal {
+  border: 3px solid blue;
+}

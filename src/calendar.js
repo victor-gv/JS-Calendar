@@ -1,3 +1,5 @@
+
+
 const months = [
   "January",
   "February",
@@ -24,6 +26,7 @@ let currentMonthDisplay = document.getElementById("currentMonth");
 let dateText;
 let prevNext = false;
 let events;
+let dateTime = null;
 
 // Current date
 const currentDate = new Date();
@@ -125,6 +128,7 @@ function addDayDivs() {
 
   let contentDiv = document.createElement("div");
   contentDiv.classList.add("calendar__day--content");
+  contentDiv.setAttribute('data-time', `${dateTime}`);
 
   for (let j = 1; j <= 4; j++) {
     let eventDiv = document.createElement("div");
@@ -147,6 +151,7 @@ function setDays() {
   // Loop to get divs for this month
   for (let i = 1; i <= getDaysInMonth(); i++) {
     dateText = i;
+    dateTime = new Date(currentYear, currentMonth, i).getTime();
     prevNext = false;
     addDayDivs();
   }
@@ -161,7 +166,7 @@ function setDays() {
 function removeDays() {
   const calendarDays = document.getElementById("calendarDays");
   while (calendarDays.firstChild) {
-    calendarDays.removeChild(calendarDays.firstChild);
+    calendarDays.removeChild(calendarDays.lastChild);
   }
 }
 
@@ -217,9 +222,8 @@ function storageEvent() {
   let newEvent = new EventObject(name, date, time, category);
   events.push(newEvent);
   localStorage.setItem("newEvent", JSON.stringify(events));
-
+  clearInputs();
   newEventDialog.close();
-  newEventForm.reset();
 }
 
 function cancelNewEvent() {
@@ -235,3 +239,38 @@ class EventObject {
       (this.category = category);
   }
 }
+
+function clearInputs () {
+  document.getElementById('initialDate').value = '';
+  document.getElementById('eventHour').value = '';
+  document.getElementById('eventTitle').value = '';
+  document.getElementById('category').value = '';
+}
+
+//  Add event to calendar
+function clearLocalStorage () {
+  localStorage.clear();
+}
+
+function findEventDates () {
+  let events = JSON.parse(localStorage.getItem('newEvent'));
+  events.forEach((event) => {
+    let eventDate = new Date(event.date) - 1000 * 60 * 60 * 2;    
+    let calDate = document.querySelectorAll(`[data-time="${eventDate}"]`)[0];
+
+    if (calDate) {
+      setCalEvents(calDate.firstChild, event);
+    }
+  });
+};
+
+function setCalEvents (eventBlock, storedEvent) {
+  if (storedEvent.category === 'work') {
+    eventBlock.classList.add('work');
+    console.log(eventBlock)
+  } else {
+    eventBlock.classList.add('personal');
+    console.log(eventBlock)
+  }
+}
+
