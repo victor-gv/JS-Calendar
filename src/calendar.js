@@ -133,7 +133,7 @@ function addDayDivs() {
 
   headerDiv.textContent += dateText;
 
-  if (dateText === currentDay) {
+  if (dateText === currentDay && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear()) {
     headerDiv.classList.add("calendar_day--today");
   }
 
