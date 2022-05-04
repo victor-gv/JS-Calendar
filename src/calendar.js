@@ -252,25 +252,46 @@ function clearLocalStorage () {
   localStorage.clear();
 }
 
+// Set variables for events from local storage and compare
 function findEventDates () {
   let events = JSON.parse(localStorage.getItem('newEvent'));
+  
   events.forEach((event) => {
-    let eventDate = new Date(event.date) - 1000 * 60 * 60 * 2;    
+    let eventDate = new Date(event.date) - 1000 * 60 * 60 * 2;
     let calDate = document.querySelectorAll(`[data-time="${eventDate}"]`)[0];
 
     if (calDate) {
-      setCalEvents(calDate.firstChild, event);
+      let eventBoxes = calDate.children;
+      console.log(eventBoxes)
+      for (let i = 0; i < 4; i++) {
+        console.log(eventBoxes[i]);
+        if (isEvent(eventBoxes[i])) {
+          return;
+        } else {
+          setCalEvents(eventBoxes[i], event);
+        }
+      }
     }
   });
 };
 
+
+
+// Returns true if an event box is already occupied by another event.
+function isEvent (element) {
+  return element.classList.contains('work') || element.classList.contains('personal');
+}
+
+// Set classes for work and personal events.
 function setCalEvents (eventBlock, storedEvent) {
   if (storedEvent.category === 'work') {
     eventBlock.classList.add('work');
-    console.log(eventBlock)
+    eventBlock.textContent = storedEvent.name;
+    eventBlock.style.color = 'black';
   } else {
     eventBlock.classList.add('personal');
-    console.log(eventBlock)
+    eventBlock.textContent = storedEvent.name;
+    eventBlock.style.color = 'black';
   }
 }
 
