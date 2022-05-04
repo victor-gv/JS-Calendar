@@ -225,10 +225,9 @@ function storageEvent() {
   let date = document.getElementById("initialDate").value;
   let time = document.getElementById("eventHour").value;
   let category = document.getElementById("category").value;
-  let position = events.length;  
-  console.log(position);
+  let storagePosition = events.length;  
 
-  let newEvent = new EventObject(name, date, time, category, position);
+  let newEvent = new EventObject(name, date, time, category, storagePosition);
   events.push(newEvent);
   localStorage.setItem("newEvent", JSON.stringify(events));
   clearInputs();
@@ -292,7 +291,9 @@ function findEventDates () {
   });
 };
 
-
+// function isDuplicate (div) {
+//   let calEventPos = document.querySelectorAll(`[data-time="${eventDate}"]`)[0];
+// }
 
 
 // Returns true if an event box is already occupied by another event.
@@ -304,7 +305,7 @@ function hasEvent (element) {
 function setCalEvents (eventBlock, storedEvent) {
   if (storedEvent.category === 'work') {
     eventBlock.classList.add('work');
-    // eventBlock.setAttribute('data-event-name', `${storedEvent.name}`);
+    eventBlock.setAttribute('data-event-position', `${storedEvent.position}`);
     eventBlock.textContent = storedEvent.name;
     eventBlock.style.color = 'black';
   } else {
