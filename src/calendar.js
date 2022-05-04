@@ -17,6 +17,10 @@ const months = [
 const calendarMonthDisplay = document.getElementById("calendarMonthDisplay");
 const previousMonth = document.getElementById("previousMonth");
 const nextMonth = document.getElementById("nextMonth");
+let title = document.getElementById("eventTitle");
+let initialDate = document.getElementById("initialDate");
+let eventHour = document.getElementById("eventHour");
+let category = document.getElementById("category");
 let currentYearDisplay = document.getElementById("currentYear");
 let currentMonthDisplay = document.getElementById("currentMonth");
 
@@ -24,6 +28,7 @@ let currentMonthDisplay = document.getElementById("currentMonth");
 let dateText;
 let prevNext = false;
 let events;
+let errorForm = false;
 
 // Current date
 const currentDate = new Date();
@@ -41,13 +46,18 @@ nextMonth.addEventListener("click", getNextMonth);
 // /////////////////////////////
 // Functions
 
+
+
+
+
+
 //
 function isLeap() {
-  return currentYear % 400 === 0
-    ? true
-    : currentYear % 100 === 0
-    ? false
-    : currentYear % 4 === 0;
+  return currentYear % 400 === 0 ?
+    true :
+    currentYear % 100 === 0 ?
+    false :
+    currentYear % 4 === 0;
 }
 
 function getPreviousMonth() {
@@ -190,7 +200,8 @@ const newEventForm = document.getElementById("newEventForm");
 
 addEvent.addEventListener("click", showNewEvent);
 closeBtnEvent.addEventListener("click", closeNewEvent);
-createBtn.addEventListener("click", storageEvent);
+// createBtn.addEventListener("click", storageEvent);
+createBtn.addEventListener("click", validateForm);
 cancelBtn.addEventListener("click", cancelNewEvent);
 
 function showNewEvent() {
@@ -198,7 +209,9 @@ function showNewEvent() {
 }
 
 function closeNewEvent() {
+  title.classList.remove("invalid");
   newEventDialog.close();
+  newEventForm.reset();
 }
 
 function storageEvent() {
@@ -220,18 +233,63 @@ function storageEvent() {
 
   newEventDialog.close();
   newEventForm.reset();
+
 }
 
 function cancelNewEvent() {
+  title.classList.remove("invalid");
   newEventDialog.close();
   newEventForm.reset();
+}
+
+//Form validation
+function validateForm() {
+
+  if (title.value == "") {
+    title.classList.toggle("invalid");
+    title.placeholder = "Required";
+    errorForm = true;
+  } else if (title.value.length > 60) {
+    title.classList.toggle("invalid");
+    title.value = "";
+    title.placeholder = "Max 60 characters";
+    errorForm = true;
+  } else if (!initialDate.value) {
+    initialDate.classList.remove("input");
+    initialDate.classList.add("invalid");
+    initialDate.placeholder = "Required";
+    errorForm = true;
+  } else if (!eventHour.value) {
+    eventHour.classList.remove("input");
+    eventHour.classList.add("invalid");
+    eventHour.placeholder = "Required";
+    errorForm = true;
+  } else if (!category.value) {
+    category.classList.remove("input");
+    category.classList.add("invalid");
+    category.placeholder = "Required";
+    errorForm = true;
+  } else {
+    title.classList.remove("invalid");
+    initialDate.classList.remove("invalid");
+    eventHour.classList.remove("invalid");
+    category.classList.remove("invalid");
+    title.classList.add("input");
+    initialDate.classList.add("input");
+    eventHour.classList.add("input");
+    category.classList.add("input");
+    errorForm = false;
+    if (!errorForm) {
+      storageEvent();
+    } 
+  }
 }
 
 class EventObject {
   constructor(name, date, time, category) {
     (this.name = name),
-      (this.date = date),
-      (this.time = time),
-      (this.category = category);
+    (this.date = date),
+    (this.time = time),
+    (this.category = category);
   }
 }

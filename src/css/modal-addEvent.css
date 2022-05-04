@@ -113,3 +113,21 @@
 .day-info {
   display: none;
 }
+
+
+.invalid {
+    width: -webkit-fill-available;
+    color: black;
+    margin-bottom: 1em;
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    border: 1px solid red;;
+    background: white;
+    border-radius: 5px;
+    font-family: system-ui;
+}
+
+.invalid::-webkit-input-placeholder {
+    color: red;
+ }
