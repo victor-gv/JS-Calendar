@@ -261,24 +261,27 @@ function findEventDates () {
     let calDate = document.querySelectorAll(`[data-time="${eventDate}"]`)[0];
 
     if (calDate) {
-      let eventBoxes = calDate.children;
-      console.log(eventBoxes)
+      let boxes = calDate.children;
       for (let i = 0; i < 4; i++) {
-        console.log(eventBoxes[i]);
-        if (isEvent(eventBoxes[i])) {
-          return;
+        console.log(boxes[i]);
+        console.log(hasEvent(boxes[i]));
+        if (hasEvent(boxes[i])) {
+          if (i < 3) {
+            continue;
+          } else {
+            boxes[i].textContent = '...';
+          }
         } else {
-          setCalEvents(eventBoxes[i], event);
+          setCalEvents(boxes[i], event);
+          return;
         }
       }
     }
   });
 };
 
-
-
 // Returns true if an event box is already occupied by another event.
-function isEvent (element) {
+function hasEvent (element) {
   return element.classList.contains('work') || element.classList.contains('personal');
 }
 
