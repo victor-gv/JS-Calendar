@@ -129,9 +129,16 @@ function addDayDivs() {
   }
 
   let headerDiv = document.createElement("div");
+  let headerChildNumber = document.createElement("div");
+  let headerChildMainIcon = document.createElement("div");
+  let headerChildSecondIcon = document.createElement("div");
+
+
+
   headerDiv.classList.add("calendar__day--header");
 
-  headerDiv.textContent += dateText;
+  headerChildNumber.textContent += dateText;
+
 
   let contentDiv = document.createElement("div");
   contentDiv.classList.add("calendar__day--content");
@@ -142,6 +149,9 @@ function addDayDivs() {
     contentDiv.appendChild(eventDiv);
   }
   dateWrapper.appendChild(headerDiv);
+  headerDiv.appendChild(headerChildNumber);
+  headerDiv.appendChild(headerChildMainIcon);
+  headerDiv.appendChild(headerChildSecondIcon);
   dateWrapper.appendChild(contentDiv);
   calendarDays.append(dateWrapper);
 }
