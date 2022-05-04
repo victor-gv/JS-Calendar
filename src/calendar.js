@@ -123,6 +123,10 @@ function addDayDivs() {
 
   headerDiv.textContent += dateText;
 
+  if (dateText === currentDay) {
+    headerDiv.classList.add("calendar_day--today");
+  }
+
   let contentDiv = document.createElement("div");
   contentDiv.classList.add("calendar__day--content");
 
@@ -148,6 +152,7 @@ function setDays() {
   for (let i = 1; i <= getDaysInMonth(); i++) {
     dateText = i;
     prevNext = false;
+
     addDayDivs();
   }
   // Loop to get beginning of next month
