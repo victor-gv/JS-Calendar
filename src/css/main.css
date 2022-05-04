@@ -37,7 +37,7 @@ font-family: 'League Spartan', sans-serif; */
   background-color: #f8f8f8;
   box-shadow: 0px 74px 34.2px 3.8px rgba(0, 0, 0, 0.25);
   width: 95%;
-  margin: 20px auto;
+  margin: 10px auto;
   padding: 20px 0px 10px 10px;
   border: 4px #bcbcbc29;
   border-style: double;
@@ -54,16 +54,29 @@ font-family: 'League Spartan', sans-serif; */
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 15px;
   margin-right: 0.1em;
   margin-left: 0.1em;
-  margin-bottom: 0.1em;
+  margin-bottom: 0.6em;
+  box-shadow: 0px 74px 34.2px -0.2px rgb(0 0 0 / 25%);
+  background: linear-gradient(359deg, #d40000, transparent);
 }
 
 .calendar__month-display {
   background-color: var(--main-red);
   padding: 0.5em 2em;
 }
+
+.fa-solid, .fas {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 35px;
+    color: #ed1d24;
+    background: #ffffff;
+    padding: 1px 20px;
+    border-radius: 20px 1px;
+    margin: 1px -20px;
+  }
 
 .calendar__previous,
 .calendar__next {
@@ -72,8 +85,9 @@ font-family: 'League Spartan', sans-serif; */
 
 .calendar__month,
 .calendar__year {
-  font-size: 1.4em;
+  font-size: 24px;
   margin-right: 0.3em;
+  font-family: sans-serif;
 }
 
 .calendar__previous {
@@ -95,13 +109,13 @@ font-family: 'League Spartan', sans-serif; */
 }
 
 .calendar__week-day {
-  background-color: #f1f1f1;
-  padding: 0.3em;
-  margin: 0.05em;
-  color: black;
-  font-family: sans-serif;
-  border-top: 2px solid #fbfbfb;
-  border-bottom: 2px solid #bebebe;
+    background-color: #f1f1f1;
+    padding: 0.3em;
+    margin: 0.05em;
+    color: black;
+    font-family: sans-serif;
+    border-top: 2px solid #fbfbfb;
+    border-bottom: 2px solid #bebebe;
 }
 
 /* Footer: add event button */
@@ -115,8 +129,13 @@ font-family: 'League Spartan', sans-serif; */
   border: 0;
   background-color: var(--main-red);
   width: 100%;
-  padding: 0.7em;
+  padding: 1em;
   border-radius: 10px;
+  margin-bottom: 20px;
+  font-family: system-ui;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: #c41117 7px solid;
 }
 
 /* Days of the month display */
@@ -155,8 +174,8 @@ font-family: 'League Spartan', sans-serif; */
 
 .calendar__day--content {
   display: flex;
-  flex-direction: column;
-  height: 5em;
+  /* flex-direction: column;
+  height: 5em; */
   margin: 0.1em;
 }
 
