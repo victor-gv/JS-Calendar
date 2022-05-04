@@ -217,6 +217,9 @@ function storageEvent() {
   let newEvent = new EventObject(name, date, time, category);
   events.push(newEvent);
   localStorage.setItem("newEvent", JSON.stringify(events));
+
+  newEventDialog.close();
+  newEventForm.reset();
 }
 
 function cancelNewEvent() {
