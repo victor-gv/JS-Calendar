@@ -20,7 +20,8 @@ font-family: 'League Spartan', sans-serif; */
 }
 
 .calendar__main {
-  width: 100%;
+  width: 97%;
+  margin: auto;
 }
 
 
@@ -32,9 +33,14 @@ font-family: 'League Spartan', sans-serif; */
 
 .calendar__logo {
   text-align: center;
-  margin: 0.1em;
-  background-color: var(--main-gray-header);
-  border-radius: 10px;
+  border-radius: 15px;
+  background-color: #f8f8f8;
+  box-shadow: 0px 74px 34.2px 3.8px rgba(0, 0, 0, 0.25);
+  width: 95%;
+  margin: 20px auto;
+  padding: 20px 0px 10px 10px;
+  border: 4px #bcbcbc29;
+  border-style: double;
 }
 
 .calendar__logo--img {
@@ -89,9 +95,13 @@ font-family: 'League Spartan', sans-serif; */
 }
 
 .calendar__week-day {
-  background-color: var(--main-red);
+  background-color: #f1f1f1;
   padding: 0.3em;
   margin: 0.05em;
+  color: black;
+  font-family: sans-serif;
+  border-top: 2px solid #fbfbfb;
+  border-bottom: 2px solid #bebebe;
 }
 
 /* Footer: add event button */
