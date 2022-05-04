@@ -191,21 +191,30 @@ setDays();
 // Open and close dialog windows
 const addEvent = document.getElementById("addEvent");
 const newEventDialog = document.getElementById("newEventDialog");
-
 const createBtn = document.getElementById("createBtn");
 const cancelBtn = document.getElementById("cancelBtn");
 const closeBtnEvent = document.getElementById("closeBtnEvent");
-
 const newEventForm = document.getElementById("newEventForm");
 
 addEvent.addEventListener("click", showNewEvent);
 closeBtnEvent.addEventListener("click", closeNewEvent);
-// createBtn.addEventListener("click", storageEvent);
-createBtn.addEventListener("click", validateForm);
+createBtn.addEventListener("click", storageEvent);
+title.addEventListener("blur", validateTitle);
+initialDate.addEventListener("blur", validateDate);
+eventHour.addEventListener("blur", validateHour);
+createBtn.addEventListener('click', validateTitle);
+createBtn.addEventListener('click', validateDate);
+createBtn.addEventListener('click', validateHour);
 cancelBtn.addEventListener("click", cancelNewEvent);
 
 function showNewEvent() {
   newEventDialog.showModal();
+  title.classList.remove("invalid");
+  title.classList.add("input");
+  initialDate.classList.remove("invalid");
+  initialDate.classList.add("input");
+  eventHour.classList.remove("invalid");
+  eventHour.classList.add("input");
 }
 
 function closeNewEvent() {
@@ -215,25 +224,35 @@ function closeNewEvent() {
 }
 
 function storageEvent() {
-  let name = document.getElementById("eventTitle").value;
-  let date = document.getElementById("initialDate").value;
-  let time = document.getElementById("eventHour").value;
-  let category = document.getElementById("category").value;
+  validateTitle();
+  validateDate();
+  validateHour();
 
-  if (localStorage.length > 0) {
-    // sort() to order the array
-    events = JSON.parse(localStorage.getItem("newEvent"));
-  } else {
-    events = [];
+  if (!title.value || title.value.length > 60 || !initialDate.value || !eventHour.value) {
+    errorForm = true;
   }
+  
 
-  let newEvent = new EventObject(name, date, time, category);
-  events.push(newEvent);
-  localStorage.setItem("newEvent", JSON.stringify(events));
+  if (!errorForm) {
+    let name = document.getElementById("eventTitle").value;
+    let date = document.getElementById("initialDate").value;
+    let time = document.getElementById("eventHour").value;
+    let category = document.getElementById("category").value;
 
-  newEventDialog.close();
-  newEventForm.reset();
+    if (localStorage.length > 0) {
+      // sort() to order the array
+      events = JSON.parse(localStorage.getItem("newEvent"));
+    } else {
+      events = [];
+    }
 
+    let newEvent = new EventObject(name, date, time, category);
+    events.push(newEvent);
+    localStorage.setItem("newEvent", JSON.stringify(events));
+
+    newEventDialog.close();
+    newEventForm.reset();
+  } 
 }
 
 function cancelNewEvent() {
@@ -242,48 +261,52 @@ function cancelNewEvent() {
   newEventForm.reset();
 }
 
-//Form validation
-function validateForm() {
 
-  if (title.value == "") {
-    title.classList.toggle("invalid");
+//Form validation
+function validateTitle() {
+  if (!title.value) {
+    title.classList.remove("input");
+    title.classList.add("invalid");
     title.placeholder = "Required";
     errorForm = true;
   } else if (title.value.length > 60) {
-    title.classList.toggle("invalid");
     title.value = "";
     title.placeholder = "Max 60 characters";
     errorForm = true;
-  } else if (!initialDate.value) {
+  } else {
+    title.classList.remove("invalid");
+    title.classList.add("input");
+    errorForm = false;
+  }
+}
+
+function validateDate() {
+  if (!initialDate.value) {
     initialDate.classList.remove("input");
     initialDate.classList.add("invalid");
     initialDate.placeholder = "Required";
     errorForm = true;
-  } else if (!eventHour.value) {
+  } else {
+    initialDate.classList.remove("invalid");
+    initialDate.classList.add("input");
+    errorForm = false;
+  }
+}
+
+function validateHour() {
+  if (!eventHour.value) {
     eventHour.classList.remove("input");
     eventHour.classList.add("invalid");
     eventHour.placeholder = "Required";
     errorForm = true;
-  } else if (!category.value) {
-    category.classList.remove("input");
-    category.classList.add("invalid");
-    category.placeholder = "Required";
-    errorForm = true;
   } else {
-    title.classList.remove("invalid");
-    initialDate.classList.remove("invalid");
     eventHour.classList.remove("invalid");
-    category.classList.remove("invalid");
-    title.classList.add("input");
-    initialDate.classList.add("input");
     eventHour.classList.add("input");
-    category.classList.add("input");
     errorForm = false;
-    if (!errorForm) {
-      storageEvent();
-    } 
   }
 }
+
+
 
 class EventObject {
   constructor(name, date, time, category) {
