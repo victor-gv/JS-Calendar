@@ -90,13 +90,11 @@
                                             <label for="initialDate" class="initialDate">Initial Date</label>
                                             <input class= "input" type="date" id="initialDate"></input>
                                         </div>
-
                                         <!-- Final Date Optional -->
                                         <!-- <div>
                                             <label class="finalDate">Final Date</label>
                                             <input class= "input" type="date" id="finalDate"></input>
                                         </div> -->
-
                                         <div>
                                             <label for="eventHour" class="eventHour">Hour</label>
                                             <input class= "input" type="time" id="eventHour"></input>
@@ -115,27 +113,31 @@
                                 <div class="new-event__buttons">
                                     <button type ="submit" class="button new-event__create-button" id="createBtn">Create</button>
                                     <button class="button new-event__cancel-button" id="cancelBtn">Cancel</button>
-                    
                                 </div>
                             </div>
                         </div>
                     </section>
-              
                 </dialog>
-            
-
-
-         <!-- Modal event details -->  
-                <section class="event-details ">
-                    <header class="header event-details__header"></header>
-                    
-                    <button class="button event-details__delete-button" id="deleteEventBtn">Delete event</button>
-                </section>
-            
+                <dialog id="eventDetailsDialog" class="event-details__dialog">
+                    <section class="event-detais">
+                        <div class="event-details__wrapper">
+                            <div class="event-details__close-button" >
+                                <button id="event-details-closeBtn" class="event-details__closeBtnEvent">X</button>
+                            </div>
+                            <div class="event-details__container">
+                                <header class="header event-details__header">NEW EVENT</header>
+                                <div class="event-details__form">
+                                    HELLO HELLO HELLO
+                                </div>
+                                <div class="event-details__buttons">
+                                    <button type ="submit" class="button event-details__delete-button" id="eventDetailsDeleteBtn">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </dialog>
             </div>
     </div>
-
-
     <script src="src/calendar.js"></script>
 </body>
 

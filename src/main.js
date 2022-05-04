@@ -271,9 +271,6 @@ closeEventDetailsBtn.addEventListener('click', function (e) {
   e.stopPropogation();
 });
 
-
-
-
 // Store events in local storage
 function storageEvent() {
   validateTitle();
