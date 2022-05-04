@@ -152,7 +152,7 @@ font-family: 'League Spartan', sans-serif; */
 .calendar__dates--day--prev {
   display: flex;
   flex-direction: column;
-  opacity: 0.6;
+  opacity: 0.2;
 }
 
 .calendar__day--header {
