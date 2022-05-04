@@ -132,12 +132,19 @@ function addDayDivs() {
   let headerChildNumber = document.createElement("div");
   let headerChildMainIcon = document.createElement("div");
   let headerChildSecondIcon = document.createElement("div");
-
-
+  let headerChildCircle = document.createElement("div");
 
   headerDiv.classList.add("calendar__day--header");
+  headerChildNumber.classList.add("calendar__day--header--number");
+  headerChildMainIcon.classList.add("calendar__day--header--mainIcon");
+  headerChildSecondIcon.classList.add("calendar__day--header--secondIcon");
+  headerChildCircle.classList.add("calendar__day--header--circle");
+
 
   headerChildNumber.textContent += dateText;
+  headerChildMainIcon.textContent += "👽";
+  headerChildSecondIcon.textContent += "🔞";
+  headerChildCircle.textContent += 0;
 
 
   let contentDiv = document.createElement("div");
@@ -152,6 +159,7 @@ function addDayDivs() {
   headerDiv.appendChild(headerChildNumber);
   headerDiv.appendChild(headerChildMainIcon);
   headerDiv.appendChild(headerChildSecondIcon);
+  headerDiv.appendChild(headerChildCircle);
   dateWrapper.appendChild(contentDiv);
   calendarDays.append(dateWrapper);
 }
@@ -326,3 +334,4 @@ class EventObject {
     (this.category = category);
   }
 }
+
