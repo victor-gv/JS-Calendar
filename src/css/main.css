@@ -189,8 +189,12 @@ font-family: 'League Spartan', sans-serif; */
 }
 
 .calendar_day--today {
-  background-color: lightpink;
-  opacity: 0.3;
+  box-shadow: inset 0 0 15px #000000;
+  border-color: #6f6786;
+  background: #302c3d;
+  border-style: solid;
+  border-width: 8px;
+  border-image: linear-gradient(45deg, rgb(225 18 21), rgb(224 100 16)) 1;
 }
 
 .hide {
