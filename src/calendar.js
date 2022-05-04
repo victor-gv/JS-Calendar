@@ -129,9 +129,25 @@ function addDayDivs() {
   }
 
   let headerDiv = document.createElement("div");
-  headerDiv.classList.add("calendar__day--header");
+  let headerChildNumber = document.createElement("div");
+  let headerChildMainIcon = document.createElement("div");
+  let headerChildCircle = document.createElement("div");
+  let headerChildSecondIcon = document.createElement("div");
+ 
 
-  headerDiv.textContent += dateText;
+  headerDiv.classList.add("calendar__day--header");
+  headerChildNumber.classList.add("calendar__day--header--number");
+  headerChildMainIcon.classList.add("calendar__day--header--mainIcon");
+  headerChildCircle.classList.add("calendar__day--header--circle");
+  headerChildSecondIcon.classList.add("calendar__day--header--secondIcon");
+
+
+
+  headerChildNumber.textContent += dateText;
+  headerChildMainIcon.textContent += "👽";
+  headerChildSecondIcon.textContent += "🔞";
+
+
 
   if (dateText === currentDay && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear()) {
     headerDiv.classList.add("calendar_day--today");
@@ -146,6 +162,10 @@ function addDayDivs() {
     contentDiv.appendChild(eventDiv);
   }
   dateWrapper.appendChild(headerDiv);
+  headerDiv.appendChild(headerChildNumber);
+  headerDiv.appendChild(headerChildMainIcon);
+  headerDiv.appendChild(headerChildCircle);
+  headerDiv.appendChild(headerChildSecondIcon);
   dateWrapper.appendChild(contentDiv);
   calendarDays.append(dateWrapper);
 }
@@ -321,3 +341,4 @@ class EventObject {
     (this.category = category);
   }
 }
+
