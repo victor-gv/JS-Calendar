@@ -24,7 +24,6 @@ font-family: 'League Spartan', sans-serif; */
   margin: auto;
 }
 
-
 .main {
   background-color: var(--main-gray-event);
 }
@@ -184,6 +183,11 @@ font-family: 'League Spartan', sans-serif; */
   margin: 0.1em;
   height: 1em;
   width: 100%;
+}
+
+.calendar_day--today {
+  background-color: lightpink;
+  opacity: 0.3;
 }
 
 .hide {
