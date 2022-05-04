@@ -219,12 +219,14 @@ function populateEventsVar () {
 
 function storageEvent() {
   populateEventsVar();
+  console.log(events)
 
   let name = document.getElementById("eventTitle").value;
   let date = document.getElementById("initialDate").value;
   let time = document.getElementById("eventHour").value;
   let category = document.getElementById("category").value;
   let position = events.length;  
+  console.log(position);
 
   let newEvent = new EventObject(name, date, time, category, position);
   events.push(newEvent);
