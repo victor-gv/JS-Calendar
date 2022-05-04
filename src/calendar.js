@@ -1,5 +1,3 @@
-
-
 const months = [
   "January",
   "February",
@@ -32,6 +30,13 @@ let prevNext = false;
 let events;
 let errorForm = false;
 let dateTime = null;
+let headerDiv
+let headerChildNumber;
+let headerChildMainIcon;
+let headerChildCircle;
+let headerChildSecondIcon;
+let contentDiv;
+
 
 // Current date
 const currentDate = new Date();
@@ -131,11 +136,11 @@ function addDayDivs() {
     dateWrapper.classList.add("calendar__dates--day--prev");
   }
 
-  let headerDiv = document.createElement("div");
-  let headerChildNumber = document.createElement("div");
-  let headerChildMainIcon = document.createElement("div");
-  let headerChildCircle = document.createElement("div");
-  let headerChildSecondIcon = document.createElement("div");
+  headerDiv = document.createElement("div");
+  headerChildNumber = document.createElement("div");
+  headerChildMainIcon = document.createElement("div");
+  headerChildCircle = document.createElement("div");
+  headerChildSecondIcon = document.createElement("div");
 
   headerDiv.classList.add("calendar__day--header");
   headerChildNumber.classList.add("calendar__day--header--number");
@@ -153,7 +158,7 @@ function addDayDivs() {
     headerDiv.classList.add("calendar_day--today");
   }
 
-  let contentDiv = document.createElement("div");
+  contentDiv = document.createElement("div");
   contentDiv.classList.add("calendar__day--content");
   contentDiv.setAttribute('data-time', `${dateTime}`);
 
@@ -184,7 +189,6 @@ function setDays() {
     dateText = i;
     dateTime = new Date(currentYear, currentMonth, i).getTime();
     prevNext = false;
-
     addDayDivs();
   }
   // Loop to get beginning of next month
@@ -251,7 +255,7 @@ function closeNewEvent() {
   newEventForm.reset();
 }
 
-function populateEventsVar () {
+function populateEventsVar() {
   if (localStorage.length > 0) {
     // Sort() to order the array
     events = JSON.parse(localStorage.getItem("newEvent"));
@@ -271,21 +275,21 @@ function storageEvent() {
   if (!title.value || title.value.length > 60 || !initialDate.value || !eventHour.value) {
     errorForm = true;
   }
-  
-  if (!errorForm) {
-  let name = document.getElementById("eventTitle").value;
-  let date = document.getElementById("initialDate").value;
-  let time = document.getElementById("eventHour").value;
-  let category = document.getElementById("category").value;
-  let storagePosition = events.length;  
 
-  let newEvent = new EventObject(name, date, time, category, storagePosition);
-  events.push(newEvent);
-  localStorage.setItem("newEvent", JSON.stringify(events));
-  clearInputs();
-  newEventDialog.close();
-  newEventForm.reset();
-  findEventDates();
+  if (!errorForm) {
+    let name = document.getElementById("eventTitle").value;
+    let date = document.getElementById("initialDate").value;
+    let time = document.getElementById("eventHour").value;
+    let category = document.getElementById("category").value;
+    let storagePosition = events.length;
+
+    let newEvent = new EventObject(name, date, time, category, storagePosition);
+    events.push(newEvent);
+    localStorage.setItem("newEvent", JSON.stringify(events));
+    clearInputs();
+    newEventDialog.close();
+    newEventForm.reset();
+    findEventDates();
   }
 }
 
@@ -345,14 +349,14 @@ function validateHour() {
 class EventObject {
   constructor(name, date, time, category, position) {
     (this.name = name),
-      (this.date = date),
-      (this.time = time),
-      (this.category = category);
-      (this.position = position);
+    (this.date = date),
+    (this.time = time),
+    (this.category = category);
+    (this.position = position);
   }
 }
 
-function clearInputs () {
+function clearInputs() {
   document.getElementById('initialDate').value = '';
   document.getElementById('eventHour').value = '';
   document.getElementById('eventTitle').value = '';
@@ -360,12 +364,12 @@ function clearInputs () {
 }
 
 //  Add event to calendar
-function clearLocalStorage () {
+function clearLocalStorage() {
   localStorage.clear();
 }
 
 // Set variables for events from local storage and compare
-function findEventDates () {
+function findEventDates() {
   // Sets events variable as empty array if local storage is empty, or as contents of local storage.
   populateEventsVar();
   console.log(events);
@@ -399,12 +403,12 @@ function findEventDates () {
 };
 
 // Returns true if an event box is already occupied by another event.
-function hasEvent (element) {
+function hasEvent(element) {
   return element.classList.contains('work') || element.classList.contains('personal');
 }
 
 // Set classes for work and personal events.
-function setCalEvents (eventBlock, storedEvent) {
+function setCalEvents(eventBlock, storedEvent) {
   if (storedEvent.category === 'work') {
     eventBlock.classList.add('work');
     eventBlock.setAttribute('data-event-position', `${storedEvent.position}`);
@@ -416,3 +420,19 @@ function setCalEvents (eventBlock, storedEvent) {
     eventBlock.style.color = 'white';
   }
 }
+
+
+// International days
+
+
+function internationalDays() {
+  for (let i = 1; i <= getDaysInMonth(); i++) {
+  let dayOfMay = new Date(currentYear, 4, i).getTime();
+  console.log(dayOfMay);
+  
+  
+}
+
+}
+
+internationalDays();
