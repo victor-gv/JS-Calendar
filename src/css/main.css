@@ -99,7 +99,7 @@ font-family: 'League Spartan', sans-serif; */
 
 .calendar__week {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(115.5px, 1fr));
   margin-right: 0.1em;
   margin-left: 0.1em;
   margin-bottom: 0.1em;
