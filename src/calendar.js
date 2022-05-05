@@ -502,9 +502,12 @@ const eventDetailsDialog = document.getElementById("eventDetailsDialog");
 const closeEventDetailsBtn = document.getElementById("event-details-closeBtn");
 
 closeEventDetailsBtn.addEventListener("click", function (e) {
+  
   eventDetailsDialog.close();
   if (eventDetailsDialog.close) {
     mainCalendar.classList.remove("blur");
+    let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
+    deleteBtn.removeEventListener("click", deleteEvent);
   }
   // e.stopPropogation();
 });
@@ -667,35 +670,22 @@ function hasEvent(element) {
 function setCalEvents(eventBlock, storedEvent) {
   if (storedEvent.category === "work") {
     eventBlock.classList.add("work");
-    eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
-    eventBlock.textContent = storedEvent.name;
-    eventBlock.style.color = "white";
-    eventBlock.addEventListener("click", function (e) {
-      eventDetailsDialog.showModal();
-      showEventDetails(e);
-      enableDeleteEvent(e);
-      // e.stopPropogation();
-      if (eventDetailsDialog.open) {
-        const mainCalendar = document.getElementById("main");
-        mainCalendar.classList.add("blur");
-      }
-    });
   } else {
-    eventBlock.classList.add("personal");
-    eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
-    eventBlock.textContent = storedEvent.name;
-    eventBlock.style.color = "white";
-    eventBlock.addEventListener("click", function (e) {
-      eventDetailsDialog.showModal();
-      showEventDetails(e);
-      enableDeleteEvent(e);
-      // e.stopPropogation();
-      if (eventDetailsDialog.open) {
-        const mainCalendar = document.getElementById("main");
-        mainCalendar.classList.add("blur");
-      }
-    });
+    eventBlock.classList.add('personal')
   }
+  eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
+  eventBlock.textContent = storedEvent.name;
+  eventBlock.style.color = "white";
+  eventBlock.addEventListener("click", function (e) {
+    eventDetailsDialog.showModal();
+    showEventDetails(e);
+    // enableDeleteEvent(e);
+
+    if (eventDetailsDialog.open) {
+      const mainCalendar = document.getElementById("main");
+      mainCalendar.classList.add("blur");
+    }
+  });
 }
 
 // /////////////////////////////////
@@ -709,74 +699,78 @@ function setCalEvents(eventBlock, storedEvent) {
 
 // DOM
 const eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
+let currentDetails = null;
+let currentDetailsPosition = null;
 
-// eventDetailsDisplay.textContent = "testing";
+
 
 function showEventDetails(e) {
   let eventPosition = e.target.getAttribute("data-event-position");
+  currentDetailsPosition = eventPosition;
+  console.log(e.target)
   let eventObject = events[eventPosition];
   let keys = Object.keys(eventObject);
   let values = Object.values(eventObject);
+  console.log(keys, values)
 
-  if (eventDetailsDisplay.children.length == 0) {
-    const titleEvent = document.createElement("div");
-    titleEvent.textContent = keys[0];
-    titleEvent.classList.add("event-details__title");
-    const titleValue = document.createElement("div");
-    titleValue.textContent = values[0];
-    titleValue.classList.add("event-details__content");
-    const dateEvent = document.createElement("div");
-    dateEvent.textContent = keys[1];
-    dateEvent.classList.add("event-details__title");
-    const dateValue = document.createElement("div");
-    dateValue.textContent = values[1];
-    dateValue.classList.add("event-details__content");
-    const timeTitle = document.createElement("div");
-    timeTitle.textContent = keys[2];
-    timeTitle.classList.add("event-details__title");
-    const timeValue = document.createElement("div");
-    timeValue.textContent = values[2];
-    timeValue.classList.add("event-details__content");
-    const categoryTitle = document.createElement("div");
-    categoryTitle.textContent = keys[3];
-    categoryTitle.classList.add("event-details__title");
-    const categoryValue = document.createElement("div");
-    categoryValue.textContent = values[3];
-    categoryValue.classList.add("event-details__content");
+  currentDetails = e.target; 
+  let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
+  deleteBtn.addEventListener("click", deleteEvent);
+  // enableDeleteEvent(e);
 
-    eventDetailsDisplay.appendChild(titleEvent);
-    eventDetailsDisplay.appendChild(titleValue);
-    eventDetailsDisplay.appendChild(dateEvent);
-    eventDetailsDisplay.appendChild(dateValue);
-    eventDetailsDisplay.appendChild(timeTitle);
-    eventDetailsDisplay.appendChild(timeValue);
-    eventDetailsDisplay.appendChild(categoryTitle);
-    eventDetailsDisplay.appendChild(categoryValue);
+  while (eventDetailsDisplay.firstChild) {
+    eventDetailsDisplay.removeChild(eventDetailsDisplay.lastChild);
   }
-  // const eventDetailsDisplay = document.getElementById('eventDetailsDisplay');
+
+  const titleEvent = document.createElement("div");
+  titleEvent.textContent = keys[0];
+  titleEvent.classList.add("event-details__title");
+  const titleValue = document.createElement("div");
+  titleValue.textContent = values[0];
+  titleValue.classList.add("event-details__content");
+  const dateEvent = document.createElement("div");
+  dateEvent.textContent = keys[1];
+  dateEvent.classList.add("event-details__title");
+  const dateValue = document.createElement("div");
+  dateValue.textContent = values[1];
+  dateValue.classList.add("event-details__content");
+  const timeTitle = document.createElement("div");
+  timeTitle.textContent = keys[2];
+  timeTitle.classList.add("event-details__title");
+  const timeValue = document.createElement("div");
+  timeValue.textContent = values[2];
+  timeValue.classList.add("event-details__content");
+  const categoryTitle = document.createElement("div");
+  categoryTitle.textContent = keys[3];
+  categoryTitle.classList.add("event-details__title");
+  const categoryValue = document.createElement("div");
+  categoryValue.textContent = values[3];
+  categoryValue.classList.add("event-details__content");
+
+  eventDetailsDisplay.appendChild(titleEvent);
+  eventDetailsDisplay.appendChild(titleValue);
+  eventDetailsDisplay.appendChild(dateEvent);
+  eventDetailsDisplay.appendChild(dateValue);
+  eventDetailsDisplay.appendChild(timeTitle);
+  eventDetailsDisplay.appendChild(timeValue);
+  eventDetailsDisplay.appendChild(categoryTitle);
+  eventDetailsDisplay.appendChild(categoryValue);
+
 }
 
-function enableDeleteEvent(e) {
-  let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
-  let eventBox = e.target;
 
-  deleteBtn.addEventListener("click", deleteEvent);
+function deleteEvent() {
+  if (events.length > 1) {
+    events = events.splice(currentDetailsPosition, 1);
+  } else {
+    events = [];
+  }
+  localStorage.setItem("newEvent", JSON.stringify(events));
 
-  function deleteEvent(e) {
-    let eventPosition = e.target.getAttribute("data-event-position");
-
-    if (events.length > 1) {
-      events = events.splice(eventPosition, 1);
-    } else {
-      events = [];
-    }
-    localStorage.setItem("newEvent", JSON.stringify(events));
-
-    if (eventBox.classList.contains("work")) {
-      eventBox.classList.remove("work");
-    } else if (eventBox.classList.contains("personal")) {
-      eventBox.classList.remove("personal");
-    }
+  if (currentDetails.classList.contains('work')) {
+    currentDetails.classList.remove('work');
+  } else if (currentDetails.classList.contains('personal')) {
+    currentDetails.classList.remove('personal');
   }
 }
 
