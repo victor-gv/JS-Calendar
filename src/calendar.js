@@ -159,8 +159,8 @@ function addDayDivs() {
 
 //Default Emoji
   headerChildNumber.textContent += dateText;
-  headerChildMainIcon.textContent += "⚉";
-  headerChildSecondIcon.textContent += "⚉";
+  headerChildMainIcon.textContent += "\u00A0";
+  headerChildSecondIcon.textContent += "\u00A0";
 
   //
 
