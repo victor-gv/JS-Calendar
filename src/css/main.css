@@ -235,9 +235,13 @@ font-family: 'League Spartan', sans-serif; */
   text-align: end;
   }
 .work {
-  background-color: red;
+  background-color: #ed1c24;
+  color: #ed1c24;
+  border-radius: 4px;
 }
 
 .personal {
-  background-color: blue;
+  background-color: #695f8b;
+  color: #322e3f;
+  border-radius: 4px;
 }

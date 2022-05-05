@@ -157,10 +157,12 @@ function addDayDivs() {
   headerChildSecondIcon.classList.add("calendar__day--header--secondIcon");
 
 
-
+//Default Emoji
   headerChildNumber.textContent += dateText;
-  headerChildMainIcon.textContent += "👽";
-  headerChildSecondIcon.textContent += "⬤";
+  headerChildMainIcon.textContent += "⚉";
+  headerChildSecondIcon.textContent += "⚉";
+
+  //
 
   if (dateText === currentDay && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear()) {
     headerDiv.classList.add("calendar_day--today");
