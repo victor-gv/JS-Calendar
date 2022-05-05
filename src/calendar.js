@@ -160,7 +160,7 @@ function addDayDivs() {
 
   headerChildNumber.textContent += dateText;
   headerChildMainIcon.textContent += "👽";
-  headerChildSecondIcon.textContent += "🔞";
+  headerChildSecondIcon.textContent += "⬤";
 
   if (dateText === currentDay && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear()) {
     headerDiv.classList.add("calendar_day--today");
@@ -201,8 +201,131 @@ function setDays() {
 
     //Add emojis for May
     if (dayInMayObject[1] == dateTime){
-      headerChildMainIcon.textContent = "🌈";
+      headerChildMainIcon.textContent = "😂";
+      headerChildSecondIcon.textContent = "😃";
+      // 
     }
+    else if (dayInMayObject[2] == dateTime){
+      headerChildMainIcon.textContent = "⌨️";
+      headerChildSecondIcon.textContent = "🖱️";
+    }
+    else if (dayInMayObject[3] == dateTime){
+      headerChildMainIcon.textContent = "👽";
+      headerChildSecondIcon.textContent = "👾";
+    }
+    else if (dayInMayObject[4] == dateTime){
+      headerChildMainIcon.textContent = "🛸";
+      headerChildSecondIcon.textContent = "🌌";
+    }
+    else if (dayInMayObject[5] == dateTime){
+      headerChildMainIcon.textContent = "😴";
+      headerChildSecondIcon.textContent = "🛌";
+    }
+    else if (dayInMayObject[6] == dateTime){
+      headerChildMainIcon.textContent = "🌱";
+      headerChildSecondIcon.textContent = "🔞";
+    }
+    else if (dayInMayObject[7] == dateTime){
+      headerChildMainIcon.textContent = "🚕";
+      headerChildSecondIcon.textContent = "📅";
+    }
+    else if (dayInMayObject[8] == dateTime){
+      headerChildMainIcon.textContent = "🇨🇺";
+      headerChildSecondIcon.textContent = "🪘";
+    }
+    else if (dayInMayObject[9] == dateTime){
+      headerChildMainIcon.textContent = "🚆";
+      headerChildSecondIcon.textContent = "💺";
+    }
+    else if (dayInMayObject[10] == dateTime){
+      headerChildMainIcon.textContent = "📰";
+      headerChildSecondIcon.textContent = "✍🏻";
+    }
+    else if (dayInMayObject[11] == dateTime){
+      headerChildMainIcon.textContent = "‍🎓";
+      headerChildSecondIcon.textContent = "📚";
+    }
+    else if (dayInMayObject[12] == dateTime){
+      headerChildMainIcon.textContent = "🌆";
+      headerChildSecondIcon.textContent = "🏙️";
+    }
+    else if (dayInMayObject[13] == dateTime){
+      headerChildMainIcon.textContent = "🐸";
+      headerChildSecondIcon.textContent = "🦘";
+    }
+    else if (dayInMayObject[14] == dateTime){
+      headerChildMainIcon.textContent = "💅";
+      headerChildSecondIcon.textContent = "🖌️";
+    }
+    else if (dayInMayObject[15] == dateTime){
+      headerChildMainIcon.textContent = "👪";
+      headerChildSecondIcon.textContent = "🐕";
+    }
+    else if (dayInMayObject[16] == dateTime){
+      headerChildMainIcon.textContent = "🎸";
+      headerChildSecondIcon.textContent = "🤘";
+    }
+    else if (dayInMayObject[17] == dateTime){
+      headerChildMainIcon.textContent = "♻️";
+      headerChildSecondIcon.textContent = "🚯";
+    }
+    else if (dayInMayObject[18] == dateTime){
+      headerChildMainIcon.textContent = "🌿";
+      headerChildSecondIcon.textContent = "🚰";
+    }
+    else if (dayInMayObject[19] == dateTime){
+      headerChildMainIcon.textContent = "🦊";
+      headerChildSecondIcon.textContent = "🐿️";
+    }
+    else if (dayInMayObject[20] == dateTime){
+      headerChildMainIcon.textContent = "💶";
+      headerChildSecondIcon.textContent = "💰";
+    }
+    else if (dayInMayObject[21] == dateTime){
+      headerChildMainIcon.textContent = "👞";
+      headerChildSecondIcon.textContent = "🚫";
+    }
+    else if (dayInMayObject[22] == dateTime){
+      headerChildMainIcon.textContent = "🎹";
+      headerChildSecondIcon.textContent = "💶";
+    }
+    else if (dayInMayObject[23] == dateTime){
+      headerChildMainIcon.textContent = "💋";
+      headerChildSecondIcon.textContent = "📅";
+    }
+    else if (dayInMayObject[24] == dateTime){
+      headerChildMainIcon.textContent = "🐌";
+      headerChildSecondIcon.textContent = "🎉";
+    }
+    else if (dayInMayObject[25] == dateTime){
+      headerChildMainIcon.textContent = "🤓";
+      headerChildSecondIcon.textContent = "🎈";
+    }
+    else if (dayInMayObject[26] == dateTime){
+      headerChildMainIcon.textContent = "🥡";
+      headerChildSecondIcon.textContent = "🛵";
+    }
+    else if (dayInMayObject[27] == dateTime){
+      headerChildMainIcon.textContent = "📣";
+      headerChildSecondIcon.textContent = "📈";
+    }
+    else if (dayInMayObject[28] == dateTime){
+      headerChildMainIcon.textContent = "🍔";
+      headerChildSecondIcon.textContent = "😋";
+    }
+    else if (dayInMayObject[29] == dateTime){
+      headerChildMainIcon.textContent = "🏰";
+      headerChildSecondIcon.textContent = "🔞";
+    }
+    else if (dayInMayObject[30] == dateTime){
+      headerChildMainIcon.textContent = "🏩";
+      headerChildSecondIcon.textContent = "🚫";
+    }
+    else if (dayInMayObject[31] == dateTime){
+      headerChildMainIcon.textContent = "⚽";
+      headerChildSecondIcon.textContent = "↪️";
+    }
+
   }
   // Loop to get beginning of next month
   for (let i = 1; i <= 6 - getLastDay(); i++) {
