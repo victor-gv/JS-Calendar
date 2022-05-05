@@ -504,6 +504,7 @@ const closeEventDetailsBtn = document.getElementById("event-details-closeBtn");
 closeEventDetailsBtn.addEventListener("click", function (e) {
   
   eventDetailsDialog.close();
+  finishEventDetails();
   if (eventDetailsDialog.close) {
     mainCalendar.classList.remove("blur");
     let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
@@ -539,7 +540,6 @@ function storageEvent() {
     let newEvent = new EventObject(name, date, time, category, storagePosition);
     events.push(newEvent);
     localStorage.setItem("newEvent", JSON.stringify(events));
-    clearInputs();
     newEventDialog.close();
     newEventForm.reset();
     findEventDates();
@@ -614,13 +614,6 @@ class EventObject {
   }
 }
 
-function clearInputs() {
-  document.getElementById("initialDate").value = "";
-  document.getElementById("eventHour").value = "";
-  document.getElementById("eventTitle").value = "";
-  document.getElementById("category").value = "";
-}
-
 //  Add event to calendar
 function clearLocalStorage() {
   localStorage.clear();
@@ -674,12 +667,9 @@ function setCalEvents(eventBlock, storedEvent) {
     eventBlock.classList.add('personal')
   }
   eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
-  eventBlock.textContent = storedEvent.name;
-  eventBlock.style.color = "white";
   eventBlock.addEventListener("click", function (e) {
     eventDetailsDialog.showModal();
-    showEventDetails(e);
-    // enableDeleteEvent(e);
+    showDetails(e);
 
     if (eventDetailsDialog.open) {
       const mainCalendar = document.getElementById("main");
@@ -698,80 +688,47 @@ function setCalEvents(eventBlock, storedEvent) {
 // MODALS
 
 // DOM
-const eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
-let currentDetails = null;
-let currentDetailsPosition = null;
+let currentEvent = '';
 
-
-
-function showEventDetails(e) {
-  let eventPosition = e.target.getAttribute("data-event-position");
-  currentDetailsPosition = eventPosition;
-  console.log(e.target)
-  let eventObject = events[eventPosition];
-  let keys = Object.keys(eventObject);
-  let values = Object.values(eventObject);
-  console.log(keys, values)
-
-  currentDetails = e.target; 
-  let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
-  deleteBtn.addEventListener("click", deleteEvent);
-  // enableDeleteEvent(e);
-
-  while (eventDetailsDisplay.firstChild) {
-    eventDetailsDisplay.removeChild(eventDetailsDisplay.lastChild);
+function showDetails (e) {
+  currentEvent = e.target;
+  let eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
+  let calendarPosition = e.target.getAttribute("data-event-position");
+  let storedEvents = JSON.parse(localStorage.getItem('newEvent'));
+  let eventObj = storedEvents.find(event => event.position == calendarPosition);
+  
+  for (let i = 0; i < 4; i++) {
+    let titleDiv = document.createElement('div');
+    let contentDiv = document.createElement('div');
+    titleDiv.classList.add('event-details__title');
+    contentDiv.classList.add('event-details__content');
+    titleDiv.textContent = Object.keys(eventObj)[i];
+    contentDiv.textContent = Object.values(eventObj)[i];
+    eventDetailsDisplay.appendChild(titleDiv);
+    eventDetailsDisplay.appendChild(contentDiv);
   }
 
-  const titleEvent = document.createElement("div");
-  titleEvent.textContent = keys[0];
-  titleEvent.classList.add("event-details__title");
-  const titleValue = document.createElement("div");
-  titleValue.textContent = values[0];
-  titleValue.classList.add("event-details__content");
-  const dateEvent = document.createElement("div");
-  dateEvent.textContent = keys[1];
-  dateEvent.classList.add("event-details__title");
-  const dateValue = document.createElement("div");
-  dateValue.textContent = values[1];
-  dateValue.classList.add("event-details__content");
-  const timeTitle = document.createElement("div");
-  timeTitle.textContent = keys[2];
-  timeTitle.classList.add("event-details__title");
-  const timeValue = document.createElement("div");
-  timeValue.textContent = values[2];
-  timeValue.classList.add("event-details__content");
-  const categoryTitle = document.createElement("div");
-  categoryTitle.textContent = keys[3];
-  categoryTitle.classList.add("event-details__title");
-  const categoryValue = document.createElement("div");
-  categoryValue.textContent = values[3];
-  categoryValue.classList.add("event-details__content");
-
-  eventDetailsDisplay.appendChild(titleEvent);
-  eventDetailsDisplay.appendChild(titleValue);
-  eventDetailsDisplay.appendChild(dateEvent);
-  eventDetailsDisplay.appendChild(dateValue);
-  eventDetailsDisplay.appendChild(timeTitle);
-  eventDetailsDisplay.appendChild(timeValue);
-  eventDetailsDisplay.appendChild(categoryTitle);
-  eventDetailsDisplay.appendChild(categoryValue);
-
+    let deleteBtn = document.getElementById('eventDetailsDeleteBtn');
+    deleteBtn.addEventListener('click', deleteEvent);
 }
 
+function deleteEvent () {
+  let calendarPosition = currentEvent.getAttribute("data-event-position");
+  let storedEvents = JSON.parse(localStorage.getItem('newEvent'));
 
-function deleteEvent() {
-  if (events.length > 1) {
-    events = events.splice(currentDetailsPosition, 1);
-  } else {
-    events = [];
-  }
-  localStorage.setItem("newEvent", JSON.stringify(events));
+  events = storedEvents.filter(object => object.position != calendarPosition);
+  localStorage.setItem('newEvent', JSON.stringify(events));
+  
+  currentEvent.classList.remove('work', 'personal');
+}
 
-  if (currentDetails.classList.contains('work')) {
-    currentDetails.classList.remove('work');
-  } else if (currentDetails.classList.contains('personal')) {
-    currentDetails.classList.remove('personal');
+function finishEventDetails () {
+  let eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
+  let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
+  while (eventDetailsDisplay.firstChild) {
+      eventDetailsDisplay.removeChild(eventDetailsDisplay.lastChild);      
   }
+  deleteBtn.removeEventListener("click", deleteEvent);
 }
 
 // Closing modal by clicking outside the modal window
@@ -780,5 +737,6 @@ window.addEventListener("click", function (e) {
   if (e.target === newEventDialog || e.target === eventDetailsDialog) {
     closeNewEvent();
     eventDetailsDialog.close();
+    finishEventDetails();
   }
 });
