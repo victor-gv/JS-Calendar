@@ -6,6 +6,7 @@
   border-radius: 20px;
   background: linear-gradient(145deg, #e6e6e6, #ffffff);
   box-shadow: 7px 10px 10px #d2d2d2, -12px -12px 20px #ffffff;
+  width: inherit;
 }
 
 .new-event__header {
