@@ -37,6 +37,7 @@ let headerChildMainIcon;
 let headerChildCircle;
 let headerChildSecondIcon;
 let contentDiv;
+let dateString;
 
 // Current date
 const currentDate = new Date();
@@ -158,9 +159,8 @@ function addDayDivs() {
   headerChildNumber.textContent += dateText;
   headerChildMainIcon.textContent += "\u00A0";
   headerChildSecondIcon.textContent += "\u00A0";
-  headerDiv.addEventListener("click", showNewEvent);
   //
-  
+
 
   if (
     dateText === currentDay &&
@@ -200,10 +200,54 @@ function setDays() {
   for (let i = 1; i <= getDaysInMonth(); i++) {
     dateText = i;
     dateTime = new Date(currentYear, currentMonth, i).getTime();
+    headerDiv.setAttribute("data-time", `${dateTime}`);
+    headerChildNumber.setAttribute("data-time", `${dateTime}`);
+    headerChildMainIcon.setAttribute("data-time", `${dateTime}`);
+    headerChildCircle.setAttribute("data-time", `${dateTime}`);
+    headerChildSecondIcon.setAttribute("data-time", `${dateTime}`);
+
+
+
+    headerDiv.addEventListener("click", getDataTime);
+    headerDiv.addEventListener("click", addNewEventDate);
+
+    function getDataTime() {
+      let date = this.getAttribute("data-time");
+      //Convert test string into a number
+      let dateNumber = Number(date);
+      let dateMs = new Date(dateNumber);
+
+      //Convert testDate into yyyy-mm-dd format
+      dateString = dateMs.toISOString().split('T')[0];
+      console.log(dateString);
+
+
+    }
+
+    
+    function addNewEventDate() {
+      newEventDialog.showModal();
+      initialDate.value = dateString;
+      title.classList.remove("invalid");
+      title.classList.add("input");
+      initialDate.classList.remove("invalid");
+      initialDate.classList.add("input");
+      eventHour.classList.remove("invalid");
+      eventHour.classList.add("input");
+
+      if (newEventDialog.open) {
+        const mainCalendar = document.getElementById("main");
+        mainCalendar.classList.add("blur");
+      }
+    }
+
+
     prevNext = false;
     addDayDivs();
 
-    //When the user hovers the mouse over the header, the icon on the day target will change to a smiley face
+
+
+
     headerChildSecondIcon.addEventListener("mouseover", addSignPlus);
 
     headerChildSecondIcon.addEventListener("mouseout", removeSignPlus);
@@ -501,9 +545,9 @@ const eventDetailsDialog = document.getElementById("eventDetailsDialog");
 // const calDayEvent = document.getElementById('calendar__day--event');
 const closeEventDetailsBtn = document.getElementById("event-details-closeBtn");
 
-closeEventDetailsBtn.addEventListener("click", closeEventDetails); 
+closeEventDetailsBtn.addEventListener("click", closeEventDetails);
 
-function closeEventDetails () {
+function closeEventDetails() {
   eventDetailsDialog.close();
   if (eventDetailsDialog.close) {
     mainCalendar.classList.remove("blur");
@@ -609,9 +653,9 @@ function validateHour() {
 class EventObject {
   constructor(name, date, time, category, position) {
     (this.name = name),
-      (this.date = date),
-      (this.time = time),
-      (this.category = category);
+    (this.date = date),
+    (this.time = time),
+    (this.category = category);
     this.position = position;
   }
 }
@@ -715,7 +759,7 @@ function showEventDetails(e) {
   let values = Object.values(eventObject);
   console.log(keys, values)
 
-  currentDetails = e.target; 
+  currentDetails = e.target;
   let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
   deleteBtn.addEventListener("click", deleteEvent);
   // enableDeleteEvent(e);
