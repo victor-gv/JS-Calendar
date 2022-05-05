@@ -474,7 +474,6 @@ function closeNewEvent() {
   newEventForm.reset();
 
   if (newEventDialog.close) {
-    console.log("close");
     mainCalendar.classList.remove("blur");
   }
 }
@@ -496,6 +495,9 @@ const closeEventDetailsBtn = document.getElementById("event-details-closeBtn");
 
 closeEventDetailsBtn.addEventListener("click", function (e) {
   eventDetailsDialog.close();
+  if (eventDetailsDialog.close) {
+    mainCalendar.classList.remove("blur");
+  }
   // e.stopPropogation();
 });
 
@@ -530,6 +532,9 @@ function storageEvent() {
     newEventDialog.close();
     newEventForm.reset();
     findEventDates();
+    if (newEventDialog.close) {
+      mainCalendar.classList.remove("blur");
+    }
   }
 }
 
@@ -662,6 +667,10 @@ function setCalEvents(eventBlock, storedEvent) {
       showEventDetails(e);
       enableDeleteEvent(e);
       // e.stopPropogation();
+      if (eventDetailsDialog.open) {
+        const mainCalendar = document.getElementById("main");
+        mainCalendar.classList.add("blur");
+      }
     });
   } else {
     eventBlock.classList.add("personal");
@@ -673,6 +682,10 @@ function setCalEvents(eventBlock, storedEvent) {
       showEventDetails(e);
       enableDeleteEvent(e);
       // e.stopPropogation();
+      if (eventDetailsDialog.open) {
+        const mainCalendar = document.getElementById("main");
+        mainCalendar.classList.add("blur");
+      }
     });
   }
 }
@@ -763,8 +776,6 @@ function enableDeleteEvent(e) {
 
 window.addEventListener("click", function (e) {
   if (e.target === newEventDialog || e.target === eventDetailsDialog) {
-    //
-    console.log("works");
     closeNewEvent();
     eventDetailsDialog.close();
   }
