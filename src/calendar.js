@@ -208,6 +208,12 @@ function setDays() {
 
     headerChildSecondIcon.addEventListener("mouseout", removeSignPlus);
 
+    contentDiv.addEventListener("mouseover", addCursor);
+
+    function addCursor(e) {
+      e.target.style.cursor = "pointer";
+    }
+
     //Add emojis for May
     if (dayInMayObject[1] == dateTime) {
       headerChildMainIcon.textContent = "😂";
