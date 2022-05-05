@@ -659,35 +659,22 @@ function hasEvent(element) {
 function setCalEvents(eventBlock, storedEvent) {
   if (storedEvent.category === "work") {
     eventBlock.classList.add("work");
-    eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
-    eventBlock.textContent = storedEvent.name;
-    eventBlock.style.color = "white";
-    eventBlock.addEventListener("click", function (e) {
-      eventDetailsDialog.showModal();
-      showEventDetails(e);
-      enableDeleteEvent(e);
-      // e.stopPropogation();
-      if (eventDetailsDialog.open) {
-        const mainCalendar = document.getElementById("main");
-        mainCalendar.classList.add("blur");
-      }
-    });
   } else {
-    eventBlock.classList.add("personal");
-    eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
-    eventBlock.textContent = storedEvent.name;
-    eventBlock.style.color = "white";
-    eventBlock.addEventListener("click", function (e) {
-      eventDetailsDialog.showModal();
-      showEventDetails(e);
-      enableDeleteEvent(e);
-      // e.stopPropogation();
-      if (eventDetailsDialog.open) {
-        const mainCalendar = document.getElementById("main");
-        mainCalendar.classList.add("blur");
-      }
-    });
+    eventBlock.classList.add('personal')
   }
+  eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
+  eventBlock.textContent = storedEvent.name;
+  eventBlock.style.color = "white";
+  eventBlock.addEventListener("click", function (e) {
+    eventDetailsDialog.showModal();
+    showEventDetails(e);
+    enableDeleteEvent(e);
+
+    if (eventDetailsDialog.open) {
+      const mainCalendar = document.getElementById("main");
+      mainCalendar.classList.add("blur");
+    }
+  });
 }
 
 // /////////////////////////////////
@@ -702,49 +689,50 @@ function setCalEvents(eventBlock, storedEvent) {
 // DOM
 const eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
 
-// eventDetailsDisplay.textContent = "testing";
-
 function showEventDetails(e) {
   let eventPosition = e.target.getAttribute("data-event-position");
   let eventObject = events[eventPosition];
   let keys = Object.keys(eventObject);
   let values = Object.values(eventObject);
 
-  if (eventDetailsDisplay.children.length == 0) {
-    const titleEvent = document.createElement("div");
-    titleEvent.textContent = keys[0];
-    titleEvent.classList.add("event-details__title");
-    const titleValue = document.createElement("div");
-    titleValue.textContent = values[0];
-    titleValue.classList.add("event-details__content");
-    const dateEvent = document.createElement("div");
-    dateEvent.textContent = keys[1];
-    dateEvent.classList.add("event-details__title");
-    const dateValue = document.createElement("div");
-    dateValue.textContent = values[1];
-    dateValue.classList.add("event-details__content");
-    const timeTitle = document.createElement("div");
-    timeTitle.textContent = keys[2];
-    timeTitle.classList.add("event-details__title");
-    const timeValue = document.createElement("div");
-    timeValue.textContent = values[2];
-    timeValue.classList.add("event-details__content");
-    const categoryTitle = document.createElement("div");
-    categoryTitle.textContent = keys[3];
-    categoryTitle.classList.add("event-details__title");
-    const categoryValue = document.createElement("div");
-    categoryValue.textContent = values[3];
-    categoryValue.classList.add("event-details__content");
-
-    eventDetailsDisplay.appendChild(titleEvent);
-    eventDetailsDisplay.appendChild(titleValue);
-    eventDetailsDisplay.appendChild(dateEvent);
-    eventDetailsDisplay.appendChild(dateValue);
-    eventDetailsDisplay.appendChild(timeTitle);
-    eventDetailsDisplay.appendChild(timeValue);
-    eventDetailsDisplay.appendChild(categoryTitle);
-    eventDetailsDisplay.appendChild(categoryValue);
+  while (eventDetailsDisplay.firstChild) {
+    eventDetailsDisplay.removeChild(eventDetailsDisplay.lastChild);
   }
+
+  const titleEvent = document.createElement("div");
+  titleEvent.textContent = keys[0];
+  titleEvent.classList.add("event-details__title");
+  const titleValue = document.createElement("div");
+  titleValue.textContent = values[0];
+  titleValue.classList.add("event-details__content");
+  const dateEvent = document.createElement("div");
+  dateEvent.textContent = keys[1];
+  dateEvent.classList.add("event-details__title");
+  const dateValue = document.createElement("div");
+  dateValue.textContent = values[1];
+  dateValue.classList.add("event-details__content");
+  const timeTitle = document.createElement("div");
+  timeTitle.textContent = keys[2];
+  timeTitle.classList.add("event-details__title");
+  const timeValue = document.createElement("div");
+  timeValue.textContent = values[2];
+  timeValue.classList.add("event-details__content");
+  const categoryTitle = document.createElement("div");
+  categoryTitle.textContent = keys[3];
+  categoryTitle.classList.add("event-details__title");
+  const categoryValue = document.createElement("div");
+  categoryValue.textContent = values[3];
+  categoryValue.classList.add("event-details__content");
+
+  eventDetailsDisplay.appendChild(titleEvent);
+  eventDetailsDisplay.appendChild(titleValue);
+  eventDetailsDisplay.appendChild(dateEvent);
+  eventDetailsDisplay.appendChild(dateValue);
+  eventDetailsDisplay.appendChild(timeTitle);
+  eventDetailsDisplay.appendChild(timeValue);
+  eventDetailsDisplay.appendChild(categoryTitle);
+  eventDetailsDisplay.appendChild(categoryValue);
+  
   // const eventDetailsDisplay = document.getElementById('eventDetailsDisplay');
 }
 
