@@ -248,5 +248,6 @@ font-family: 'League Spartan', sans-serif; */
 
 
 .blur {
-  opacity: .4;
+  opacity: .2;
+  filter: blur(3px);
 }
