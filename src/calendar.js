@@ -750,11 +750,9 @@ function showEventDetails(e) {
 
 function enableDeleteEvent(e) {
   let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
-  let eventBox = e.target;
-
   deleteBtn.addEventListener("click", deleteEvent);
 
-  function deleteEvent(e) {
+  function deleteEvent() {
     let eventPosition = e.target.getAttribute("data-event-position");
 
     if (events.length > 1) {
@@ -764,10 +762,10 @@ function enableDeleteEvent(e) {
     }
     localStorage.setItem("newEvent", JSON.stringify(events));
 
-    if (eventBox.classList.contains("work")) {
-      eventBox.classList.remove("work");
-    } else if (eventBox.classList.contains("personal")) {
-      eventBox.classList.remove("personal");
+    if (e.target.classList.contains('work')) {
+      e.target.classList.remove('work');
+    } else if (e.target.classList.contains('personal')) {
+      e.target.classList.remove('personal');
     }
   }
 }
