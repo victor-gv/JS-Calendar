@@ -1,5 +1,3 @@
-
-
 const months = [
   "January",
   "February",
@@ -48,11 +46,6 @@ nextMonth.addEventListener("click", getNextMonth);
 // /////////////////////////////
 // /////////////////////////////
 // Functions
-
-
-
-
-
 
 //
 // function isLeap() {
@@ -143,19 +136,21 @@ function addDayDivs() {
   headerChildCircle.classList.add("calendar__day--header--circle");
   headerChildSecondIcon.classList.add("calendar__day--header--secondIcon");
 
-
-
   headerChildNumber.textContent += dateText;
   headerChildMainIcon.textContent += "👽";
   headerChildSecondIcon.textContent += "🔞";
 
-  if (dateText === currentDay && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear()) {
+  if (
+    dateText === currentDay &&
+    currentMonth === currentDate.getMonth() &&
+    currentYear === currentDate.getFullYear()
+  ) {
     headerDiv.classList.add("calendar_day--today");
   }
 
   let contentDiv = document.createElement("div");
   contentDiv.classList.add("calendar__day--content");
-  contentDiv.setAttribute('data-time', `${dateTime}`);
+  contentDiv.setAttribute("data-time", `${dateTime}`);
 
   for (let j = 1; j <= 4; j++) {
     let eventDiv = document.createElement("div");
@@ -230,9 +225,9 @@ createBtn.addEventListener("click", storageEvent);
 title.addEventListener("blur", validateTitle);
 initialDate.addEventListener("blur", validateDate);
 eventHour.addEventListener("blur", validateHour);
-createBtn.addEventListener('click', validateTitle);
-createBtn.addEventListener('click', validateDate);
-createBtn.addEventListener('click', validateHour);
+createBtn.addEventListener("click", validateTitle);
+createBtn.addEventListener("click", validateDate);
+createBtn.addEventListener("click", validateHour);
 cancelBtn.addEventListener("click", cancelNewEvent);
 
 function showNewEvent() {
@@ -251,7 +246,7 @@ function closeNewEvent() {
   newEventForm.reset();
 }
 
-function populateEventsVar () {
+function populateEventsVar() {
   if (localStorage.length > 0) {
     // Sort() to order the array
     events = JSON.parse(localStorage.getItem("newEvent"));
@@ -262,17 +257,14 @@ function populateEventsVar () {
 
 // MODAL for event details
 
-// const eventDetailsDialog = document.getElementById('eventDetailsDialog');
+const eventDetailsDialog = document.getElementById("eventDetailsDialog");
 // const calDayEvent = document.getElementById('calendar__day--event');
-const closeEventDetailsBtn = document.getElementById('event-details-closeBtn');
+const closeEventDetailsBtn = document.getElementById("event-details-closeBtn");
 
-closeEventDetailsBtn.addEventListener('click', function (e) {
+closeEventDetailsBtn.addEventListener("click", function (e) {
   eventDetailsDialog.close();
   e.stopPropogation();
 });
-
-
-
 
 // Store events in local storage
 function storageEvent() {
@@ -282,24 +274,29 @@ function storageEvent() {
 
   populateEventsVar();
 
-  if (!title.value || title.value.length > 60 || !initialDate.value || !eventHour.value) {
+  if (
+    !title.value ||
+    title.value.length > 60 ||
+    !initialDate.value ||
+    !eventHour.value
+  ) {
     errorForm = true;
   }
-  
-  if (!errorForm) {
-  let name = document.getElementById("eventTitle").value;
-  let date = document.getElementById("initialDate").value;
-  let time = document.getElementById("eventHour").value;
-  let category = document.getElementById("category").value;
-  let storagePosition = events.length;  
 
-  let newEvent = new EventObject(name, date, time, category, storagePosition);
-  events.push(newEvent);
-  localStorage.setItem("newEvent", JSON.stringify(events));
-  clearInputs();
-  newEventDialog.close();
-  newEventForm.reset();
-  findEventDates();
+  if (!errorForm) {
+    let name = document.getElementById("eventTitle").value;
+    let date = document.getElementById("initialDate").value;
+    let time = document.getElementById("eventHour").value;
+    let category = document.getElementById("category").value;
+    let storagePosition = events.length;
+
+    let newEvent = new EventObject(name, date, time, category, storagePosition);
+    events.push(newEvent);
+    localStorage.setItem("newEvent", JSON.stringify(events));
+    clearInputs();
+    newEventDialog.close();
+    newEventForm.reset();
+    findEventDates();
   }
 }
 
@@ -359,24 +356,24 @@ class EventObject {
       (this.date = date),
       (this.time = time),
       (this.category = category);
-      (this.position = position);
+    this.position = position;
   }
 }
 
-function clearInputs () {
-  document.getElementById('initialDate').value = '';
-  document.getElementById('eventHour').value = '';
-  document.getElementById('eventTitle').value = '';
-  document.getElementById('category').value = '';
+function clearInputs() {
+  document.getElementById("initialDate").value = "";
+  document.getElementById("eventHour").value = "";
+  document.getElementById("eventTitle").value = "";
+  document.getElementById("category").value = "";
 }
 
 //  Add event to calendar
-function clearLocalStorage () {
+function clearLocalStorage() {
   localStorage.clear();
 }
 
 // Set variables for events from local storage and compare
-function findEventDates () {
+function findEventDates() {
   // Sets events variable as empty array if local storage is empty, or as contents of local storage.
   populateEventsVar();
   console.log(events);
@@ -389,7 +386,7 @@ function findEventDates () {
       let eventBoxes = calDate.children;
       for (let i = 0; i < 4; i++) {
         // Validate wheher the info for both is the same. In that case, don't add.
-        let calEventPos = eventBoxes[i].getAttribute('data-event-position');
+        let calEventPos = eventBoxes[i].getAttribute("data-event-position");
         if (calEventPos == event.position) {
           break;
         }
@@ -397,7 +394,7 @@ function findEventDates () {
           if (i < 3) {
             continue;
           } else {
-            eventBoxes[i].textContent = '...';
+            eventBoxes[i].textContent = "...";
             // Add class for more than 5 events.
           }
         } else {
@@ -407,32 +404,66 @@ function findEventDates () {
       }
     }
   });
-};
+}
 
 // Returns true if an event box is already occupied by another event.
-function hasEvent (element) {
-  return element.classList.contains('work') || element.classList.contains('personal');
+function hasEvent(element) {
+  return (
+    element.classList.contains("work") || element.classList.contains("personal")
+  );
 }
 
 // Set classes for work and personal events.
-function setCalEvents (eventBlock, storedEvent) {
-  if (storedEvent.category === 'work') {
-    eventBlock.classList.add('work');    
-    eventBlock.setAttribute('data-event-position', `${storedEvent.position}`);    
+function setCalEvents(eventBlock, storedEvent) {
+  if (storedEvent.category === "work") {
+    eventBlock.classList.add("work");
+    eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
     eventBlock.textContent = storedEvent.name;
-    eventBlock.style.color = 'white';
-    eventBlock.addEventListener('click', function (e) {
+    eventBlock.style.color = "white";
+    eventBlock.addEventListener("click", function (e) {
       eventDetailsDialog.showModal();
+      getDetails(e);
       e.stopPropogation();
     });
   } else {
-    eventBlock.classList.add('personal');
-    eventBlock.setAttribute('data-event-position', `${storedEvent.position}`);
+    eventBlock.classList.add("personal");
+    eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
     eventBlock.textContent = storedEvent.name;
-    eventBlock.style.color = 'white';
-    eventBlock.addEventListener('click', function (e) {
+    eventBlock.style.color = "white";
+    eventBlock.addEventListener("click", function (e) {
       eventDetailsDialog.showModal();
+      getDetails(e);
       e.stopPropogation();
     });
   }
+}
+
+// /////////////////////////////////
+// /////////////////////////////////
+// /////////////////////////////////
+// /////////////////////////////////
+// /////////////////////////////////
+// /////////////////////////////////
+// /////////////////////////////////
+// MODALS
+
+// DOM
+const eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
+
+eventDetailsDisplay.textContent = "testing";
+
+function getDetails(e) {
+  let eventPosition = e.target.getAttribute("data-event-position");
+  return events[eventPosition];
+  // console.log(events[eventPosition]);
+}
+
+function showEventDetails(e) {
+  let eventObject = getDetails(e);
+  console.log(eventObject);
+  const titleEvent = document.createElement("div");
+  const detailsEvent = document.createElement("div");
+
+  titleEvent.textContent = "hi there";
+  console.log(titleEvent);
 }
