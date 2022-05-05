@@ -239,13 +239,13 @@ font-family: 'League Spartan', sans-serif; */
   }
 .work {
   background-color: #ed1c24;
-  color: #ed1c24;
+  color: #ed1c24 !important;
   border-radius: 4px;
 }
 
 .personal {
   background-color: #695f8b;
-  color: #322e3f;
+  color: #695f8b !important;
   border-radius: 4px;
 }
 

@@ -415,7 +415,7 @@ function removeDays() {
 setDays();
 
 function addSignPlus(e) {
-  e.target.textContent = "➕";
+  e.target.textContent = "Add Event 📌";
   e.target.style.cursor = "pointer";
 }
 
