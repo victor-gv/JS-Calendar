@@ -23,8 +23,11 @@
    */
   
   body {
-    margin: 0;
-  }
+  margin: 0;
+  background: #f6f6f6;
+
+}
+
   
   /**
    * Render the `main` element consistently in IE.
