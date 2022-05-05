@@ -494,9 +494,12 @@ const eventDetailsDialog = document.getElementById("eventDetailsDialog");
 const closeEventDetailsBtn = document.getElementById("event-details-closeBtn");
 
 closeEventDetailsBtn.addEventListener("click", function (e) {
+  
   eventDetailsDialog.close();
   if (eventDetailsDialog.close) {
     mainCalendar.classList.remove("blur");
+    let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
+    deleteBtn.removeEventListener("click", deleteEvent);
   }
   // e.stopPropogation();
 });
@@ -668,7 +671,7 @@ function setCalEvents(eventBlock, storedEvent) {
   eventBlock.addEventListener("click", function (e) {
     eventDetailsDialog.showModal();
     showEventDetails(e);
-    enableDeleteEvent(e);
+    // enableDeleteEvent(e);
 
     if (eventDetailsDialog.open) {
       const mainCalendar = document.getElementById("main");
@@ -688,12 +691,24 @@ function setCalEvents(eventBlock, storedEvent) {
 
 // DOM
 const eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
+let currentDetails = null;
+let currentDetailsPosition = null;
+
+
 
 function showEventDetails(e) {
   let eventPosition = e.target.getAttribute("data-event-position");
+  currentDetailsPosition = eventPosition;
+  console.log(e.target)
   let eventObject = events[eventPosition];
   let keys = Object.keys(eventObject);
   let values = Object.values(eventObject);
+  console.log(keys, values)
+
+  currentDetails = e.target; 
+  let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
+  deleteBtn.addEventListener("click", deleteEvent);
+  // enableDeleteEvent(e);
 
   while (eventDetailsDisplay.firstChild) {
     eventDetailsDisplay.removeChild(eventDetailsDisplay.lastChild);
@@ -732,29 +747,22 @@ function showEventDetails(e) {
   eventDetailsDisplay.appendChild(timeValue);
   eventDetailsDisplay.appendChild(categoryTitle);
   eventDetailsDisplay.appendChild(categoryValue);
-  
-  // const eventDetailsDisplay = document.getElementById('eventDetailsDisplay');
+
 }
 
-function enableDeleteEvent(e) {
-  let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
-  deleteBtn.addEventListener("click", deleteEvent);
 
-  function deleteEvent() {
-    let eventPosition = e.target.getAttribute("data-event-position");
+function deleteEvent() {
+  if (events.length > 1) {
+    events = events.splice(currentDetailsPosition, 1);
+  } else {
+    events = [];
+  }
+  localStorage.setItem("newEvent", JSON.stringify(events));
 
-    if (events.length > 1) {
-      events = events.splice(eventPosition, 1);
-    } else {
-      events = [];
-    }
-    localStorage.setItem("newEvent", JSON.stringify(events));
-
-    if (e.target.classList.contains('work')) {
-      e.target.classList.remove('work');
-    } else if (e.target.classList.contains('personal')) {
-      e.target.classList.remove('personal');
-    }
+  if (currentDetails.classList.contains('work')) {
+    currentDetails.classList.remove('work');
+  } else if (currentDetails.classList.contains('personal')) {
+    currentDetails.classList.remove('personal');
   }
 }
 
