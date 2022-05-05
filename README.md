@@ -34,9 +34,9 @@ Description Day & Delete Event
 
 
 
-## Lessons Learned
+## Requirements
 
-What did you learn while building this project? What challenges did you face and how did you overcome them?
+Just javascript. No library is required.
 
 
 ## The Team
@@ -49,6 +49,6 @@ What did you learn while building this project? What challenges did you face and
 
 ## 🔗 Links
 
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcelbarreiro/)
 [
 
