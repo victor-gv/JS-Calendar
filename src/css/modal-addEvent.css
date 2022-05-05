@@ -1,45 +1,44 @@
 .new-event {
-    text-align: center;
-    width: -webkit-fill-available;
-    height: auto;
-    padding: 20px;
-    border-radius: 20px;
-    background: linear-gradient(145deg, #e6e6e6, #ffffff);
-    box-shadow: 7px 10px 10px #d2d2d2, -12px -12px 20px #ffffff;
-
+  text-align: center;
+  width: -webkit-fill-available;
+  height: auto;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  box-shadow: 7px 10px 10px #d2d2d2, -12px -12px 20px #ffffff;
 }
 
-.new-event__header{
-    display: block;
-    margin: auto 0px 15px 0px;
-    font-family: system-ui;
-    color: #ffffff;
-    padding: 0.7em 1.7em;
-    font-size: 18px;
-    border-radius: 0.5em;
-    background: #ed1d24;
-    transition: all .3s;
+.new-event__header {
+  display: block;
+  margin: auto 0px 15px 0px;
+  font-family: system-ui;
+  color: #ffffff;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background: #ed1d24;
+  transition: all 0.3s;
 }
 .new-event__dialog {
-    position: absolute;
-    background: linear-gradient(276deg, #ffffffd9, #d7d7d7f2);
-    padding: 31px;
-    width: 60%;
-    max-width: 45rem;
-    justify-content: center;
-    top: 25%;
-    border-radius: 20px;
-    overflow-x: hidden;
-    box-shadow: 18px 28px 50px #3c3b51b0, 11px 2px 27px #ffffff00;
+  position: absolute;
+  background: linear-gradient(276deg, #ffffffd9, #d7d7d7f2);
+  padding: 31px;
+  width: 60%;
+  max-width: 45rem;
+  justify-content: center;
+  top: 25%;
+  border-radius: 20px;
+  overflow-x: hidden;
+  box-shadow: 18px 28px 50px #3c3b51b0, 11px 2px 27px #ffffff00;
 }
 
 .new-event__buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    font-size: 16px;
-    font-family: system-ui;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 16px;
+  font-family: system-ui;
 }
 
 .new-event__create-button {
@@ -58,45 +57,43 @@
   border-radius: 10px;
 }
 
-
 .input {
-    width: -webkit-fill-available;
-    color: black;
-    margin-bottom: 1em;
-    font-size: 16px;
-    padding: 10px 10px 10px 5px;
-    display: block;
-    border: none;
-    border-bottom: 1px solid #d6d6d6;
-    background: white;
-    border-radius: 5px;
-    font-family: system-ui;
-  
+  width: -webkit-fill-available;
+  color: black;
+  margin-bottom: 1em;
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #d6d6d6;
+  background: white;
+  border-radius: 5px;
+  font-family: system-ui;
 }
 .select {
-    width: -webkit-fill-available;
-    color: black;
-    margin-bottom: 1em;
-    font-size: 16px;
-    padding: 10px 10px 10px 5px;
-    display: block;
-    border: none;
-    border-bottom: 1px solid #d6d6d6;
-    background: white;
-    border-radius: 5px;
-    font-family: system-ui;
+  width: -webkit-fill-available;
+  color: black;
+  margin-bottom: 1em;
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #d6d6d6;
+  background: white;
+  border-radius: 5px;
+  font-family: system-ui;
 }
 .closeBtnEvent {
-    position: absolute;
-    padding: 4px 21px;
-    border: white 2px solid;
-    font-size: 24px;
-    font-family: revert;
-    filter: drop-shadow(3px 4px 4px lightgray);
-    right: 0;
-    margin: -53px -6px;
-    background: #322c3f;
-    border-radius: 0px 0px 0px 30px;
+  position: absolute;
+  padding: 4px 21px;
+  border: white 2px solid;
+  font-size: 24px;
+  font-family: revert;
+  filter: drop-shadow(3px 4px 4px lightgray);
+  right: 0;
+  margin: -53px -6px;
+  background: #322c3f;
+  border-radius: 0px 0px 0px 30px;
 }
 
 .eventTitle,
@@ -104,9 +101,9 @@
 .finalDate,
 .category,
 .eventHour {
-    color: #7e7e7e;
-    font-size: 16px;
-    font-family: sans-serif;
+  color: #7e7e7e;
+  font-size: 16px;
+  font-family: sans-serif;
 }
 
 .event-details,
@@ -114,20 +111,19 @@
   display: none;
 }
 
-
 .invalid {
-    width: -webkit-fill-available;
-    color: black;
-    margin-bottom: 1em;
-    font-size: 16px;
-    padding: 10px 10px 10px 5px;
-    display: block;
-    border: 1px solid red;;
-    background: white;
-    border-radius: 5px;
-    font-family: system-ui;
+  width: -webkit-fill-available;
+  color: black;
+  margin-bottom: 1em;
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  border: 1px solid red;
+  background: white;
+  border-radius: 5px;
+  font-family: system-ui;
 }
 
 .invalid::-webkit-input-placeholder {
-    color: red;
- }
+  color: red;
+}

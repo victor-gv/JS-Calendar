@@ -25,20 +25,18 @@ let currentYearDisplay = document.getElementById("currentYear");
 let currentMonthDisplay = document.getElementById("currentMonth");
 const mainCalendar = document.getElementById("main");
 
-
 // Global variables
 let dateText;
 let prevNext = false;
 let events;
 let errorForm = false;
 let dateTime = null;
-let headerDiv
+let headerDiv;
 let headerChildNumber;
 let headerChildMainIcon;
 let headerChildCircle;
 let headerChildSecondIcon;
 let contentDiv;
-
 
 // Current date
 const currentDate = new Date();
@@ -56,18 +54,16 @@ nextMonth.addEventListener("click", getNextMonth);
 // /////////////////////////////
 // Functions
 
-
 //Function for adding emojis in May
-let dayInMayObject = {}
+let dayInMayObject = {};
 
 function getDayinMay() {
-  for (let i = 1; i <= 31; i++){
+  for (let i = 1; i <= 31; i++) {
     let daysInMay = new Date(2022, 4, i).getTime();
     dayInMayObject[i] = daysInMay;
   }
 }
 getDayinMay();
-
 
 //
 // function isLeap() {
@@ -158,8 +154,7 @@ function addDayDivs() {
   headerChildCircle.classList.add("calendar__day--header--circle");
   headerChildSecondIcon.classList.add("calendar__day--header--secondIcon");
 
-
-//Default Emoji
+  //Default Emoji
   headerChildNumber.textContent += dateText;
   headerChildMainIcon.textContent += "\u00A0";
   headerChildSecondIcon.textContent += "\u00A0";
@@ -207,249 +202,199 @@ function setDays() {
     prevNext = false;
     addDayDivs();
 
-        //When the user hovers the mouse over the header, the icon on the day target will change to a smiley face
-        headerChildSecondIcon.addEventListener("mouseover", addSignPlus);
+    //When the user hovers the mouse over the header, the icon on the day target will change to a smiley face
+    headerChildSecondIcon.addEventListener("mouseover", addSignPlus);
 
-        headerChildSecondIcon.addEventListener("mouseout", removeSignPlus);
-
+    headerChildSecondIcon.addEventListener("mouseout", removeSignPlus);
 
     //Add emojis for May
-    if (dayInMayObject[1] == dateTime){
+    if (dayInMayObject[1] == dateTime) {
       headerChildMainIcon.textContent = "😂";
       headerChildSecondIcon.textContent = "😃";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "😃";
-        }); 
-    }
-    else if (dayInMayObject[2] == dateTime){
+      });
+    } else if (dayInMayObject[2] == dateTime) {
       headerChildMainIcon.textContent = "⌨️";
       headerChildSecondIcon.textContent = "🖱️";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🖱️";
-        });
-    }
-    else if (dayInMayObject[3] == dateTime){
+      });
+    } else if (dayInMayObject[3] == dateTime) {
       headerChildMainIcon.textContent = "👽";
       headerChildSecondIcon.textContent = "👾";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "👾";
-        });
-
-    }
-    else if (dayInMayObject[4] == dateTime){
+      });
+    } else if (dayInMayObject[4] == dateTime) {
       headerChildMainIcon.textContent = "🛸";
       headerChildSecondIcon.textContent = "🌌";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🌌";
-        });
-    }
-    else if (dayInMayObject[5] == dateTime){
+      });
+    } else if (dayInMayObject[5] == dateTime) {
       headerChildMainIcon.textContent = "😴";
       headerChildSecondIcon.textContent = "🛌";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🛌";
-        });
-    }
-    else if (dayInMayObject[6] == dateTime){
+      });
+    } else if (dayInMayObject[6] == dateTime) {
       headerChildMainIcon.textContent = "🌱";
       headerChildSecondIcon.textContent = "🔞";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🔞";
-        });
-    }
-    else if (dayInMayObject[7] == dateTime){
+      });
+    } else if (dayInMayObject[7] == dateTime) {
       headerChildMainIcon.textContent = "🚕";
       headerChildSecondIcon.textContent = "📅";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "📅";
-        });
-    }
-    else if (dayInMayObject[8] == dateTime){
+      });
+    } else if (dayInMayObject[8] == dateTime) {
       headerChildMainIcon.textContent = "🇨🇺";
       headerChildSecondIcon.textContent = "🪘";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🪘";
-        });
-    }
-    else if (dayInMayObject[9] == dateTime){
+      });
+    } else if (dayInMayObject[9] == dateTime) {
       headerChildMainIcon.textContent = "🚆";
       headerChildSecondIcon.textContent = "💺";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "💺";
-        });
-    }
-    else if (dayInMayObject[10] == dateTime){
+      });
+    } else if (dayInMayObject[10] == dateTime) {
       headerChildMainIcon.textContent = "📰";
       headerChildSecondIcon.textContent = "✍🏻";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "✍🏻";
-        });
-    }
-    else if (dayInMayObject[11] == dateTime){
+      });
+    } else if (dayInMayObject[11] == dateTime) {
       headerChildMainIcon.textContent = "‍🎓";
       headerChildSecondIcon.textContent = "📚";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "📚";
-        });
-    }
-    else if (dayInMayObject[12] == dateTime){
+      });
+    } else if (dayInMayObject[12] == dateTime) {
       headerChildMainIcon.textContent = "🌆";
       headerChildSecondIcon.textContent = "🏙️";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🏙️";
-        });
-    }
-    else if (dayInMayObject[13] == dateTime){
+      });
+    } else if (dayInMayObject[13] == dateTime) {
       headerChildMainIcon.textContent = "🐸";
       headerChildSecondIcon.textContent = "🦘";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🦘";
-        });
-    }
-    else if (dayInMayObject[14] == dateTime){
+      });
+    } else if (dayInMayObject[14] == dateTime) {
       headerChildMainIcon.textContent = "💅";
       headerChildSecondIcon.textContent = "🖌️";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🖌️";
-        });
-    }
-    else if (dayInMayObject[15] == dateTime){
+      });
+    } else if (dayInMayObject[15] == dateTime) {
       headerChildMainIcon.textContent = "👪";
       headerChildSecondIcon.textContent = "🐕";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🐕";
-        }
-      );
-    }
-    else if (dayInMayObject[16] == dateTime){
+      });
+    } else if (dayInMayObject[16] == dateTime) {
       headerChildMainIcon.textContent = "🎸";
       headerChildSecondIcon.textContent = "🤘";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🤘";
-        }
-      );
-    }
-    else if (dayInMayObject[17] == dateTime){
+      });
+    } else if (dayInMayObject[17] == dateTime) {
       headerChildMainIcon.textContent = "♻️";
       headerChildSecondIcon.textContent = "🚯";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🚯";
-        }
-      );
-    }
-    else if (dayInMayObject[18] == dateTime){
+      });
+    } else if (dayInMayObject[18] == dateTime) {
       headerChildMainIcon.textContent = "🌿";
       headerChildSecondIcon.textContent = "🚰";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🚰";
-        }
-      );
-    }
-    else if (dayInMayObject[19] == dateTime){
+      });
+    } else if (dayInMayObject[19] == dateTime) {
       headerChildMainIcon.textContent = "🦊";
       headerChildSecondIcon.textContent = "🐿️";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🐿️";
-        }
-      );
-    }
-    else if (dayInMayObject[20] == dateTime){
+      });
+    } else if (dayInMayObject[20] == dateTime) {
       headerChildMainIcon.textContent = "💶";
       headerChildSecondIcon.textContent = "💰";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "💰";
-        }
-      );
-    }
-    else if (dayInMayObject[21] == dateTime){
+      });
+    } else if (dayInMayObject[21] == dateTime) {
       headerChildMainIcon.textContent = "👞";
       headerChildSecondIcon.textContent = "🚫";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🚫";
-        }
-      );
-    }
-    else if (dayInMayObject[22] == dateTime){
+      });
+    } else if (dayInMayObject[22] == dateTime) {
       headerChildMainIcon.textContent = "🎹";
       headerChildSecondIcon.textContent = "💶";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "💶";
-        }
-      );
-    }
-    else if (dayInMayObject[23] == dateTime){
+      });
+    } else if (dayInMayObject[23] == dateTime) {
       headerChildMainIcon.textContent = "💋";
       headerChildSecondIcon.textContent = "📅";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "📅";
-        }
-      );
-    }
-    else if (dayInMayObject[24] == dateTime){
+      });
+    } else if (dayInMayObject[24] == dateTime) {
       headerChildMainIcon.textContent = "🐌";
       headerChildSecondIcon.textContent = "🎉";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🎉";
-        }
-      );
-    }
-    else if (dayInMayObject[25] == dateTime){
+      });
+    } else if (dayInMayObject[25] == dateTime) {
       headerChildMainIcon.textContent = "🤓";
       headerChildSecondIcon.textContent = "🎈";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🎈";
-        }
-      );
-    }
-    else if (dayInMayObject[26] == dateTime){
+      });
+    } else if (dayInMayObject[26] == dateTime) {
       headerChildMainIcon.textContent = "🥡";
       headerChildSecondIcon.textContent = "🛵";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🛵";
-        }
-      );
-    }
-    else if (dayInMayObject[27] == dateTime){
+      });
+    } else if (dayInMayObject[27] == dateTime) {
       headerChildMainIcon.textContent = "📣";
       headerChildSecondIcon.textContent = "📈";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "📈";
-        }
-      );
-    }
-    else if (dayInMayObject[28] == dateTime){
+      });
+    } else if (dayInMayObject[28] == dateTime) {
       headerChildMainIcon.textContent = "🍔";
       headerChildSecondIcon.textContent = "😋";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "😋";
-        }
-      );
-    }
-    else if (dayInMayObject[29] == dateTime){
+      });
+    } else if (dayInMayObject[29] == dateTime) {
       headerChildMainIcon.textContent = "🏰";
       headerChildSecondIcon.textContent = "🔞";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🔞";
-        }
-      );
-    }
-    else if (dayInMayObject[30] == dateTime){
+      });
+    } else if (dayInMayObject[30] == dateTime) {
       headerChildMainIcon.textContent = "🏩";
       headerChildSecondIcon.textContent = "🚫";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "🚫";
-        }
-      );
-    }
-    else if (dayInMayObject[31] == dateTime){
+      });
+    } else if (dayInMayObject[31] == dateTime) {
       headerChildMainIcon.textContent = "⚽";
       headerChildSecondIcon.textContent = "↪️";
-      headerChildSecondIcon.addEventListener("mouseout", function (e){
+      headerChildSecondIcon.addEventListener("mouseout", function (e) {
         e.target.textContent = "↪️";
-        }
-      );
+      });
     }
-
   }
   // Loop to get beginning of next month
   for (let i = 1; i <= 6 - getLastDay(); i++) {
@@ -469,15 +414,14 @@ function removeDays() {
 
 setDays();
 
-
-function addSignPlus(e){
+function addSignPlus(e) {
   e.target.textContent = "➕";
   e.target.style.cursor = "pointer";
-  };
+}
 
-  function removeSignPlus(e){
+function removeSignPlus(e) {
   e.target.textContent = "\u00A0";
-  };
+}
 
 // ////////////////////////////////
 // ////////////////////////////////
@@ -518,10 +462,10 @@ function showNewEvent() {
   eventHour.classList.remove("invalid");
   eventHour.classList.add("input");
 
-  if (newEventDialog.open){
+  if (newEventDialog.open) {
     const mainCalendar = document.getElementById("main");
     mainCalendar.classList.add("blur");
-  } 
+  }
 }
 
 function closeNewEvent() {
@@ -529,7 +473,7 @@ function closeNewEvent() {
   newEventDialog.close();
   newEventForm.reset();
 
-  if (newEventDialog.close){
+  if (newEventDialog.close) {
     console.log("close");
     mainCalendar.classList.remove("blur");
   }
@@ -594,7 +538,7 @@ function cancelNewEvent() {
   newEventDialog.close();
   newEventForm.reset();
 
-  if (newEventDialog.close){
+  if (newEventDialog.close) {
     console.log("close");
     mainCalendar.classList.remove("blur");
   }
@@ -647,18 +591,18 @@ function validateHour() {
 class EventObject {
   constructor(name, date, time, category, position) {
     (this.name = name),
-    (this.date = date),
-    (this.time = time),
-    (this.category = category);
-    (this.position = position);
+      (this.date = date),
+      (this.time = time),
+      (this.category = category);
+    this.position = position;
   }
 }
 
 function clearInputs() {
-  document.getElementById('initialDate').value = '';
-  document.getElementById('eventHour').value = '';
-  document.getElementById('eventTitle').value = '';
-  document.getElementById('category').value = '';
+  document.getElementById("initialDate").value = "";
+  document.getElementById("eventHour").value = "";
+  document.getElementById("eventTitle").value = "";
+  document.getElementById("category").value = "";
 }
 
 //  Add event to calendar
@@ -718,7 +662,6 @@ function setCalEvents(eventBlock, storedEvent) {
       showEventDetails(e);
       enableDeleteEvent(e);
       // e.stopPropogation();
-  
     });
   } else {
     eventBlock.classList.add("personal");
@@ -727,10 +670,9 @@ function setCalEvents(eventBlock, storedEvent) {
     eventBlock.style.color = "white";
     eventBlock.addEventListener("click", function (e) {
       eventDetailsDialog.showModal();
-      showEventDetails(e);     
-      enableDeleteEvent(e); 
+      showEventDetails(e);
+      enableDeleteEvent(e);
       // e.stopPropogation();
-      
     });
   }
 }
@@ -749,7 +691,6 @@ const eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
 
 // eventDetailsDisplay.textContent = "testing";
 
-
 function showEventDetails(e) {
   let eventPosition = e.target.getAttribute("data-event-position");
   let eventObject = events[eventPosition];
@@ -757,31 +698,30 @@ function showEventDetails(e) {
   let values = Object.values(eventObject);
 
   if (eventDetailsDisplay.children.length == 0) {
-
-    const titleEvent = document.createElement("div"); 
+    const titleEvent = document.createElement("div");
     titleEvent.textContent = keys[0];
-    titleEvent.classList.add('event-details__title');
-    const titleValue = document.createElement("div")
+    titleEvent.classList.add("event-details__title");
+    const titleValue = document.createElement("div");
     titleValue.textContent = values[0];
-    titleValue.classList.add('event-details__content');
-    const dateEvent = document.createElement("div")
+    titleValue.classList.add("event-details__content");
+    const dateEvent = document.createElement("div");
     dateEvent.textContent = keys[1];
-    dateEvent.classList.add('event-details__title');
-    const dateValue = document.createElement("div")
+    dateEvent.classList.add("event-details__title");
+    const dateValue = document.createElement("div");
     dateValue.textContent = values[1];
-    dateValue.classList.add('event-details__content');
-    const timeTitle = document.createElement("div")
+    dateValue.classList.add("event-details__content");
+    const timeTitle = document.createElement("div");
     timeTitle.textContent = keys[2];
-    timeTitle.classList.add('event-details__title');
-    const timeValue = document.createElement("div")
+    timeTitle.classList.add("event-details__title");
+    const timeValue = document.createElement("div");
     timeValue.textContent = values[2];
-    timeValue.classList.add('event-details__content');
-    const categoryTitle = document.createElement("div")
+    timeValue.classList.add("event-details__content");
+    const categoryTitle = document.createElement("div");
     categoryTitle.textContent = keys[3];
-    categoryTitle.classList.add('event-details__title');
-    const categoryValue = document.createElement("div")
+    categoryTitle.classList.add("event-details__title");
+    const categoryValue = document.createElement("div");
     categoryValue.textContent = values[3];
-    categoryValue.classList.add('event-details__content');
+    categoryValue.classList.add("event-details__content");
 
     eventDetailsDisplay.appendChild(titleEvent);
     eventDetailsDisplay.appendChild(titleValue);
@@ -793,16 +733,15 @@ function showEventDetails(e) {
     eventDetailsDisplay.appendChild(categoryValue);
   }
   // const eventDetailsDisplay = document.getElementById('eventDetailsDisplay');
-  
 }
 
-function enableDeleteEvent (e) {
-  let deleteBtn = document.getElementById('eventDetailsDeleteBtn');
-  let eventBox = e.target; 
+function enableDeleteEvent(e) {
+  let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
+  let eventBox = e.target;
 
-  deleteBtn.addEventListener('click', deleteEvent);
+  deleteBtn.addEventListener("click", deleteEvent);
 
-  function deleteEvent (e) {
+  function deleteEvent(e) {
     let eventPosition = e.target.getAttribute("data-event-position");
 
     if (events.length > 1) {
@@ -810,11 +749,23 @@ function enableDeleteEvent (e) {
     } else {
       events = [];
     }
-    localStorage.setItem('newEvent', JSON.stringify(events));
-    
-    if (eventBox.classList.contains('work')) {
-      eventBox.classList.remove('work'); 
-    } else if (eventBox.classList.contains('personal')) {
-      eventBox.classList.remove('personal');
-    }}
+    localStorage.setItem("newEvent", JSON.stringify(events));
+
+    if (eventBox.classList.contains("work")) {
+      eventBox.classList.remove("work");
+    } else if (eventBox.classList.contains("personal")) {
+      eventBox.classList.remove("personal");
+    }
+  }
 }
+
+// Closing modal by clicking outside the modal window
+
+window.addEventListener("click", function (e) {
+  if (e.target === newEventDialog || e.target === eventDetailsDialog) {
+    //
+    console.log("works");
+    closeNewEvent();
+    eventDetailsDialog.close();
+  }
+});
