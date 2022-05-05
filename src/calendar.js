@@ -70,13 +70,13 @@ getDayinMay();
 
 
 //
-function isLeap() {
-  return currentYear % 400 === 0 ?
-    true :
-    currentYear % 100 === 0 ?
-    false :
-    currentYear % 4 === 0;
-}
+// function isLeap() {
+//   return currentYear % 400 === 0 ?
+//     true :
+//     currentYear % 100 === 0 ?
+//     false :
+//     currentYear % 4 === 0;
+// }
 
 function getPreviousMonth() {
   if (currentMonth !== 0) {
@@ -166,13 +166,17 @@ function addDayDivs() {
 
   //
 
-  if (dateText === currentDay && currentMonth === currentDate.getMonth() && currentYear === currentDate.getFullYear()) {
+  if (
+    dateText === currentDay &&
+    currentMonth === currentDate.getMonth() &&
+    currentYear === currentDate.getFullYear()
+  ) {
     headerDiv.classList.add("calendar_day--today");
   }
 
   contentDiv = document.createElement("div");
   contentDiv.classList.add("calendar__day--content");
-  contentDiv.setAttribute('data-time', `${dateTime}`);
+  contentDiv.setAttribute("data-time", `${dateTime}`);
 
   for (let j = 1; j <= 4; j++) {
     let eventDiv = document.createElement("div");
@@ -185,7 +189,7 @@ function addDayDivs() {
   headerDiv.appendChild(headerChildCircle);
   headerDiv.appendChild(headerChildSecondIcon);
   dateWrapper.appendChild(contentDiv);
-  calendarDays.append(dateWrapper);
+  calendarDays.appendChild(dateWrapper);
 }
 
 function setDays() {
@@ -374,9 +378,9 @@ createBtn.addEventListener("click", storageEvent);
 title.addEventListener("blur", validateTitle);
 initialDate.addEventListener("blur", validateDate);
 eventHour.addEventListener("blur", validateHour);
-createBtn.addEventListener('click', validateTitle);
-createBtn.addEventListener('click', validateDate);
-createBtn.addEventListener('click', validateHour);
+createBtn.addEventListener("click", validateTitle);
+createBtn.addEventListener("click", validateDate);
+createBtn.addEventListener("click", validateHour);
 cancelBtn.addEventListener("click", cancelNewEvent);
 
 function showNewEvent() {
@@ -414,7 +418,18 @@ function populateEventsVar() {
   }
 }
 
+// MODAL for event details
 
+const eventDetailsDialog = document.getElementById("eventDetailsDialog");
+// const calDayEvent = document.getElementById('calendar__day--event');
+const closeEventDetailsBtn = document.getElementById("event-details-closeBtn");
+
+closeEventDetailsBtn.addEventListener("click", function (e) {
+  eventDetailsDialog.close();
+  // e.stopPropogation();
+});
+
+// Store events in local storage
 function storageEvent() {
   validateTitle();
   validateDate();
@@ -422,7 +437,12 @@ function storageEvent() {
 
   populateEventsVar();
 
-  if (!title.value || title.value.length > 60 || !initialDate.value || !eventHour.value) {
+  if (
+    !title.value ||
+    title.value.length > 60 ||
+    !initialDate.value ||
+    !eventHour.value
+  ) {
     errorForm = true;
   }
 
@@ -453,7 +473,6 @@ function cancelNewEvent() {
     mainCalendar.classList.remove("blur");
   }
 }
-
 
 //Form validation
 function validateTitle() {
@@ -499,8 +518,6 @@ function validateHour() {
   }
 }
 
-
-
 class EventObject {
   constructor(name, date, time, category, position) {
     (this.name = name),
@@ -527,17 +544,16 @@ function clearLocalStorage() {
 function findEventDates() {
   // Sets events variable as empty array if local storage is empty, or as contents of local storage.
   populateEventsVar();
-  console.log(events);
+
   events.forEach((event) => {
     let eventDate = new Date(event.date) - 1000 * 60 * 60 * 2;
-    console.log(event.date);
     let calDate = document.querySelectorAll(`[data-time="${eventDate}"]`)[0];
 
     if (calDate) {
       let eventBoxes = calDate.children;
       for (let i = 0; i < 4; i++) {
         // Validate wheher the info for both is the same. In that case, don't add.
-        let calEventPos = eventBoxes[i].getAttribute('data-event-position');
+        let calEventPos = eventBoxes[i].getAttribute("data-event-position");
         if (calEventPos == event.position) {
           break;
         }
@@ -545,7 +561,7 @@ function findEventDates() {
           if (i < 3) {
             continue;
           } else {
-            eventBoxes[i].textContent = '...';
+            eventBoxes[i].textContent = "...";
             // Add class for more than 5 events.
           }
         } else {
@@ -555,24 +571,124 @@ function findEventDates() {
       }
     }
   });
-};
+}
 
 // Returns true if an event box is already occupied by another event.
 function hasEvent(element) {
-  return element.classList.contains('work') || element.classList.contains('personal');
+  return (
+    element.classList.contains("work") || element.classList.contains("personal")
+  );
 }
 
 // Set classes for work and personal events.
 function setCalEvents(eventBlock, storedEvent) {
-  if (storedEvent.category === 'work') {
-    eventBlock.classList.add('work');
-    eventBlock.setAttribute('data-event-position', `${storedEvent.position}`);
+  if (storedEvent.category === "work") {
+    eventBlock.classList.add("work");
+    eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
     eventBlock.textContent = storedEvent.name;
-    eventBlock.style.color = 'white';
+    eventBlock.style.color = "white";
+    eventBlock.addEventListener("click", function (e) {
+      eventDetailsDialog.showModal();
+      showEventDetails(e);
+      enableDeleteEvent(e);
+      // e.stopPropogation();
+  
+    });
   } else {
-    eventBlock.classList.add('personal');
+    eventBlock.classList.add("personal");
+    eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
     eventBlock.textContent = storedEvent.name;
-    eventBlock.style.color = 'white';
+    eventBlock.style.color = "white";
+    eventBlock.addEventListener("click", function (e) {
+      eventDetailsDialog.showModal();
+      showEventDetails(e);     
+      enableDeleteEvent(e); 
+      // e.stopPropogation();
+      
+    });
   }
 }
 
+// /////////////////////////////////
+// /////////////////////////////////
+// /////////////////////////////////
+// /////////////////////////////////
+// /////////////////////////////////
+// /////////////////////////////////
+// /////////////////////////////////
+// MODALS
+
+// DOM
+const eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
+
+// eventDetailsDisplay.textContent = "testing";
+
+
+function showEventDetails(e) {
+  let eventPosition = e.target.getAttribute("data-event-position");
+  let eventObject = events[eventPosition];
+  let keys = Object.keys(eventObject);
+  let values = Object.values(eventObject);
+
+  if (eventDetailsDisplay.children.length == 0) {
+
+    const titleEvent = document.createElement("div"); 
+    titleEvent.textContent = keys[0];
+    titleEvent.classList.add('event-details__title');
+    const titleValue = document.createElement("div")
+    titleValue.textContent = values[0];
+    titleValue.classList.add('event-details__content');
+    const dateEvent = document.createElement("div")
+    dateEvent.textContent = keys[1];
+    dateEvent.classList.add('event-details__title');
+    const dateValue = document.createElement("div")
+    dateValue.textContent = values[1];
+    dateValue.classList.add('event-details__content');
+    const timeTitle = document.createElement("div")
+    timeTitle.textContent = keys[2];
+    timeTitle.classList.add('event-details__title');
+    const timeValue = document.createElement("div")
+    timeValue.textContent = values[2];
+    timeValue.classList.add('event-details__content');
+    const categoryTitle = document.createElement("div")
+    categoryTitle.textContent = keys[3];
+    categoryTitle.classList.add('event-details__title');
+    const categoryValue = document.createElement("div")
+    categoryValue.textContent = values[3];
+    categoryValue.classList.add('event-details__content');
+
+    eventDetailsDisplay.appendChild(titleEvent);
+    eventDetailsDisplay.appendChild(titleValue);
+    eventDetailsDisplay.appendChild(dateEvent);
+    eventDetailsDisplay.appendChild(dateValue);
+    eventDetailsDisplay.appendChild(timeTitle);
+    eventDetailsDisplay.appendChild(timeValue);
+    eventDetailsDisplay.appendChild(categoryTitle);
+    eventDetailsDisplay.appendChild(categoryValue);
+  }
+  // const eventDetailsDisplay = document.getElementById('eventDetailsDisplay');
+  
+}
+
+function enableDeleteEvent (e) {
+  let deleteBtn = document.getElementById('eventDetailsDeleteBtn');
+  let eventBox = e.target; 
+
+  deleteBtn.addEventListener('click', deleteEvent);
+
+  function deleteEvent (e) {
+    let eventPosition = e.target.getAttribute("data-event-position");
+
+    if (events.length > 1) {
+      events = events.splice(eventPosition, 1);
+    } else {
+      events = [];
+    }
+    localStorage.setItem('newEvent', JSON.stringify(events));
+    
+    if (eventBox.classList.contains('work')) {
+      eventBox.classList.remove('work'); 
+    } else if (eventBox.classList.contains('personal')) {
+      eventBox.classList.remove('personal');
+    }}
+}
