@@ -158,8 +158,9 @@ function addDayDivs() {
   headerChildNumber.textContent += dateText;
   headerChildMainIcon.textContent += "\u00A0";
   headerChildSecondIcon.textContent += "\u00A0";
-
+  headerDiv.addEventListener("click", showNewEvent);
   //
+  
 
   if (
     dateText === currentDay &&
@@ -452,6 +453,7 @@ createBtn.addEventListener("click", validateTitle);
 createBtn.addEventListener("click", validateDate);
 createBtn.addEventListener("click", validateHour);
 cancelBtn.addEventListener("click", cancelNewEvent);
+
 
 function showNewEvent() {
   newEventDialog.showModal();
