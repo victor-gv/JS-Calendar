@@ -245,3 +245,8 @@ font-family: 'League Spartan', sans-serif; */
   color: #322e3f;
   border-radius: 4px;
 }
+
+
+.blur {
+  opacity: .4;
+}

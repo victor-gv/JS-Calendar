@@ -23,6 +23,8 @@ let eventHour = document.getElementById("eventHour");
 let category = document.getElementById("category");
 let currentYearDisplay = document.getElementById("currentYear");
 let currentMonthDisplay = document.getElementById("currentMonth");
+const mainCalendar = document.getElementById("main");
+
 
 // Global variables
 let dateText;
@@ -385,12 +387,22 @@ function showNewEvent() {
   initialDate.classList.add("input");
   eventHour.classList.remove("invalid");
   eventHour.classList.add("input");
+
+  if (newEventDialog.open){
+    const mainCalendar = document.getElementById("main");
+    mainCalendar.classList.add("blur");
+  } 
 }
 
 function closeNewEvent() {
   title.classList.remove("invalid");
   newEventDialog.close();
   newEventForm.reset();
+
+  if (newEventDialog.close){
+    console.log("close");
+    mainCalendar.classList.remove("blur");
+  }
 }
 
 function populateEventsVar() {
@@ -435,6 +447,11 @@ function cancelNewEvent() {
   title.classList.remove("invalid");
   newEventDialog.close();
   newEventForm.reset();
+
+  if (newEventDialog.close){
+    console.log("close");
+    mainCalendar.classList.remove("blur");
+  }
 }
 
 
