@@ -501,8 +501,9 @@ const eventDetailsDialog = document.getElementById("eventDetailsDialog");
 // const calDayEvent = document.getElementById('calendar__day--event');
 const closeEventDetailsBtn = document.getElementById("event-details-closeBtn");
 
-closeEventDetailsBtn.addEventListener("click", function (e) {
-  
+closeEventDetailsBtn.addEventListener("click", closeEventDetails); 
+
+function closeEventDetails () {
   eventDetailsDialog.close();
   if (eventDetailsDialog.close) {
     mainCalendar.classList.remove("blur");
@@ -510,7 +511,8 @@ closeEventDetailsBtn.addEventListener("click", function (e) {
     deleteBtn.removeEventListener("click", deleteEvent);
   }
   // e.stopPropogation();
-});
+}
+
 
 // Store events in local storage
 function storageEvent() {
@@ -772,6 +774,7 @@ function deleteEvent() {
   } else if (currentDetails.classList.contains('personal')) {
     currentDetails.classList.remove('personal');
   }
+  closeEventDetails();
 }
 
 // Closing modal by clicking outside the modal window
