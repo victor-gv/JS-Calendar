@@ -55,8 +55,16 @@ nextMonth.addEventListener("click", getNextMonth);
 // Functions
 
 
+//Function for adding emojis in May
+let dayInMayObject = {}
 
-
+function getDayinMay() {
+  for (let i = 1; i <= 31; i++){
+    let daysInMay = new Date(2022, 4, i).getTime();
+    dayInMayObject[i] = daysInMay;
+  }
+}
+getDayinMay();
 
 
 //
@@ -191,9 +199,10 @@ function setDays() {
     prevNext = false;
     addDayDivs();
 
-    // if (dateTime == 1651356000000) {
-    //   headerChildMainIcon.textContent = "Hi";
-    // }
+    //Add emojis for May
+    if (dayInMayObject[1] == dateTime){
+      headerChildMainIcon.textContent = "🌈";
+    }
   }
   // Loop to get beginning of next month
   for (let i = 1; i <= 6 - getLastDay(); i++) {
