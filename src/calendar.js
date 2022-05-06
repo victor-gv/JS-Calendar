@@ -66,14 +66,7 @@ function getDayinMay() {
 }
 getDayinMay();
 
-//
-// function isLeap() {
-//   return currentYear % 400 === 0 ?
-//     true :
-//     currentYear % 100 === 0 ?
-//     false :
-//     currentYear % 4 === 0;
-// }
+
 
 function getPreviousMonth() {
   if (currentMonth !== 0) {
@@ -585,6 +578,7 @@ function storageEvent() {
     if (newEventDialog.close) {
       mainCalendar.classList.remove("blur");
     }
+    
   }
 }
 
@@ -717,16 +711,9 @@ function setCalEvents(eventBlock, storedEvent) {
   });
 }
 
-// /////////////////////////////////
-// /////////////////////////////////
-// /////////////////////////////////
-// /////////////////////////////////
-// /////////////////////////////////
-// /////////////////////////////////
-// /////////////////////////////////
-// MODALS
 
-// DOM
+
+//Details modal and delete event function
 let currentEvent = '';
 
 function showDetails (e) {
@@ -749,6 +736,7 @@ function showDetails (e) {
 
     let deleteBtn = document.getElementById('eventDetailsDeleteBtn');
     deleteBtn.addEventListener('click', deleteEvent);
+    deleteBtn.addEventListener('click', closeModalDetails);
 }
 
 function deleteEvent () {
@@ -761,7 +749,13 @@ function deleteEvent () {
   currentEvent.classList.remove('work', 'personal');
 }
 
+function closeModalDetails () {
+  eventDetailsDialog.close();
+  mainCalendar.classList.remove("blur");
+}
+
 function finishEventDetails () {
+  eventDetailsDialog.close();
   let eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
   let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
   while (eventDetailsDisplay.firstChild) {
