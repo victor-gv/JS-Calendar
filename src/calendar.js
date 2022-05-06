@@ -229,6 +229,7 @@ function setDays() {
       eventHour.classList.add("input");
 
       if (newEventDialog.open) {
+        const newEventflex = document.getElementById("newEventDialog").style.display = "flex";
         const mainCalendar = document.getElementById("main");
         mainCalendar.classList.add("blur");
       }
