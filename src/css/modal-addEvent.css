@@ -34,6 +34,20 @@
   box-shadow: 18px 28px 50px #3c3b51b0, 11px 2px 27px #ffffff00;
 }
 
+.new-event__dialog--flex{
+  display: flex;
+  position: absolute;
+  background: linear-gradient(276deg, #ffffffd9, #d7d7d7f2);
+  padding: 31px;
+  width: 60%;
+  max-width: 45rem;
+  justify-content: center;
+  top: 25%;
+  border-radius: 20px;
+  overflow-x: hidden;
+  box-shadow: 18px 28px 50px #3c3b51b0, 11px 2px 27px #ffffff00;
+}
+
 /* Day Description */
 
 .description-day{

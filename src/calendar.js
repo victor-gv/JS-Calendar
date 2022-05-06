@@ -551,6 +551,7 @@ function closeEventDetails() {
 
 // Store events in local storage
 function storageEvent() {
+  const newEventflex = document.getElementById("newEventDialog").style.display = "none";
   validateTitle();
   validateDate();
   validateHour();
