@@ -101,7 +101,7 @@ font-family: 'League Spartan', sans-serif; */
 
 .calendar__week {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(115.5px, 1fr));
   margin-right: 0.1em;
   margin-left: 0.1em;
   margin-bottom: 0.1em;
@@ -142,7 +142,7 @@ font-family: 'League Spartan', sans-serif; */
 /* Days of the month display */
 .calendar__dates {
   display: grid;
-  grid-template-columns: repeat(7, minmax(3.2em, 1fr));
+  grid-template-columns: repeat(7, 1fr);
 }
 
 .calendar__dates--day {
@@ -210,7 +210,7 @@ font-family: 'League Spartan', sans-serif; */
 
 .calendar__day--header--mainIcon {
   text-align: center;
-  font-size: 3rem;
+  font-size: 370%;
   position: relative;
   filter: drop-shadow(5px 14px 11px black);
 }
@@ -227,7 +227,7 @@ font-family: 'League Spartan', sans-serif; */
 }
 
 .calendar__day--header--secondIcon {
-  font-size: 2rem;
+  font-size: x-large;
   position: relative;
   text-align: end;
   filter: drop-shadow(5px 14px 11px black);
