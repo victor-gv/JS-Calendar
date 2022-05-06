@@ -67,16 +67,17 @@ font-family: 'League Spartan', sans-serif; */
   padding: 0.5em 2em;
 }
 
-.fa-solid, .fas {
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-    font-size: 35px;
-    color: #ed1d24;
-    background: #ffffff;
-    padding: 1px 20px;
-    border-radius: 20px 1px;
-    margin: 1px -20px;
-  }
+.fa-solid,
+.fas {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 35px;
+  color: #ed1d24;
+  background: #ffffff;
+  padding: 1px 20px;
+  border-radius: 20px 1px;
+  margin: 1px -20px;
+}
 
 .calendar__previous,
 .calendar__next {
@@ -109,13 +110,13 @@ font-family: 'League Spartan', sans-serif; */
 }
 
 .calendar__week-day {
-    background-color: #f1f1f1;
-    padding: 0.3em;
-    margin: 0.05em;
-    color: black;
-    font-family: sans-serif;
-    border-top: 2px solid #fbfbfb;
-    border-bottom: 2px solid #bebebe;
+  background-color: #f1f1f1;
+  padding: 0.3em;
+  margin: 0.05em;
+  color: black;
+  font-family: sans-serif;
+  border-top: 2px solid #fbfbfb;
+  border-bottom: 2px solid #bebebe;
 }
 
 /* Footer: add event button */
@@ -207,14 +208,14 @@ font-family: 'League Spartan', sans-serif; */
 
 /* Emojis Internationals Days  */
 
-.calendar__day--header--mainIcon{
+.calendar__day--header--mainIcon {
   text-align: center;
   font-size: 370%;
   position: relative;
   filter: drop-shadow(5px 14px 11px black);
 }
 
-.calendar__day--header--circle{
+.calendar__day--header--circle {
   background: #000000;
   width: 90px;
   height: 10px;
@@ -223,20 +224,22 @@ font-family: 'League Spartan', sans-serif; */
   margin: -10px auto;
   filter: blur(6px);
   opacity: 0.7;
-  }
-
-  .calendar__day--header--secondIcon{
-    font-size: x-large;
-    position: relative;
-    text-align: end;
-    filter: drop-shadow(5px 14px 11px black);
 }
+
+.calendar__day--header--secondIcon {
+  font-size: x-large;
+  position: relative;
+  text-align: end;
+  filter: drop-shadow(5px 14px 11px black);
+}
+
 .calendar__day--header--number {
   font-size: 20px;
   position: relative;
   font-family: unset;
   text-align: end;
-  }
+}
+
 .work {
   background-color: #ed1c24;
   color: #ed1c24 !important;

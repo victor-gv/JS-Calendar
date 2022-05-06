@@ -210,7 +210,7 @@ function setDays() {
       dateString = dateMs.toISOString().split('T')[0];
     }
 
-    
+
     function addNewEventDate() {
       newEventDialog.showModal();
       initialDate.value = dateString;
@@ -578,7 +578,7 @@ function storageEvent() {
     if (newEventDialog.close) {
       mainCalendar.classList.remove("blur");
     }
-    
+
   }
 }
 
@@ -716,13 +716,13 @@ function setCalEvents(eventBlock, storedEvent) {
 //Details modal and delete event function
 let currentEvent = '';
 
-function showDetails (e) {
+function showDetails(e) {
   currentEvent = e.target;
   let eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
   let calendarPosition = e.target.getAttribute("data-event-position");
   let storedEvents = JSON.parse(localStorage.getItem('newEvent'));
   let eventObj = storedEvents.find(event => event.position == calendarPosition);
-  
+
   for (let i = 0; i < 4; i++) {
     let titleDiv = document.createElement('div');
     let contentDiv = document.createElement('div');
@@ -734,32 +734,32 @@ function showDetails (e) {
     eventDetailsDisplay.appendChild(contentDiv);
   }
 
-    let deleteBtn = document.getElementById('eventDetailsDeleteBtn');
-    deleteBtn.addEventListener('click', deleteEvent);
-    deleteBtn.addEventListener('click', closeModalDetails);
+  let deleteBtn = document.getElementById('eventDetailsDeleteBtn');
+  deleteBtn.addEventListener('click', deleteEvent);
+  deleteBtn.addEventListener('click', closeModalDetails);
 }
 
-function deleteEvent () {
+function deleteEvent() {
   let calendarPosition = currentEvent.getAttribute("data-event-position");
   let storedEvents = JSON.parse(localStorage.getItem('newEvent'));
 
   events = storedEvents.filter(object => object.position != calendarPosition);
   localStorage.setItem('newEvent', JSON.stringify(events));
-  
+
   currentEvent.classList.remove('work', 'personal');
 }
 
-function closeModalDetails () {
+function closeModalDetails() {
   eventDetailsDialog.close();
   mainCalendar.classList.remove("blur");
 }
 
-function finishEventDetails () {
+function finishEventDetails() {
   eventDetailsDialog.close();
   let eventDetailsDisplay = document.getElementById("eventDetailsDisplay");
   let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
   while (eventDetailsDisplay.firstChild) {
-      eventDetailsDisplay.removeChild(eventDetailsDisplay.lastChild);      
+    eventDetailsDisplay.removeChild(eventDetailsDisplay.lastChild);
   }
   deleteBtn.removeEventListener("click", deleteEvent);
 }

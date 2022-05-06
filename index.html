@@ -42,120 +42,124 @@
             </footer>
         </main>
 
-            <!-- Modals -->
+        <!-- Modals -->
 
-            <!-- Day info modal -->
-            <!-- IMPORTANT: div with class "modals" created for css test, delete it when finished -->
-            <div class="modals"> 
-                <section class="day-info">
-                    <div class="day-info__close-button" id="closeBtnDetails">
-                    </div>
-                    <header class="header day-info__header"></header>
-                    <div class="day-info__int-date"></div>
-                    <div class="day-info__int-day">
-                        <div class="day-info__int-emoji"></div>
-                        <div class="day-info__int-description">
-                            <div class="day-info__int-title">
-                            </div>
-                            <p class="day-info__int-text"></p>
+        <!-- Day info modal -->
+        <!-- IMPORTANT: div with class "modals" created for css test, delete it when finished -->
+        <div class="modals">
+            <section class="day-info">
+                <div class="day-info__close-button" id="closeBtnDetails">
+                </div>
+                <header class="header day-info__header"></header>
+                <div class="day-info__int-date"></div>
+                <div class="day-info__int-day">
+                    <div class="day-info__int-emoji"></div>
+                    <div class="day-info__int-description">
+                        <div class="day-info__int-title">
                         </div>
+                        <p class="day-info__int-text"></p>
                     </div>
-                    <div class="day-info__container" id="eventDetails">
-                        <div class="day-info__event-info">
-                            <div class="day-info__title"></div>
-                            <div class="day-info__description"></div>
+                </div>
+                <div class="day-info__container" id="eventDetails">
+                    <div class="day-info__event-info">
+                        <div class="day-info__title"></div>
+                        <div class="day-info__description"></div>
+                    </div>
+                    <button class="button day-info__delete-button" id="deleteEventLine">Delete event</button>
+                </div>
+            </section>
+
+
+            <!-- New event modal -->
+
+            <dialog id="newEventDialog" class="new-event__dialog">
+                <section class="description-day">
+                    <div class="description-day__container">
+                        <header class="header description-day__header">Description Day</header>
+                        <div class="day-description__text">
+                            <h1 class="description-day__number">06</h1>
+                            <h2 class="month-description">May</h2>
+                            <span class="description-day__container">
+                                <p class="description-day__emojicon">🌱🔞</p>
+                                <p class="description-day__title">DÍA DE LA JARDINERÍA AL DESNUDO
+                                </p>
+                                <p class="description-day__text">Hoy es un gran día para encarnarte en la piel de Adan y
+                                    Evan en el jardín del Edén.</p>
+                            </span>
                         </div>
-                        <button class="button day-info__delete-button" id="deleteEventLine">Delete event</button>
+
                     </div>
+
                 </section>
 
-                
-                <!-- New event modal -->
-                
-                <dialog id="newEventDialog" class="new-event__dialog">
-                    <section class="description-day">
-                        <div class="description-day__container">
-                            <header class="header description-day__header">Description Day</header>
-                            <div class="day-description__text">
-                                <h1 class="description-day__number">06</h1>
-                                <h2 class="month-description">May</h2>
-                                <span class="description-day__container">
-                                    <p class="description-day__emojicon">🌱🔞</p>
-                                    <p class="description-day__title">DÍA DE LA JARDINERÍA AL DESNUDO
-                                    </p>
-                                    <p class="description-day__text">Hoy es un gran día para encarnarte en la piel de Adan y Evan en el jardín del Edén.</p>
-                                </span>
-                            </div>
-
+                </section>
+                <section class="new-event">
+                    <div class="new-event__wrapper">
+                        <div class="new-event__close-button">
+                            <button id="closeBtnEvent" class="closeBtnEvent">X</button>
                         </div>
-
-                    </section>
-                        
-                    </section>
-                    <section class="new-event">
-                        <div class="new-event__wrapper">
-                            <div class="new-event__close-button" >
-                                <button id="closeBtnEvent" class="closeBtnEvent">X</button>
-                            </div>
-                            <div class="new-event__container">
-                                <header class="header new-event__header">NEW EVENT</header>
-                                <div class="new-event__form">
-                                    <form action="#" id="newEventForm">
-                                        <div>
-                                            <label for="eventTitle" class="eventTitle">Title</label>
-                                            <input class= "input" type="text" id="eventTitle" placeholder="Max. 60 characters"></input>
-                                        </div>
-                                        <div>
-                                            <label for="initialDate" class="initialDate">Initial Date</label>
-                                            <input class= "input" type="date" id="initialDate"></input>
-                                        </div>
-                                        <!-- Final Date Optional -->
-                                        <!-- <div>
+                        <div class="new-event__container">
+                            <header class="header new-event__header">NEW EVENT</header>
+                            <div class="new-event__form">
+                                <form action="#" id="newEventForm">
+                                    <div>
+                                        <label for="eventTitle" class="eventTitle">Title</label>
+                                        <input class="input" type="text" id="eventTitle"
+                                            placeholder="Max. 60 characters"></input>
+                                    </div>
+                                    <div>
+                                        <label for="initialDate" class="initialDate">Initial Date</label>
+                                        <input class="input" type="date" id="initialDate"></input>
+                                    </div>
+                                    <!-- Final Date Optional -->
+                                    <!-- <div>
                                             <label class="finalDate">Final Date</label>
                                             <input class= "input" type="date" id="finalDate"></input>
                                         </div> -->
-                                        <div>
-                                            <label for="eventHour" class="eventHour">Hour</label>
-                                            <input class= "input" type="time" id="eventHour"></input>
-                                        </div>
+                                    <div>
+                                        <label for="eventHour" class="eventHour">Hour</label>
+                                        <input class="input" type="time" id="eventHour"></input>
+                                    </div>
 
 
-                                        <div>
-                                            <label for="category" class="category">Category</label>
-                                            <select class= "select" id="category">
-                                                <option value="work">Work</option>
-                                                <option value="personal">Personal</option>
-                                            </select>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="new-event__buttons">
-                                    <button type ="submit" class="button new-event__create-button" id="createBtn">Create</button>
-                                    <button class="button new-event__cancel-button" id="cancelBtn">Cancel</button>
-                                </div>
+                                    <div>
+                                        <label for="category" class="category">Category</label>
+                                        <select class="select" id="category">
+                                            <option value="work">Work</option>
+                                            <option value="personal">Personal</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="new-event__buttons">
+                                <button type="submit" class="button new-event__create-button"
+                                    id="createBtn">Create</button>
+                                <button class="button new-event__cancel-button" id="cancelBtn">Cancel</button>
                             </div>
                         </div>
-                    </section>
-                </dialog>
-                <dialog id="eventDetailsDialog" class="event-details__dialog">
-                    <section class="event-detais">
-                        <div class="event-details__wrapper">
-                            <div class="event-details__close-button" >
-                                <button id="event-details-closeBtn" class="event-details__closeBtnEvent">X</button>
+                    </div>
+                </section>
+            </dialog>
+            <dialog id="eventDetailsDialog" class="event-details__dialog">
+                <section class="event-detais">
+                    <div class="event-details__wrapper">
+                        <div class="event-details__close-button">
+                            <button id="event-details-closeBtn" class="event-details__closeBtnEvent">X</button>
+                        </div>
+                        <div class="event-details__container">
+                            <header class="header event-details__header">EVENT DETAILS</header>
+                            <div id="eventDetailsDisplay" class="event-details__display">
+
                             </div>
-                            <div class="event-details__container">
-                                <header class="header event-details__header">EVENT DETAILS</header>
-                                <div id ="eventDetailsDisplay" class="event-details__display">
-                                    
-                                </div>
-                                <div class="event-details__buttons">
-                                    <button type ="submit" class="button event-details__delete-button" id="eventDetailsDeleteBtn">Delete Event</button>
-                                </div>
+                            <div class="event-details__buttons">
+                                <button type="submit" class="button event-details__delete-button"
+                                    id="eventDetailsDeleteBtn">Delete Event</button>
                             </div>
                         </div>
-                    </section>
-                </dialog>
-            </div>
+                    </div>
+                </section>
+            </dialog>
+        </div>
     </div>
     <script src="src/calendar.js"></script>
 </body>
