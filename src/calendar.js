@@ -200,28 +200,21 @@ function setDays() {
   for (let i = 1; i <= getDaysInMonth(); i++) {
     dateText = i;
     dateTime = new Date(currentYear, currentMonth, i).getTime();
-    headerDiv.setAttribute("data-time", `${dateTime}`);
-    headerChildNumber.setAttribute("data-time", `${dateTime}`);
-    headerChildMainIcon.setAttribute("data-time", `${dateTime}`);
-    headerChildCircle.setAttribute("data-time", `${dateTime}`);
-    headerChildSecondIcon.setAttribute("data-time", `${dateTime}`);
+    headerDiv.setAttribute("date-time", `${dateTime}`);
 
 
-
+    // Function to add an event directly on the day
     headerDiv.addEventListener("click", getDataTime);
     headerDiv.addEventListener("click", addNewEventDate);
 
     function getDataTime() {
-      let date = this.getAttribute("data-time");
+      let date = this.getAttribute("date-time");
       //Convert test string into a number
       let dateNumber = Number(date);
       let dateMs = new Date(dateNumber);
 
       //Convert testDate into yyyy-mm-dd format
       dateString = dateMs.toISOString().split('T')[0];
-      console.log(dateString);
-
-
     }
 
     
@@ -240,18 +233,13 @@ function setDays() {
         mainCalendar.classList.add("blur");
       }
     }
-
-
     prevNext = false;
     addDayDivs();
 
 
-
-
+    // Add sign plus when hover over the day to add an event directly on the day
     headerChildSecondIcon.addEventListener("mouseover", addSignPlus);
-
     headerChildSecondIcon.addEventListener("mouseout", removeSignPlus);
-
     contentDiv.addEventListener("mouseover", addCursor);
 
     function addCursor(e) {
@@ -720,7 +708,7 @@ function setCalEvents(eventBlock, storedEvent) {
     eventBlock.classList.add('personal')
   }
   eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
-  eventBlock.textContent = storedEvent.name;
+  // eventBlock.textContent = storedEvent.name;
   eventBlock.style.color = "white";
   eventBlock.addEventListener("click", function (e) {
     eventDetailsDialog.showModal();
