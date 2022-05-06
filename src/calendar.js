@@ -471,17 +471,20 @@ function showNewEvent() {
   eventHour.classList.add("input");
 
   if (newEventDialog.open) {
+    const newEventflex = document.getElementById("newEventDialog").style.display = "flex";
     const mainCalendar = document.getElementById("main");
     mainCalendar.classList.add("blur");
   }
 }
 
 function closeNewEvent() {
+  const newEventflex = document.getElementById("newEventDialog").style.display = "none";
   title.classList.remove("invalid");
   newEventDialog.close();
   newEventForm.reset();
 
   if (newEventDialog.close) {
+    const newEventflex = document.getElementById("newEventDialog").style.display = "none";
     mainCalendar.classList.remove("blur");
   }
 }
@@ -550,12 +553,12 @@ function storageEvent() {
 }
 
 function cancelNewEvent() {
+  const newEventflex = document.getElementById("newEventDialog").style.display = "none";
   title.classList.remove("invalid");
   newEventDialog.close();
   newEventForm.reset();
 
   if (newEventDialog.close) {
-    console.log("close");
     mainCalendar.classList.remove("blur");
   }
 }
