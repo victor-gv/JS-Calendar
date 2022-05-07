@@ -477,13 +477,9 @@ const newEventForm = document.getElementById("newEventForm");
 
 addEvent.addEventListener("click", showNewEvent);
 closeBtnEvent.addEventListener("click", closeNewEvent);
-createBtn.addEventListener("click", storageEvent);
 title.addEventListener("blur", validateTitle);
 initialDate.addEventListener("blur", validateDate);
 eventHour.addEventListener("blur", validateHour);
-createBtn.addEventListener("click", validateTitle);
-createBtn.addEventListener("click", validateDate);
-createBtn.addEventListener("click", validateHour);
 cancelBtn.addEventListener("click", cancelNewEvent);
 
 
@@ -524,43 +520,20 @@ function populateEventsVar() {
   }
 }
 
-// MODAL for event details
 
-const eventDetailsDialog = document.getElementById("eventDetailsDialog");
-// const calDayEvent = document.getElementById('calendar__day--event');
-const closeEventDetailsBtn = document.getElementById("event-details-closeBtn");
-
-closeEventDetailsBtn.addEventListener("click", closeEventDetails);
-
-function closeEventDetails() {
-  eventDetailsDialog.close();
-  finishEventDetails();
-  if (eventDetailsDialog.close) {
-    mainCalendar.classList.remove("blur");
-    let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
-    deleteBtn.removeEventListener("click", deleteEvent);
-  }
-  // e.stopPropogation();
-}
 
 
 // Store events in local storage
 function storageEvent() {
+  if (title.classList.contains("invalid") || initialDate.classList.contains("invalid") || eventHour.classList.contains("invalid")) {
+    return;
+  }
+
+
   const newEventflex = document.getElementById("newEventDialog").style.display = "none";
-  validateTitle();
-  validateDate();
-  validateHour();
 
   populateEventsVar();
 
-  if (
-    !title.value ||
-    title.value.length > 60 ||
-    !initialDate.value ||
-    !eventHour.value
-  ) {
-    errorForm = true;
-  }
 
   if (!errorForm) {
     let name = document.getElementById("eventTitle").value;
@@ -572,13 +545,15 @@ function storageEvent() {
     let newEvent = new EventObject(name, date, time, category, storagePosition);
     events.push(newEvent);
     localStorage.setItem("newEvent", JSON.stringify(events));
+    findEventDates();
+
+  }
+  if (errorForm === false)  {
     newEventDialog.close();
     newEventForm.reset();
-    findEventDates();
-    if (newEventDialog.close) {
-      mainCalendar.classList.remove("blur");
-    }
-
+  }
+  if (newEventDialog.close) {
+    mainCalendar.classList.remove("blur");
   }
 }
 
@@ -594,6 +569,10 @@ function cancelNewEvent() {
 }
 
 //Form validation
+createBtn.addEventListener("click", validateTitle);
+createBtn.addEventListener("click", validateDate);
+createBtn.addEventListener("click", validateHour);
+
 function validateTitle() {
   if (!title.value) {
     title.classList.remove("input");
@@ -608,6 +587,8 @@ function validateTitle() {
     title.classList.remove("invalid");
     title.classList.add("input");
     errorForm = false;
+    createBtn.addEventListener("click", storageEvent);
+
   }
 }
 
@@ -621,6 +602,8 @@ function validateDate() {
     initialDate.classList.remove("invalid");
     initialDate.classList.add("input");
     errorForm = false;
+    createBtn.addEventListener("click", storageEvent);
+
   }
 }
 
@@ -634,6 +617,8 @@ function validateHour() {
     eventHour.classList.remove("invalid");
     eventHour.classList.add("input");
     errorForm = false;
+    createBtn.addEventListener("click", storageEvent);
+
   }
 }
 
@@ -644,6 +629,24 @@ class EventObject {
     (this.time = time),
     (this.category = category);
     this.position = position;
+  }
+}
+
+// MODAL for event details
+
+const eventDetailsDialog = document.getElementById("eventDetailsDialog");
+// const calDayEvent = document.getElementById('calendar__day--event');
+const closeEventDetailsBtn = document.getElementById("event-details-closeBtn");
+
+closeEventDetailsBtn.addEventListener("click", closeEventDetails);
+
+function closeEventDetails() {
+  eventDetailsDialog.close();
+  finishEventDetails();
+  if (eventDetailsDialog.close) {
+    mainCalendar.classList.remove("blur");
+    let deleteBtn = document.getElementById("eventDetailsDeleteBtn");
+    deleteBtn.removeEventListener("click", deleteEvent);
   }
 }
 
