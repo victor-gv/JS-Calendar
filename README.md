@@ -143,11 +143,11 @@ Just javascript. No library is required.
 
 ## The Team
 😎  Victor "The Boss" Vao
-(https://github.com/victor-gv)
+(https://github.com/victor-gv) <br>
 🧠 Blake 'The Brain' Jhonson
-(https://github.com/blakejohns5)
+(https://github.com/blakejohns5) <br>
 🎨 Marcel "The Artist" Barreiro
-(https://github.com/marcelbbarreiro)
+(https://github.com/marcelbbarreiro) <br>
 🧰 Jose "The Toolbox" Cuevas
 (https://github.com/jose-cuevas)
 
@@ -155,7 +155,7 @@ Just javascript. No library is required.
 
 ## 🔗 Links
 
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcelbarreiro/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcelbarreiro/) Marcel Barreiro
 
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/v%C3%ADctor-garc%C3%ADa-vao/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/v%C3%ADctor-garc%C3%ADa-vao/) Víctor García-Vao
 
