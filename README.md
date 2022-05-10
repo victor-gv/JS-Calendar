@@ -143,14 +143,19 @@ Just javascript. No library is required.
 
 ## The Team
 😎  Victor "The Boss" Vao
+(https://github.com/victor-gv)
 🧠 Blake 'The Brain' Jhonson
+(https://github.com/blakejohns5)
 🎨 Marcel "The Artist" Barreiro
+(https://github.com/marcelbbarreiro)
 🧰 Jose "The Toolbox" Cuevas
+(https://github.com/jose-cuevas)
 
 
 
 ## 🔗 Links
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/marcelbarreiro/)
-[
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/v%C3%ADctor-garc%C3%ADa-vao/)
 
