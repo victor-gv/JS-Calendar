@@ -1,17 +1,4 @@
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import { months, addMayEmojis } from "./data.js";
 
 // DOM elements
 const calendarMonthDisplay = document.getElementById("calendarMonthDisplay");
@@ -31,12 +18,7 @@ let prevNext = false;
 let events;
 let errorForm = false;
 let dateTime = null;
-let headerDiv;
-let headerChildNumber;
-let headerChildMainIcon;
-let headerChildCircle;
-let headerChildSecondIcon;
-let contentDiv;
+
 let dateString;
 
 // Current date
@@ -55,7 +37,6 @@ nextMonth.addEventListener("click", getNextMonth);
 // /////////////////////////////
 // Functions
 
-//Function for adding emojis in May
 let dayInMayObject = {};
 
 function getDayinMay() {
@@ -136,11 +117,11 @@ function addDayDivs() {
     dateWrapper.classList.add("calendar__dates--day--prev");
   }
 
-  headerDiv = document.createElement("div");
-  headerChildNumber = document.createElement("div");
-  headerChildMainIcon = document.createElement("div");
-  headerChildCircle = document.createElement("div");
-  headerChildSecondIcon = document.createElement("div");
+  let headerDiv = document.createElement("div");
+  let headerChildNumber = document.createElement("div");
+  let headerChildMainIcon = document.createElement("div");
+  let headerChildCircle = document.createElement("div");
+  let headerChildSecondIcon = document.createElement("div");
 
   headerDiv.classList.add("calendar__day--header");
   headerChildNumber.classList.add("calendar__day--header--number");
@@ -163,7 +144,7 @@ function addDayDivs() {
     headerDiv.classList.add("calendar_day--today");
   }
 
-  contentDiv = document.createElement("div");
+  let contentDiv = document.createElement("div");
   contentDiv.classList.add("calendar__day--content");
   contentDiv.setAttribute("data-time", `${dateTime}`);
 
@@ -193,6 +174,7 @@ function setDays() {
   for (let i = 1; i <= getDaysInMonth(); i++) {
     dateText = i;
     dateTime = new Date(currentYear, currentMonth, i).getTime();
+    // let headerDiv = document.querySelector('.calendar__day--header')
     headerDiv.setAttribute("date-time", `${dateTime}`);
 
 
@@ -239,196 +221,10 @@ function setDays() {
     function addCursor(e) {
       e.target.style.cursor = "pointer";
     }
+    addMayEmojis(dayInMayObject, dateTime);
+}
 
-    //Add emojis for May
-    if (dayInMayObject[1] == dateTime) {
-      headerChildMainIcon.textContent = "😂";
-      headerChildSecondIcon.textContent = "😃";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "😃";
-      });
-    } else if (dayInMayObject[2] == dateTime) {
-      headerChildMainIcon.textContent = "⌨️";
-      headerChildSecondIcon.textContent = "🖱️";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🖱️";
-      });
-    } else if (dayInMayObject[3] == dateTime) {
-      headerChildMainIcon.textContent = "👽";
-      headerChildSecondIcon.textContent = "👾";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "👾";
-      });
-    } else if (dayInMayObject[4] == dateTime) {
-      headerChildMainIcon.textContent = "🛸";
-      headerChildSecondIcon.textContent = "🌌";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🌌";
-      });
-    } else if (dayInMayObject[5] == dateTime) {
-      headerChildMainIcon.textContent = "😴";
-      headerChildSecondIcon.textContent = "🛌";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🛌";
-      });
-    } else if (dayInMayObject[6] == dateTime) {
-      headerChildMainIcon.textContent = "🌱";
-      headerChildSecondIcon.textContent = "🔞";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🔞";
-      });
-    } else if (dayInMayObject[7] == dateTime) {
-      headerChildMainIcon.textContent = "🚕";
-      headerChildSecondIcon.textContent = "📅";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "📅";
-      });
-    } else if (dayInMayObject[8] == dateTime) {
-      headerChildMainIcon.textContent = "🇨🇺";
-      headerChildSecondIcon.textContent = "🪘";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🪘";
-      });
-    } else if (dayInMayObject[9] == dateTime) {
-      headerChildMainIcon.textContent = "🚆";
-      headerChildSecondIcon.textContent = "💺";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "💺";
-      });
-    } else if (dayInMayObject[10] == dateTime) {
-      headerChildMainIcon.textContent = "📰";
-      headerChildSecondIcon.textContent = "✍🏻";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "✍🏻";
-      });
-    } else if (dayInMayObject[11] == dateTime) {
-      headerChildMainIcon.textContent = "‍🎓";
-      headerChildSecondIcon.textContent = "📚";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "📚";
-      });
-    } else if (dayInMayObject[12] == dateTime) {
-      headerChildMainIcon.textContent = "🌆";
-      headerChildSecondIcon.textContent = "🏙️";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🏙️";
-      });
-    } else if (dayInMayObject[13] == dateTime) {
-      headerChildMainIcon.textContent = "🐸";
-      headerChildSecondIcon.textContent = "🦘";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🦘";
-      });
-    } else if (dayInMayObject[14] == dateTime) {
-      headerChildMainIcon.textContent = "💅";
-      headerChildSecondIcon.textContent = "🖌️";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🖌️";
-      });
-    } else if (dayInMayObject[15] == dateTime) {
-      headerChildMainIcon.textContent = "👪";
-      headerChildSecondIcon.textContent = "🐕";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🐕";
-      });
-    } else if (dayInMayObject[16] == dateTime) {
-      headerChildMainIcon.textContent = "🎸";
-      headerChildSecondIcon.textContent = "🤘";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🤘";
-      });
-    } else if (dayInMayObject[17] == dateTime) {
-      headerChildMainIcon.textContent = "♻️";
-      headerChildSecondIcon.textContent = "🚯";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🚯";
-      });
-    } else if (dayInMayObject[18] == dateTime) {
-      headerChildMainIcon.textContent = "🌿";
-      headerChildSecondIcon.textContent = "🚰";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🚰";
-      });
-    } else if (dayInMayObject[19] == dateTime) {
-      headerChildMainIcon.textContent = "🦊";
-      headerChildSecondIcon.textContent = "🐿️";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🐿️";
-      });
-    } else if (dayInMayObject[20] == dateTime) {
-      headerChildMainIcon.textContent = "💶";
-      headerChildSecondIcon.textContent = "💰";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "💰";
-      });
-    } else if (dayInMayObject[21] == dateTime) {
-      headerChildMainIcon.textContent = "👞";
-      headerChildSecondIcon.textContent = "🚫";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🚫";
-      });
-    } else if (dayInMayObject[22] == dateTime) {
-      headerChildMainIcon.textContent = "🎹";
-      headerChildSecondIcon.textContent = "💶";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "💶";
-      });
-    } else if (dayInMayObject[23] == dateTime) {
-      headerChildMainIcon.textContent = "💋";
-      headerChildSecondIcon.textContent = "📅";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "📅";
-      });
-    } else if (dayInMayObject[24] == dateTime) {
-      headerChildMainIcon.textContent = "🐌";
-      headerChildSecondIcon.textContent = "🎉";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🎉";
-      });
-    } else if (dayInMayObject[25] == dateTime) {
-      headerChildMainIcon.textContent = "🤓";
-      headerChildSecondIcon.textContent = "🎈";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🎈";
-      });
-    } else if (dayInMayObject[26] == dateTime) {
-      headerChildMainIcon.textContent = "🥡";
-      headerChildSecondIcon.textContent = "🛵";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🛵";
-      });
-    } else if (dayInMayObject[27] == dateTime) {
-      headerChildMainIcon.textContent = "📣";
-      headerChildSecondIcon.textContent = "📈";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "📈";
-      });
-    } else if (dayInMayObject[28] == dateTime) {
-      headerChildMainIcon.textContent = "🍔";
-      headerChildSecondIcon.textContent = "😋";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "😋";
-      });
-    } else if (dayInMayObject[29] == dateTime) {
-      headerChildMainIcon.textContent = "🏰";
-      headerChildSecondIcon.textContent = "🔞";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🔞";
-      });
-    } else if (dayInMayObject[30] == dateTime) {
-      headerChildMainIcon.textContent = "🏩";
-      headerChildSecondIcon.textContent = "🚫";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "🚫";
-      });
-    } else if (dayInMayObject[31] == dateTime) {
-      headerChildMainIcon.textContent = "⚽";
-      headerChildSecondIcon.textContent = "↪️";
-      headerChildSecondIcon.addEventListener("mouseout", function (e) {
-        e.target.textContent = "↪️";
-      });
-    }
-  }
+
   // Loop to get beginning of next month
   for (let i = 1; i <= 6 - getLastDay(); i++) {
     dateText = i;
