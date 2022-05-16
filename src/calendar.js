@@ -717,6 +717,8 @@ function hasEvent(element) {
 
 // Set classes for work and personal events.
 function setCalEvents(eventBlock, storedEvent) {
+
+
   if (storedEvent.category === "work") {
     eventBlock.classList.add("work");
   } else {
@@ -724,8 +726,11 @@ function setCalEvents(eventBlock, storedEvent) {
   }
   eventBlock.setAttribute("data-event-position", `${storedEvent.position}`);
   eventBlock.addEventListener("click", function (e) {
-    eventDetailsDialog.showModal();
-    showDetails(e);
+    if (eventBlock.hasAttribute("data-event-position")) {
+      eventDetailsDialog.showModal();
+      showDetails(e);
+    }
+
 
     if (eventDetailsDialog.open) {
       const mainCalendar = document.getElementById("main");
@@ -762,12 +767,22 @@ function showDetails(e) {
   deleteBtn.addEventListener('click', closeModalDetails);
 }
 
+
 function deleteEvent() {
   let calendarPosition = currentEvent.getAttribute("data-event-position");
   let storedEvents = JSON.parse(localStorage.getItem('newEvent'));
 
   events = storedEvents.filter(object => object.position != calendarPosition);
   localStorage.setItem('newEvent', JSON.stringify(events));
+
+
+  currentEvent.removeAttribute("data-event-position");
+  currentEvent.removeEventListener("click", function (e) {
+    eventDetailsDialog.showModal();
+    showDetails(e);
+  });
+  closeEventDetails();
+
 
   currentEvent.classList.remove('work', 'personal');
 }
